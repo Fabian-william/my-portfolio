@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Fabian William - Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+        /* Base body and font styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f9ff; /* Light Sky 50 - for areas outside welcome */
+            color: #1e293b; /* Slate 900 for general text */
+            scroll-behavior: smooth; /* Smooth scrolling for nav links and return-to-home */
+        }
+
+        /* General Section Heading */
+        .section-heading {
+            @apply text-3xl font-bold text-slate-800 mb-8 border-b-2 border-cyan-600 pb-3;
+        }
+        .section-heading.text-center { /* Ensure centered headings also get the bottom margin */
+            @apply mb-8;
+        }
+
+        /* Card Styles (used in multiple sections) */
+        .card {
+            @apply bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out;
+        }
+        .card h3 { /* Ensure h3 within cards are styled consistently if not overridden by section-specific styles */
+            @apply text-xl font-semibold text-slate-700 mb-2;
+        }
+        .card p {
+            @apply text-slate-600 leading-relaxed;
+        }
+        .card ul li {
+            @apply mb-1 text-slate-600;
+        }
+
+        /* Navigation Styles */
+        .nav-link {
+            @apply px-3 py-2 rounded-md text-base font-medium transition-all duration-300 cursor-pointer text-slate-700;
+            cursor: pointer !important; /* Force pointer cursor for navigation links */
+        }
+        .nav-link:hover {
+            @apply bg-slate-200 text-cyan-600 shadow-sm;
+        }
+        .nav-link.active {
+            @apply bg-cyan-600 text-white shadow-md;
+        }
+        /* Sticky header specific nav link colors for better contrast */
+        header.sticky nav .nav-link {
+            color: #334155; /* Slate 700 for better readability on light sticky header */
+        }
+        header.sticky nav .nav-link:hover {
+            background-color: #e2e8f0; /* Slate 200 */
+            color: #0891b2; /* Cyan 600 */
+        }
+        header.sticky nav .nav-link.active {
+            background-color: #06b6d4; /* Cyan 500 */
+            color: white;
+        }
+
+        /* Primary Button Style (used in Welcome and potentially elsewhere) */
+        .btn-primary {
+            @apply inline-block bg-cyan-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-cyan-700 transition-colors duration-300 transform hover:scale-105;
+        }
+        .btn-secondary { /* For the "Get in Touch" style button */
+            @apply inline-flex items-center justify-center bg-transparent border-2 border-cyan-500 text-cyan-500 px-8 py-3 rounded-lg font-semibold hover:bg-cyan-500 hover:text-white transition-colors duration-300 text-lg transform hover:scale-105;
+        }
+
+        /* Collapsible Button (general style for all collapsible buttons) */
+        .collapsible-btn {
+            @apply ml-auto text-sm font-medium text-cyan-800 bg-cyan-100 hover:bg-cyan-200 px-4 py-1.5 rounded-lg transition-colors duration-300;
+        }
+
+        /* Floating Return to Home Button */
+        #return-to-home-btn {
+            @apply fixed bottom-6 right-6 bg-cyan-600 text-white p-3 rounded-full shadow-lg hover:bg-cyan-700 transition-all duration-300 z-50;
+            opacity: 0;
+            pointer-events: none; /* Make it unclickable when hidden */
+            transform: translateY(20px); /* Start slightly off-screen */
+        }
+        #return-to-home-btn.show {
+            opacity: 1;
+            pointer-events: auto; /* Make it clickable when shown */
+            transform: translateY(0); /* Slide into view */
+        }
+
+        /* Animation Utilities */
+        .header-fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-800ms { animation-delay: 0.8s; }
+
+        .content-section.fade-in { animation: fadeInGeneral 0.7s ease-out forwards; opacity: 0; }
+        @keyframes fadeInGeneral { to { opacity: 1; } }
+
+        /* Specific style for "About Me" objective text font */
+        #about #objective-text {
+            font-family: 'Inter', sans-serif; /* Already set on body, but good for specificity if needed */
+        }
+
+        /* Welcome Section Specific Styles */
+        .welcome-section-dark {
+            background-color: #0f172a; /* Slate 900 - Dark Background */
+            color: #e2e8f0; /* Slate 200 - Light text for dark background */
+        }
+        .animated-gradient-bg { /* Optional gradient background */
+            background: linear-gradient(-45deg, #1e3a8a, #065f46, #4c1d95, #7c2d12);
+            background-size: 400% 400%;
+            animation: gradientShiftBG 20s ease infinite;
+            color: #f0f9ff; /* Light text for gradient */
+        }
+        @keyframes gradientShiftBG { /* Renamed to avoid conflict if another gradientShift is used */
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Typed.js Cursor Style */
+        .typed-cursor {
+            color: #67e8f9; /* Cyan 300, or any contrasting color */
+            opacity: 1;
+            animation: typedjsBlink 0.7s infinite;
+            vertical-align: top; /* Helps with cursor alignment, especially when lines wrap */
+        }
+        @keyframes typedjsBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.0; }
+        }
+
+        /* Collapsible Section Details Styling (for smoother animation) */
+        .collapsible-details {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, margin-top 0.3s ease-in-out;
+            margin-top: 0;
+        }
+        .collapsible-details.open {
+            opacity: 1;
+            margin-top: 1rem; /* Add some space when open */
+            /* max-height will be set by JS dynamically based on content */
+        }
+
+        /* Skill Item Styles (from your original code) */
+        .skill-item {
+            position: relative;
+            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+            padding-left: 1.5rem; /* For bullet point spacing */
+        }
+        .skill-item:hover {
+            transform: translateX(5px) scale(1.02);
+            color: #06b6d4; /* Cyan 600 */
+        }
+        .skill-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #64748b; /* Slate 500 */
+            transition: color 0.4s ease-in-out, transform 0.4s ease-in-out;
+            transform: scale(1);
+        }
+        .skill-item:hover::before {
+            color: #06b6d4; /* Cyan 600 */
+            transform: scale(1.2);
+        }
+        /* Ensure images in project/certificate details are responsive and lazy load */
+        .collapsible-details img {
+            @apply max-w-full h-auto rounded-md shadow-md my-4;
+            loading: lazy;
+        }
+        /* Project images grid */
+        #iot-parking-details .grid {
+            @apply grid-cols-1 sm:grid-cols-2 gap-4; /* Adjust as needed */
+        }
+
+        /* Achievements specific styles to match other 'View Details' sections */
+        #achievements .card h3 {
+            @apply text-2xl font-semibold text-slate-800 mb-2 cursor-pointer flex items-center;
+        }
+        #achievements .collapsible-details p {
+            @apply text-lg text-slate-700 leading-relaxed my-4;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/90 backdrop-blur-lg text-slate-800 py-3 shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex items-center justify-center md:justify-end">
+            <nav class="flex flex-wrap justify-center gap-1 md:gap-3" id="main-nav">
+                <a class="nav-link" data-section="welcome">Home</a>
+                <a class="nav-link" data-section="about">About</a>
+                <a class="nav-link" data-section="education">Education</a>
+                <a class="nav-link" data-section="skills">Skills</a>
+                <a class="nav-link" data-section="experience">Experience</a>
+                <a class="nav-link" data-section="projects">Projects</a>
+                <a class="nav-link" data-section="certifications">Certifications</a>
+                <a class="nav-link" data-section="achievements">Achievements</a>
+                <a class="nav-link" data-section="contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div id="content-area">
+
+        <section id="welcome" class="content-section min-h-screen flex flex-col justify-center items-center text-center py-16 px-4 relative overflow-hidden welcome-section-dark">
+            <div class="relative z-10 header-fade-in-up w-full max-w-4xl">
+                <div class="mb-6 md:mb-8 delay-200">
+                    <img src="https://i.ibb.co/ynjd0pP1/Whats-App-Image-2025-06-02-at-11-54-04-e148af01.jpg" alt="AR Fabian William - Developer (Picture taken 2025)" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto shadow-2xl border-4 border-cyan-500 object-cover" loading="lazy">
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 mb-3 delay-400">
+                    AR FABIAN WILLIAM
+                </h1>
+                <p class="text-xl sm:text-2xl md:text-3xl font-semibold text-cyan-400 mb-6 delay-600 h-auto min-h-[1.5em] sm:min-h-[1.5em] md:min-h-[1.5em] flex justify-center items-center">
+                    <span id="typed-output"></span>
+                </p>
+                <p class="text-md sm:text-lg text-slate-300 max-w-xl md:max-w-2xl mx-auto mb-10 delay-800ms">
+                    A dedicated and results-oriented Developer transforming complex ideas into efficient, user-friendly software. Eager to leverage my skills in Python, C++, and modern web technologies to contribute to impactful projects.
+                </p>
+                <div class="delay-800ms flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6">
+                    <a href="#" data-section="projects" class="btn-primary text-lg inline-flex items-center justify-center px-8 py-3 w-full sm:w-auto nav-link-cta">
+                        <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+                        View My Work
+                    </a>
+                    <a href="#" data-section="contact" class="btn-secondary text-lg nav-link-cta w-full sm:w-auto">
+                        <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="content-section hidden">
+            <div class="container mx-auto px-4 py-16">
+                <h2 class="section-heading text-center md:text-left"><b>About Me</b></h2>
+                <p id="objective-text" class="text-lg leading-relaxed text-slate-700 mb-6">
+                    A highly motivated and adaptable Developer with a strong foundational understanding of programming principles. Eager to contribute to innovative software projects, leveraging problem-solving skills and a collaborative spirit to develop efficient and cutting-edge solutions in an entry-level role.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                    <a href="mailto:fabianwilliamar@gmail.com" class="inline-block px-6 py-3 rounded-lg font-semibold border-2 border-red-500 text-red-700 hover:bg-red-50 transition-colors duration-300">Email Me</a>
+                    <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="inline-block px-6 py-3 rounded-lg font-semibold border-2 border-blue-600 text-blue-700 hover:bg-blue-50 transition-colors duration-300">LinkedIn Profile</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="content-section hidden">
+            <div class="container mx-auto px-4 py-16">
+                <h2 class="section-heading text-center">Education</h2>
+                <div class="card max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-2">B.Sc in Computer Science</h3>
+                    <p class="text-lg text-slate-600">DR MGR Educational And Reserch University,<br> Chennai, India</p>
+                    <p class="text-md text-slate-500 mb-4">2022-2025</p>
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-2">Master of Computer Applications (MCA) - Currently Pursuing</h3>
+                    <p class="text-lg text-slate-600">DR MGR Educational And Reserch University,<br> Chennai, India</p>
+                    <p class="text-md text-slate-500 mb-4">2025-2027</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="content-section hidden">
+            <div class="container mx-auto px-4 py-16">
+                <h2 class="section-heading text-center">Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-cyan-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd"></path></svg>
+                            Technical Skills
+                        </h3>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="skill-item">Languages: Python, C, C++</li>
+                            <li class="skill-item">Web: HTML, CSS</li>
+                            <li class="skill-item">Tools: Git, Jupyter Notebooks, PyCharm, VS Code</li>
+                            <li class="skill-item">AI Tools: ChatGPT, Meta AI, Llama AI, Blackbox AI, Cursor AI</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-emerald-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17.555 14.333a1 1 0 00-.894-.555h-4.333a1 1 0 00-.894.555L9 17h10l-1.445-2.667zM15 9a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"></path></svg>
+                            Soft Skills
+                        </h3>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="skill-item">Communication</li>
+                            <li class="skill-item">Leadership skills</li>
+                            <li class="skill-item">Resource management</li>
+                            <li class="skill-item">Time management</li>
+                            <li class="skill-item">Adaptability</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="text-2xl font-semibold text-slate-800 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-purple-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7 2a1 1 0 00-1 1v1h4a1 1 0 010 2H4a1 1 0 00-1-1V3a1 1 0 00-1-1zm3 14a1 1 0 100-2 1 1 0 000 2zM5 7a1 1 0 011-1h8a1 1 0 011 1v7a1 1 0 01-1 1H6a1 1 0 01-1-1V7z" clip-rule="evenodd"></path></svg>
+                            Languages
+                        </h3>
+                        <ul class="space-y-2 text-slate-700">
+                            <li class="skill-item">English</li>
+                            <li class="skill-item">Tamil</li>
+                            <li class="skill-item">Malayalam</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="content-section hidden">
+            <div class="container mx-auto px-4 py-16">
+                <h2 class="section-heading text-center">Professional Training</h2>
+                <div class="card max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-2 cursor-pointer flex items-center" data-collapsible-id="python-intern">
+                        Python Programming Intern
+                        <button class="ml-auto text-sm font-medium text-cyan-800 bg-cyan-100 hover:bg-cyan-200 px-4 py-1.5 rounded-lg transition-colors duration-300">View Details</button>
+                    </h3>
+                    <p class="text-lg text-slate-600 mb-3">Top Tech Developers, Chennai</p>
+                    <div id="python-intern-details" class="collapsible-details">
+                        <ul class="list-disc list-inside space-y-2 text-slate-700 mb-6">
+                            <li>Automated tasks with Python scripts, boosting efficiency by 40%.</li>
+                            <li>Conducted comprehensive code reviews and refactoring sessions that improved code maintainability scores by 25%, facilitating smoother integration for future projects and enhancing collaboration among cross-functional teams.</li>
+                        </ul>
+                        <h4 class="text-xl font-semibold text-slate-700 mb-3">Internship Certificate:</h4>
+                        <img src="https://i.ibb.co/BVdKDdkj/7.jpg" alt="Python Internship Certificate" border="0" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="content-section hidden">
+            <div class="container mx-auto px-4 py-16">
+                <h2 class="section-heading text-center">Projects</h2>
+                <div class="card max-w-4xl mx-auto">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4 cursor-pointer flex items-center" data-collapsible-id="iot-parking">
+                        IOT BASED CAR PARKING SYSTEM
+                        <button class="ml-auto text-sm font-medium text-cyan-800 bg-cyan-100 hover:bg-cyan-200 px-4 py-1.5 rounded-lg transition-colors duration-300">View Details</button>
+                    </h3>
+                    <div id="iot-parking-details" class="collapsible-details">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <img src="https://i.ibb.co/KptKf4Dk/5.jpg" alt="IoT Parking System Diagram 1" border="0" loading="lazy">
+                            <img src="https://i.ibb.co/pr1hrYxq/4.jpg" alt="IoT Parking System Diagram 2" border="0" loading="lazy">
+                            <img src="https://i.ibb.co/39h8dw3L/2.jpg" alt="IoT Parking System Interface" border="0" loading="lazy">
+                            <img src="https://i.ibb.co/VG7DQLY/3.jpg" alt="IoT Parking System Hardware" border="0" loading="lazy">
+                        </div>
+                        <p class="text-lg text-slate-700 leading-relaxed">
+                            Developed an innovative IoT-based car parking system designed to optimize parking space utilization and enhance user convenience. This project leverages sensors to detect parking slot availability in real-time, transmitting data to a central server. Users can view available slots via a mobile or web interface, reducing search time and traffic congestion. The system incorporates efficient algorithms for slot allocation and provides intuitive navigation, demonstrating practical application of IoT principles and software development skills in creating smart solutions for everyday problems.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="content-section hidden">
+            <div class="container mx-auto px-4 py-16">
+                <h2 class="section-heading text-center">Certifications</h2>
+                <div class="card max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-4 cursor-pointer flex items-center" data-collapsible-id="python-simplilearn">
+                        Python for Beginners - Simplilearn
+                        <button class="ml-auto text-sm font-medium text-cyan-800 bg-cyan-100 hover:bg-cyan-200 px-4 py-1.5 rounded-lg transition-colors duration-300">View Details</button>
+                    </h3>
+                    <div id="python-simplilearn-details" class="collapsible-details">
+                        <img src="https://i.ibb.co/x9WYP0N/1.jpg" alt="Python for Beginners Simplilearn Certificate" border="0" loading="lazy" />
+                        <p class="text-lg text-slate-700 text-center leading-relaxed mt-4">
+                            This certificate from Simplilearn for "Python for Beginners" showcases Fabian's proactive approach to skill development and commitment to mastering foundational programming concepts. It's a testament to his dedication and readiness to excel in the software development field.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="content-section hidden">
+            <div class="container mx-auto px-4 py-16">
+                <h2 class="section-heading text-center">Achievements</h2>
+                <div class="card max-w-3xl mx-auto">
+                    <h3 class="text-2xl font-semibold text-slate-800 mb-2 cursor-pointer flex items-center" data-collapsible-id="paper-presentation">
+                        Second Prize - Technical Paper Presentation (Technology Day)
+                        <button class="ml-auto text-sm font-medium text-cyan-800 bg-cyan-100 hover:bg-cyan-200 px-4 py-1.5 rounded-lg transition-colors duration-300">View Details</button>
+                    </h3>
+                    <div id="paper-presentation-details" class="collapsible-details">
+                        <img src="https://i.ibb.co/ksn43rWy/6.jpg" alt="Technical Paper Presentation Achievement Certificate" border="0" loading="lazy">
+                        <p class="text-lg text-slate-700 leading-relaxed my-4">
+                            Awarded Second Prize in the Technical Paper Presentation Competition during the Technology Day Celebration at DR M.G.R. Educational and Research Institute, Chennai. This achievement highlights my strong research, presentation, and communication skills in a competitive academic environment.
+                        </p>
+                        <p class="text-md text-slate-600">Date: May 29, 2023</p>
+                        <p class="text-md text-slate-600">Organized by: Department of Computer Science, DR M.G.R. Educational and Research Institute.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="content-section hidden">
+            <div class="container mx-auto px-4 py-16">
+                <h2 class="section-heading text-center">Get in Touch</h2>
+                <p class="text-lg mb-10 text-center text-slate-600">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
+                <div class="max-w-lg mx-auto bg-white p-8 rounded-xl shadow-xl">
+                    <div class="flex flex-col space-y-6">
+                        <a href="mailto:fabianwilliamar@gmail.com" class="flex items-center space-x-3 text-slate-700 hover:text-cyan-600 transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                            <span class="text-lg">fabianwilliamar@gmail.com</span>
+                        </a>
+                        <div class="flex items-center space-x-3 text-slate-700">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
+                            <span class="text-lg">(+91) 75502-60124</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-slate-700">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                            <span class="text-lg">Chennai, Tamil Nadu, India</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="flex items-center space-x-3 text-slate-700 hover:text-cyan-600 transition-colors pt-4 border-t border-slate-200">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                            <span class="text-lg">linkedin.com/in/ar-fabian-william/</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <button id="return-to-home-btn" aria-label="Return to top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('#main-nav .nav-link');
+            const ctaLinksInWelcome = document.querySelectorAll('#welcome .nav-link-cta');
+            const allSectionNavTriggers = [...navLinks, ...ctaLinksInWelcome];
+            const contentSections = document.querySelectorAll('.content-section');
+            const returnToHomeBtn = document.getElementById('return-to-home-btn');
+
+            function showSection(sectionId, skipAnimation = false) {
+                let sectionFound = false;
+                contentSections.forEach(section => {
+                    if (section.id === sectionId) {
+                        section.classList.remove('hidden');
+                        sectionFound = true;
+                        if (!skipAnimation) {
+                            // Ensure fade-in animation is applied
+                            section.classList.remove('fade-in'); // Remove first to re-trigger if needed
+                            void section.offsetWidth; // Force reflow
+                            section.classList.add('fade-in');
+                        } else {
+                            section.classList.remove('fade-in'); // No animation on initial load
+                        }
+                    } else {
+                        section.classList.add('hidden');
+                        section.classList.remove('fade-in'); // Ensure it's not animating out
+                    }
+                });
+                if (!sectionFound) {
+                    console.warn(`Section with ID "${sectionId}" not found for showing.`);
+                }
+            }
+
+            function setActiveNavLink(sectionId) {
+                let linkFound = false;
+                navLinks.forEach(link => {
+                    if (link.dataset.section === sectionId) {
+                        link.classList.add('active');
+                        linkFound = true;
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                if (!linkFound) {
+                    // If triggered by a CTA not in main nav, find corresponding main nav item if exists
+                    const mainNavLink = document.querySelector(`#main-nav .nav-link[data-section="${sectionId}"]`);
+                    if(mainNavLink) mainNavLink.classList.add('active');
+                }
+            }
+
+            allSectionNavTriggers.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const sectionId = event.currentTarget.dataset.section;
+                    if (sectionId) {
+                        showSection(sectionId);
+                        setActiveNavLink(sectionId);
+                        // If it's a nav link (not a CTA within a section that stays put), scroll to section
+                        const targetSectionElement = document.getElementById(sectionId);
+                        if (targetSectionElement && navLinksToScroll(event.currentTarget)) {
+                            // Calculate offset for sticky header
+                            const headerOffset = document.querySelector('header.sticky')?.offsetHeight || 0;
+                            const elementPosition = targetSectionElement.getBoundingClientRect().top + window.pageYOffset;
+                            const offsetPosition = elementPosition - headerOffset - 20; // Extra 20px padding
+
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                        }
+                    } else {
+                        console.warn("Link does not have a data-section attribute:", event.currentTarget);
+                    }
+                });
+            });
+
+            function navLinksToScroll(element) {
+                // Determine if the clicked element is part of the main navigation
+                // or a CTA that should trigger a scroll.
+                return element.closest('#main-nav') || element.classList.contains('nav-link-cta');
+            }
+
+            const initialSectionId = 'welcome';
+            showSection(initialSectionId, true); // true to skip animation on initial load
+            setActiveNavLink(initialSectionId);
+
+            // --- Typed.js Initialization ---
+            if (typeof Typed !== 'undefined' && document.getElementById('typed-output')) {
+                // Ensure the span is empty before Typed.js starts
+                document.getElementById('typed-output').textContent = '';
+                new Typed('#typed-output', {
+                    strings: ["Aspiring Software Developer", "Creative Problem-Solver", "Python & Web Enthusiast", "Building Innovative Solutions", "Ready to Make an Impact"],
+                    typeSpeed: 40,
+                    backSpeed: 28,
+                    backDelay: 1800,
+                    loop: true,
+                    smartBackspace: true,
+                    showCursor: true,
+                    cursorChar: '_',
+                });
+            } else {
+                const typedOutputEl = document.getElementById('typed-output');
+                if(typedOutputEl) typedOutputEl.textContent = "Aspiring Software Developer"; // Fallback
+                console.warn("Typed.js not loaded or #typed-output not found.");
+            }
+
+            // --- Collapsible Section Toggle Function ---
+            document.querySelectorAll('h3[data-collapsible-id]').forEach(header => {
+                header.addEventListener('click', () => {
+                    const collapsibleId = header.dataset.collapsibleId;
+                    const detailsDiv = document.getElementById(`${collapsibleId}-details`);
+                    if (detailsDiv) {
+                        const isOpen = detailsDiv.classList.toggle('open');
+                        if (isOpen) {
+                            // Set max-height to the scrollHeight to animate opening
+                            detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
+                        } else {
+                            // Set max-height to 0 to animate closing
+                            detailsDiv.style.maxHeight = '0';
+                        }
+                    }
+                });
+            });
+
+            // --- Floating Return to Home Button Logic ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Show button after scrolling 300px
+                    returnToHomeBtn.classList.add('show');
+                } else {
+                    returnToHomeBtn.classList.remove('show');
+                }
+            });
+
+            returnToHomeBtn.addEventListener('click', () => {
+                // Find the welcome section and scroll to it
+                const welcomeSection = document.getElementById('welcome');
+                if (welcomeSection) {
+                    const headerOffset = document.querySelector('header.sticky')?.offsetHeight || 0;
+                    const elementPosition = welcomeSection.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset - 20; // Maintain padding from header
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                } else {
+                    // Fallback to scroll to top if welcome section not found
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+
+            // --- Footer Current Year ---
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>
