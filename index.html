@@ -1,708 +1,905 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Fabian William - Developer Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <style>
-        /* Base Styles */
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-        html, body { /* Removed scrolling and ensured full height for background fill */
-            height: 100%;
-            overflow: hidden; /* Crucial for preventing scrolling */
-            font-family: 'Inter', sans-serif;
-            background-color: #0F172A; /* Dark Slate Blue */
-            color: #E2E8F0; /* Light Gray Text */
-            margin: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            cursor: default; /* Default cursor for non-interactive areas */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AR Fabian William Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    /* Base and Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0F172A;
+      color: #E2E8F0;
+      overflow: hidden; /* Keep hidden to prevent scrollbars from individual sections */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      cursor: default;
+    }
+    :focus-visible {
+      outline: 3px solid #60A5FA;
+      outline-offset: 2px;
+    }
 
-        /* Section Headings - Professional Gradient */
-        .section-heading {
-            @apply text-3xl sm:text-4xl lg:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-6 sm:mb-8 pb-2 border-b-2 border-gray-700 text-center;
-        }
+    /* Custom cursor */
+    body {
+      cursor: default;
+    }
+    a, button, .nav-link, .btn-primary, .btn-secondary, .collapsible-btn {
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    a:hover, button:hover, .nav-link:hover, .btn-primary:hover, .btn-secondary:hover, .collapsible-btn:hover {
+      transform: scale(1.05);
+    }
 
-        /* Card Styles - Consistent and Clean */
-        .card {
-            @apply bg-gray-800 p-6 rounded-lg shadow-xl border border-gray-700 transition-all duration-300 ease-in-out hover:shadow-2xl;
-        }
-        .card h3 {
-            @apply text-xl sm:text-2xl font-bold text-blue-300 mb-2;
-        }
-        .card p, .card ul li {
-            @apply text-gray-300 leading-relaxed;
-        }
+    /* Scrollbar */
+    .content-section::-webkit-scrollbar {
+      width: 8px;
+    }
+    .content-section::-webkit-scrollbar-track {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    .content-section::-webkit-scrollbar-thumb {
+      background: #475569;
+      border-radius: 4px;
+    }
+    .content-section::-webkit-scrollbar-thumb:hover {
+      background: #60a5fa;
+    }
 
-        /* Navigation Links - Subtle and Responsive */
-        .nav-link {
-            @apply px-2 py-1 rounded-md text-sm md:px-3 md:py-2 md:text-base lg:text-lg font-medium transition-colors duration-200 cursor-pointer text-gray-300 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500;
-        }
-        .nav-link.active {
-            @apply bg-blue-600 text-white font-semibold;
-        }
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #000;
+      z-index: 1000;
+      border-bottom: 1px solid #334155;
+      padding: 0.75rem 1rem;
+      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    header.sticky {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+      background-color: #000;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1rem;
+    }
+    .nav-link {
+      color: #CBD5E1;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      user-select: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .nav-link:hover,
+    .nav-link:focus-visible {
+      background-color: #2563eb;
+      color: #fff;
+      outline: none;
+    }
+    .nav-link.active {
+      background-color: #2563eb;
+      color: #fff;
+      font-weight: 700;
+      cursor: default;
+    }
 
-        /* Sticky Header */
-        header.sticky {
-            @apply bg-gray-900/80 backdrop-blur-sm shadow-md border-b border-gray-700;
-        }
+    /* Return to Top Button */
+    #return-to-home-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background-color: #2563eb;
+      color: white;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 9999px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.5);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(15px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      user-select: none;
+      z-index: 1001;
+    }
+    #return-to-home-btn.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    #return-to-home-btn:hover,
+    #return-to-home-btn:focus-visible {
+      background-color: #1e40af;
+      outline: none;
+      box-shadow: 0 12px 28px rgba(30, 64, 175, 0.75);
+    }
+    #return-to-home-btn svg {
+      width: 24px;
+      height: 24px;
+    }
 
-        /* Buttons - Clean and Accessible */
-        .btn-primary {
-            @apply inline-flex items-center justify-center bg-blue-600 text-white px-5 py-2.5 rounded-md font-semibold text-base transition-all duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer;
-        }
-        .btn-secondary {
-            @apply inline-flex items-center justify-center bg-transparent border-2 border-purple-500 text-purple-400 px-5 py-2.5 rounded-md font-semibold text-base transition-all duration-200 hover:bg-purple-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 cursor-pointer;
-        }
-        .collapsible-btn {
-            /* Ensures button wraps below title on small screens, stays right-aligned on larger */
-            /* Updated border and focus ring to white, hover effects added */
-            @apply text-sm font-semibold text-white bg-gray-700 px-3 py-1.5 rounded-md transition-all duration-200 border-2 border-white focus:outline-none focus:ring-2 focus:ring-white;
-            @apply ml-auto mt-2 sm:mt-0; /* Margin-top on small screens, no margin on larger */
-            flex-shrink: 0; /* Prevent button from shrinking */
-            cursor: pointer; /* Ensure pointer cursor */
-            @apply hover:bg-blue-600 hover:text-white hover:border-blue-500; /* Added hover state */
-        }
-        /* Flex container for project card header to handle button wrapping */
-        .project-card h3 {
-            @apply flex flex-col sm:flex-row sm:items-center sm:justify-between mb-0; /* Removed default h3 margin-bottom */
-        }
-        .project-card h3 span {
-            @apply mb-2 sm:mb-0; /* Added bottom margin to title span on small screens */
-        }
+    /* Welcome Section */
+    .welcome-section {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center; /* This centers children horizontally in column flex */
+      color: #F8FAFC;
+      background: linear-gradient(135deg, #0F172A, #1A2035, #2D3748);
+      overflow: hidden;
+      text-align: center; /* This centers inline-block and text within it */
+    }
+    #particles-js {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    .welcome-section > div:not(#particles-js) {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      padding: 0 1rem;
+      /* Ensure this div is centered within its flex parent (welcome-section) */
+      /* align-items: center on welcome-section should handle this */
+    }
+    .profile-pic {
+      width: 9rem;
+      height: 9rem;
+      border-radius: 9999px;
+      border: 4px solid #2563eb;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      user-select: none;
+    }
+    h1.welcome-name {
+      font-weight: 900;
+      font-size: 3.75rem;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      user-select: text;
+    }
+    p.typed-text {
+      color: #60A5FA;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      user-select: none;
+      position: relative;
+      line-height: 1.5rem;
+      display: inline-block; /* Essential for cursor alignment with Typed.js */
+    }
+    .typed-cursor {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+      vertical-align: top; /* Align cursor to the top of the text */
+      position: relative;
+      top: -0.1em; /* Fine-tune if needed */
+    }
 
-        /* Return to Home Button */
-        #return-to-home-btn {
-            @apply fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50 focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer;
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(20px);
-        }
-        #return-to-home-btn.show {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(0);
-        }
+    p.welcome-description {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+      color: #cbd5e1;
+      user-select: text;
+    }
+    .welcome-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary,
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      padding: 0.625rem 1.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
+      border: none;
+      font-size: 1rem;
+      text-decoration: none;
+      outline-offset: 2px;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible {
+      background-color: #1d4ed8;
+      outline: none;
+      transform: translateY(-2px);
+    }
+    .btn-secondary:hover,
+    .btn-secondary:focus-visible {
+      background-color: #7c3aed;
+      color: white;
+      outline: none;
+      transform: translateY(-2px);
+    }
+    .material-icons {
+      font-size: 1.25rem;
+      margin-right: 0.5rem;
+      user-select: none;
+    }
 
-        /* Animations - Subtle Fade and Slide (Adjusted speeds) */
-        .fade-in {
-            animation: fadeIn 0.4s ease-out forwards; /* Faster fade */
-            opacity: 0;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+    /* Main content area */
+    #content-area {
+      max-width: 960px; /* Max width for all content */
+      margin: 0 auto; /* Center the entire main content area */
+      position: relative; /* Needed for absolute positioning of sections */
+      height: 100vh; /* Ensure main takes full viewport height for sections to layer correctly */
+      overflow: hidden; /* Hide overflow of sections when not active */
+    }
 
-        .slide-in-up {
-            animation: slideInUp 0.5s ease-out forwards; /* Faster slide */
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        @keyframes slideInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
+    /* Content Sections */
+    .content-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+      padding-top: 5rem;
+      padding-bottom: 4rem;
+      overflow-y: auto;
+      height: 100%; /* Take full height of #content-area */
+      width: 100%; /* Take full width of #content-area */
+      position: absolute; /* Essential for layering sections correctly within #content-area */
+      top: 0;
+      left: 0;
+      display: none; /* Hidden by default */
+      scroll-behavior: smooth;
+      outline-offset: 3px;
+      padding-left: 1rem; /* Padding relative to content-area */
+      padding-right: 1rem; /* Padding relative to content-area */
+      user-select: text;
+    }
+    .content-section.active-section {
+      opacity: 1;
+      transform: translateY(0);
+      display: block; /* Ensure display is block when active */
+      z-index: 10; /* Bring active section to front */
+    }
+    .content-section:focus-visible {
+      outline: 3px solid #60A5FA;
+      outline-offset: 5px;
+    }
 
-        /* Content Section Transition - Smooth Display (Adjusted speed) */
-        .content-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out; /* Faster transition */
-            padding-bottom: 4rem;
-            display: none;
-            width: 100%;
-            height: 100vh; /* Changed to height: 100vh to ensure full screen fill without scrolling */
-            padding-top: 5rem;
-            overflow-y: auto; /* Allow internal scrolling if content overflows viewport */
-            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-        }
-        .content-section.active-section {
-            opacity: 1;
-            transform: translateY(0);
-            display: block;
-        }
-        .welcome-section {
-            background: linear-gradient(135deg, #0F172A, #1A2035, #2D3748); /* Deeper gradient */
-            color: #F8FAFC; /* Lighter text for hero */
-            position: relative;
-            overflow: hidden; /* Keep particles contained */
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Ensure welcome section always fills viewport */
-        }
+    /* Section Heading */
+    .section-heading {
+      font-size: 2.25rem;
+      font-weight: 900;
+      margin-bottom: 2rem;
+      text-align: center;
+      background: linear-gradient(to right, #60A5FA, #7c3aed, #ec4899);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      user-select: text;
+    }
 
-        #particles-js {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
+    /* Card */
+    .card {
+      background-color: rgba(31, 41, 55, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #334155;
+      color: #e0e7ff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: text;
+    }
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 45px rgba(99, 102, 241, 0.7);
+      outline: none;
+    }
+    .card h3 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #bbbde1;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: text;
+    }
 
-        /* Typed.js Cursor */
-        .typed-cursor {
-            color: #60A5FA; /* Blue accent */
-            opacity: 1;
-            animation: typedjsBlink 0.7s infinite;
-        }
-        @keyframes typedjsBlink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+    /* Skill Items */
+    ul {
+      padding-left: 1.25rem;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    li.skill-item {
+      position: relative;
+      margin-bottom: 0.5rem;
+      color: #cbd5e1;
+      padding-left: 1.25rem;
+      user-select: text;
+    }
+    li.skill-item::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #60A5FA;
+      font-weight: 900;
+    }
 
-        /* Collapsible Details - Enhanced Functionality (Adjusted speed) */
-        .collapsible-details {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Faster collapse/expand */
-            padding: 0 1rem;
-        }
-        .collapsible-details.open {
-            opacity: 1;
-            padding: 1rem;
-            /* max-height set dynamically by JS based on content */
-        }
+    /* Collapsible Button */
+    .collapsible-btn {
+      background-color: #374151;
+      color: white;
+      border: 2px solid white;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+      user-select: none;
+    }
+    .collapsible-btn:hover,
+    .collapsible-btn:focus-visible {
+      background-color: #2563eb;
+      border-color: #60A5FA;
+      outline: none;
+    }
 
-        /* Skill List Items */
-        .skill-item {
-            position: relative;
-            @apply pl-4 text-gray-300;
-        }
-        .skill-item::before {
-            content: '•';
-            @apply absolute left-0 text-blue-400;
-        }
+    /* Collapsible Details */
+    .collapsible-details {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      padding: 0 1rem;
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      color: #cbd5e1;
+      user-select: text;
+    }
+    .collapsible-details.open {
+      opacity: 1;
+      padding: 1rem;
+    }
 
-        /* Project Image Grid - Responsive 2x2 */
-        .project-grid {
-            @apply grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4; /* 2x2 on sm screens and up */
-        }
-        .project-image-container {
-            @apply rounded-md overflow-hidden shadow-md border border-gray-700;
-            aspect-ratio: 16/9; /* Maintain aspect ratio */
-        }
-        .project-image {
-            @apply w-full h-full object-cover;
-            loading: lazy;
-        }
+    /* Responsive Project Image Grid */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      justify-content: center;
+    }
+    .project-image-container {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #334155;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      height: 320px;
+      width: 320px;
+      margin: 0 auto;
+      user-select: none;
+    }
+    .project-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      user-select: none;
+      pointer-events: none;
+    }
 
-        /* Prevent image dragging and context menu */
-        img {
-            -webkit-user-drag: none;
-            -khtml-user-drag: none;
-            -moz-user-drag: none;
-            -o-user-drag: none;
-            user-drag: none;
-            pointer-events: auto;
-        }
-    </style>
+    /* Responsive utilities */
+    @media (max-width: 1024px) {
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+      .project-image-container {
+        width: 100%;
+        max-width: 100%;
+        height: 260px;
+      }
+    }
+    @media (max-width: 640px) {
+      h1.welcome-name {
+        font-size: 2.5rem;
+      }
+      .welcome-section > div:not(#particles-js) {
+        max-width: 100%;
+        padding: 0 0.5rem;
+      }
+      .btn-primary,
+      .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      .welcome-buttons {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+  </style>
 </head>
 <body oncontextmenu="return false;">
-    <header class="fixed w-full top-0 z-50 py-3 transition-all duration-300 ease-in-out bg-transparent" id="main-header">
-        <div class="container mx-auto px-4 flex items-center justify-center">
-            <nav class="flex flex-wrap justify-center gap-2 md:gap-4" id="main-nav">
-                <a class="nav-link" data-section="welcome" aria-label="Navigate to Home">Home</a>
-                <a class="nav-link" data-section="about" aria-label="Navigate to About">About</a>
-                <a class="nav-link" data-section="education" aria-label="Navigate to Education">Education</a>
-                <a class="nav-link" data-section="skills" aria-label="Navigate to Skills">Skills</a>
-                <a class="nav-link" data-section="experience" aria-label="Navigate to Experience">Experience</a>
-                <a class="nav-link" data-section="projects" aria-label="Navigate to Projects">Projects</a>
-                <a class="nav-link" data-section="certifications" aria-label="Navigate to Certifications">Certifications</a>
-                <a class="nav-link" data-section="achievements" aria-label="Navigate to Achievements">Achievements</a>
-                <a class="nav-link" data-section="contact" aria-label="Navigate to Contact">Contact</a>
-            </nav>
+  <header role="banner" aria-label="Primary navigation">
+    <nav role="navigation" aria-label="Main menu" class="container mx-auto px-4" aria-live="polite" aria-relevant="additions removals" aria-atomic="true">
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-4 py-3">
+        <a href="#" class="nav-link active" role="link" data-section="welcome" tabindex="0" aria-current="page" aria-label="Navigate to Home section">Home</a>
+        <a href="#" class="nav-link" role="link" data-section="about" tabindex="-1" aria-label="Navigate to About section">About</a>
+        <a href="#" class="nav-link" role="link" data-section="education" tabindex="-1" aria-label="Navigate to Education section">Education</a>
+        <a href="#" class="nav-link" role="link" data-section="skills" tabindex="-1" aria-label="Navigate to Skills section">Skills</a>
+        <a href="#" class="nav-link" role="link" data-section="experience" tabindex="-1" aria-label="Navigate to Experience section">Experience</a>
+        <a href="#" class="nav-link" role="link" data-section="projects" tabindex="-1" aria-label="Navigate to Projects section">Projects</a>
+        <a href="#" class="nav-link" role="link" data-section="certifications" tabindex="-1" aria-label="Navigate to Certifications section">Certifications</a>
+        <a href="#" class="nav-link" role="link" data-section="achievements" tabindex="-1" aria-label="Navigate to Achievements section">Achievements</a>
+        <a href="#" class="nav-link" role="link" data-section="contact" tabindex="-1" aria-label="Navigate to Contact section">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="content-area" role="main">
+    <!-- Welcome -->
+    <section id="welcome" class="content-section welcome-section active-section" tabindex="0" aria-label="Welcome section of portfolio">
+      <div id="particles-js" aria-hidden="true"></div>
+      <div>
+        <img src="https://i.ibb.co/ynjd0pP1/Whats-App-Image-2025-06-02-at-11-54-04-e148af01.jpg" alt="Profile picture of AR Fabian William, developer in casual attire, smiling" class="profile-pic" draggable="false" />
+        <h1 class="welcome-name">AR FABIAN WILLIAM</h1>
+        <p class="typed-text" id="typed-output" aria-live="polite" aria-atomic="true"></p>
+        <p class="welcome-description">
+          A dedicated and results-oriented Developer transforming complex ideas into efficient, user-friendly software. Eager to leverage my skills in Python, C++, and modern web technologies to contribute to impactful projects.
+        </p>
+        <div class="welcome-buttons">
+          <a href="#" class="btn-primary nav-link-cta" role="button" tabindex="0" data-section="projects" aria-label="View My Work section">
+            <span class="material-icons" aria-hidden="true">work_outline</span>View My Work
+          </a>
+          <a href="#" class="btn-secondary nav-link-cta" role="button" tabindex="0" data-section="contact" aria-label="Get in Touch section">
+            <span class="material-icons" aria-hidden="true">mail_outline</span>Get in Touch
+          </a>
         </div>
-    </header>
+      </div>
+    </section>
 
-    <div id="content-area"><center>
-        <!-- Welcome Section -->
-        <section id="welcome" class="content-section welcome-section active-section">
-            <div id="particles-js"></div>
-            <div class="relative z-10 w-full max-w-4xl text-center px-4">
-                <div class="mb-8 slide-in-up" style="animation-delay: 0.1s;">
-                    <img src="https://i.ibb.co/ynjd0pP1/Whats-App-Image-2025-06-02-at-11-54-04-e148af01.jpg" alt="AR Fabian William - Developer" class="w-36 h-36 sm:w-40 sm:h-40 rounded-full mx-auto shadow-xl border-4 border-blue-500 object-cover" loading="lazy">
-                </div>
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-gray-50 mb-4 slide-in-up" style="animation-delay: 0.2s;">
-                    AR FABIAN WILLIAM
-                </h1>
-                <p class="text-lg sm:text-xl md:text-2xl font-semibold text-blue-400 mb-8 h-auto min-h-[1.5em] flex justify-center items-center slide-in-up" style="animation-delay: 0.3s;">
-                    <span id="typed-output"></span>
-                </p>
-                <p class="text-base sm:text-lg text-gray-300 max-w-3xl mx-auto mb-10 slide-in-up" style="animation-delay: 0.4s;">
-                    A dedicated and results-oriented Developer transforming complex ideas into efficient, user-friendly software. Eager to leverage my skills in Python, C++, and modern web technologies to contribute to impactful projects.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4 slide-in-up" style="animation-delay: 0.5s;">
-                    <a href="#" data-section="projects" class="btn-primary nav-link-cta" aria-label="View My Projects">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
-                        View My Work
-                    </a>
-                    <a href="#" data-section="contact" class="btn-secondary nav-link-cta" aria-label="Contact Me">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                        Get in Touch
-                    </a>
-              </center>  </div>
-            </div>
+    <!-- About -->
+    <section id="about" class="content-section" tabindex="-1" aria-label="About Me section">
+      <h2 class="section-heading">About Me</h2>
+      <article class="card" role="region" aria-labelledby="about-heading">
+        <p id="about-heading" class="mb-6">
+          A highly motivated and adaptable Developer with a strong foundational understanding of programming principles. Proficient in utilizing AI tools like ChatGPT, Meta AI, Gemini AI, Llama AI, Blackbox AI, and Cursor AI to enhance development workflows, automate tasks, and generate innovative solutions. Eager to contribute to cutting-edge software projects, leveraging problem-solving skills and a collaborative spirit to develop efficient and cutting-edge solutions in an entry-level role.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4" role="group" aria-label="Contact Links">
+          <a href="mailto:fabianwilliamar@gmail.com" class="btn-secondary border-red-500 text-red-400 hover:bg-red-500 hover:text-white" aria-label="Send email to Fabian William" tabindex="0">
+            <span class="material-icons" aria-hidden="true">email</span>Email Me
+          </a>
+          <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" rel="noopener noreferrer" class="btn-secondary border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white" aria-label="Open Fabian William's LinkedIn profile in a new window" tabindex="0">
+            <span class="material-icons" aria-hidden="true">linkedin</span>LinkedIn Profile
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="content-section" tabindex="-1" aria-label="Education section">
+      <h2 class="section-heading">Education</h2>
+      <article class="card" role="region" aria-labelledby="education1">
+        <h3 id="education1" class="mb-2 font-semibold text-blue-300">B.Sc in Computer Science</h3>
+        <p>DR MGR Educational And Research University, Chennai, India</p>
+        <p class="text-gray-400">2022-2025</p>
+      </article>
+      <article class="card" role="region" aria-labelledby="education2">
+        <h3 id="education2" class="mb-2 font-semibold text-blue-300">Master of Computer Applications (MCA)</h3>
+        <p>DR MGR Educational And Research University, Chennai, India</p>
+        <p class="text-gray-400">Currently Pursuing (2025-2027)</p>
+      </article>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="content-section" tabindex="-1" aria-label="Skills section">
+      <h2 class="section-heading">Skills</h2>
+      <article class="card" role="region" aria-labelledby="tech-skills">
+        <h3 id="tech-skills" class="flex items-center text-blue-300 mb-4 font-semibold">
+          <span class="material-icons mr-2 text-pink-300" aria-hidden="true">settings</span>
+          Technical Skills
+        </h3>
+        <ul>
+          <li class="skill-item">Languages: Python, C, C++</li>
+          <li class="skill-item">Web: HTML, CSS, JavaScript</li>
+          <li class="skill-item">Frameworks/Libraries: Tailwind CSS</li>
+          <li class="skill-item">Tools: Git, Jupyter Notebooks, PyCharm, VS Code, Power BI</li>
+          <li class="skill-item">AI Tools: ChatGPT, Meta AI, Gemini AI, Llama AI, Blackbox AI, Cursor AI</li>
+        </ul>
+      </article>
+      <article class="card" role="region" aria-labelledby="soft-skills">
+        <h3 id="soft-skills" class="flex items-center text-blue-300 mb-4 font-semibold">
+          <span class="material-icons mr-2 text-lime-300" aria-hidden="true">psychology</span>
+          Soft Skills
+        </h3>
+        <ul>
+          <li class="skill-item">Communication</li>
+          <li class="skill-item">Leadership skills</li>
+          <li class="skill-item">Resource management</li>
+          <li class="skill-item">Time management</li>
+          <li class="skill-item">Adaptability & Problem-Solving</li>
+        </ul>
+      </article>
+      <article class="card" role="region" aria-labelledby="languages">
+        <h3 id="languages" class="flex items-center text-blue-300 mb-4 font-semibold">
+          <span class="material-icons mr-2 text-purple-300" aria-hidden="true">translate</span>
+          Languages
+        </h3>
+        <ul>
+          <li class="skill-item">English (Fluent)</li>
+          <li class="skill-item">Tamil (Native)</li>
+          <li class="skill-item">Malayalam (Conversational)</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="content-section" tabindex="-1" aria-label="Professional Training section">
+      <h2 class="section-heading">Professional Training</h2>
+      <article class="card" role="region" aria-labelledby="python-intern">
+        <h3 id="python-intern" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
+          Python Programming Intern
+          <button class="collapsible-btn" data-collapsible-id="python-intern" aria-expanded="false" aria-controls="python-intern-details" aria-label="Toggle Python internship details" tabindex="0">View Details</button>
+        </h3>
+        <p class="mb-3">Top Tech Developers, Chennai</p>
+        <section id="python-intern-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
+          <ul class="list-disc list-inside space-y-2">
+            <li>Automated tasks with Python scripts, boosting efficiency by 40%.</li>
+            <li>Conducted comprehensive code reviews and refactoring sessions that improved code maintainability scores by 25%, facilitating smoother integration for future projects and enhancing collaboration among cross-functional teams.</li>
+          </ul>
+          <h4 class="mb-2 font-semibold">Internship Certificate:</h4>
+          <img src="https://i.ibb.co/BVdKDdkj/7.jpg" alt="Python Internship Completion Certificate from Top Tech Developers, Chennai" class="rounded-md shadow-md w-full max-w-md mx-auto" loading="lazy" draggable="false" />
         </section>
+      </article>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="content-section">
-            <div class="container mx-auto px-4 max-w-5xl">
-                <h2 class="section-heading fade-in" style="animation-delay: 0.1s;">About Me</h2>
-                <div class="card text-center fade-in" style="animation-delay: 0.2s;">
-                    <p id="objective-text" class="text-lg sm:text-xl leading-relaxed mb-6">
-                        A highly motivated and adaptable Developer with a strong foundational understanding of programming principles. I'm proficient in utilizing AI tools like ChatGPT, Meta AI, Gemini AI, Llama AI, Blackbox AI, and Cursor AI to enhance development workflows, automate tasks, and generate innovative solutions. Eager to contribute to cutting-edge software projects, leveraging problem-solving skills and a collaborative spirit to develop efficient and cutting-edge solutions in an entry-level role.
-                    </p>
-                    <div class="flex flex-wrap justify-center gap-4 mt-6">
-                        <a href="mailto:fabianwilliamar@gmail.com" class="btn-secondary border-red-500 text-red-400 hover:bg-red-500 hover:text-white" aria-label="Email Fabian">Email Me</a>
-                        <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="btn-secondary border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white" aria-label="View LinkedIn Profile">LinkedIn Profile</a>
-                    </div>
-                </div>
-            </div>
+    <!-- Projects -->
+    <section id="projects" class="content-section" tabindex="-1" aria-label="Projects section">
+      <h2 class="section-heading">Projects</h2>
+      <article class="card" role="region" aria-labelledby="project-ai-navigator">
+        <h3 id="project-ai-navigator" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
+          AI Navigator
+          <button class="collapsible-btn" data-collapsible-id="ai-navigator" aria-expanded="false" aria-controls="ai-navigator-details" aria-label="Toggle AI Navigator project details" tabindex="0">View Details</button>
+        </h3>
+        <section id="ai-navigator-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
+          <div class="flex justify-end mb-3">
+            <a href="https://fabian-william.github.io/AI-NAVIGATOR/" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="View AI Navigator project live demo" tabindex="0">
+              <span class="material-icons" aria-hidden="true">open_in_new</span>View Project
+            </a>
+          </div>
+          <div class="project-grid">
+            <div class="project-image-container"><img src="https://i.ibb.co/DPnznn8v/Screenshot-2025-06-12-215552.png" alt="Screenshot 1 of AI Navigator app showing main UI and map view" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/pvR2zBv7/Screenshot-2025-06-16-133251.png" alt="Screenshot 2 of AI Navigator app showing tool categories and filters" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/WNXNNTc8/Screenshot-2025-06-16-133317.png" alt="Screenshot 3 of AI Navigator app dashboard with favorites list" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/b5J6gJ6B/Screenshot-2025-06-16-132553.png" alt="Screenshot 4 of AI Navigator app, detailed tool view" class="project-image" loading="lazy" draggable="false" /></div>
+          </div>
+          <p class="mt-4">
+            AI Navigator is a web app designed to help users explore a broad range of digital tools including AI platforms, productivity software, and business applications. It serves as a curated directory making it easy to find free and paid tools tailored for different needs.
+          </p>
         </section>
+      </article>
 
-        <!-- Education Section -->
-        <section id="education" class="content-section">
-            <div class="container mx-auto px-4 max-w-5xl">
-                <h2 class="section-heading fade-in" style="animation-delay: 0.1s;">Education</h2>
-                <div class="flex flex-col gap-6">
-                    <div class="card fade-in" style="animation-delay: 0.2s;">
-                        <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-2">B.Sc in Computer Science</h3>
-                        <p class="text-lg sm:text-xl text-gray-300 mb-1">DR MGR Educational And Research University, Chennai, India</p>
-                        <p class="text-base text-gray-400">2022-2025</p>
-                    </div>
-                    <div class="card fade-in" style="animation-delay: 0.3s;">
-                        <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-2">Master of Computer Applications (MCA)</h3>
-                        <p class="text-lg sm:text-xl text-gray-300 mb-1">DR MGR Educational And Research University, Chennai, India</p>
-                        <p class="text-base text-gray-400">Currently Pursuing (2025-2027)</p>
-                    </div>
-                </div>
-            </div>
+      <article class="card" role="region" aria-labelledby="project-iot-parking">
+        <h3 id="project-iot-parking" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
+          IoT Based Car Parking System
+          <button class="collapsible-btn" data-collapsible-id="iot-parking" aria-expanded="false" aria-controls="iot-parking-details" aria-label="Toggle IoT parking system project details" tabindex="0">View Details</button>
+        </h3>
+        <section id="iot-parking-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
+          <div class="project-grid">
+            <div class="project-image-container"><img src="https://i.ibb.co/KptKf4Dk/5.jpg" alt="Diagram showing IoT car parking system sensors and flow" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/pr1hrYxq/4.jpg" alt="Flowchart depicting data flow in IoT parking system" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/39h8dw3L/2.jpg" alt="Mobile interface screenshot showing parking slot availability" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/VG7DQLY/3.jpg" alt="Photo showing hardware parking setup with sensors" class="project-image" loading="lazy" draggable="false" /></div>
+          </div>
+          <p class="mt-4">
+            An innovative IoT-based parking solution optimizing usage of parking spaces by real-time monitoring with sensors, efficient slot allocation algorithms, and a user-friendly mobile/web interface to reduce searching time.
+          </p>
         </section>
+      </article>
 
-        <!-- Skills Section -->
-        <section id="skills" class="content-section">
-            <div class="container mx-auto px-4 max-w-6xl">
-                <h2 class="section-heading fade-in" style="animation-delay: 0.1s;">Skills</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="card fade-in" style="animation-delay: 0.2s;">
-                        <h3 class="flex items-center text-blue-300">
-                            <svg class="w-5 h-5 mr-2 text-pink-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd"></path></svg>
-                            Technical Skills
-                        </h3>
-                        <ul class="space-y-1.5 mt-2">
-                            <li class="skill-item">Languages: Python, C, C++</li>
-                            <li class="skill-item">Web: HTML, CSS, JavaScript</li>
-                            <li class="skill-item">Frameworks/Libraries: Tailwind CSS</li>
-                            <li class="skill-item">Tools: Git, Jupyter Notebooks, PyCharm, VS Code, Power BI</li>
-                            <li class="skill-item">AI Tools: ChatGPT, Meta AI, Gemini AI, Llama AI, Blackbox AI, Cursor AI</li>
-                        </ul>
-                    </div>
-                    <div class="card fade-in" style="animation-delay: 0.3s;">
-                        <h3 class="flex items-center text-blue-300">
-                            <svg class="w-5 h-5 mr-2 text-lime-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17.555 14.333a1 1 0 00-.894-.555h-4.333a1 1 0 00-.894.555L9 17h10l-1.445-2.667zM15 9a3 3 0 11-6 0 3 3 0 016 0z" clip-rule="evenodd"></path></svg>
-                            Soft Skills
-                        </h3>
-                        <ul class="space-y-1.5 mt-2">
-                            <li class="skill-item">Communication</li>
-                            <li class="skill-item">Leadership skills</li>
-                            <li class="skill-item">Resource management</li>
-                            <li class="skill-item">Time management</li>
-                            <li class="skill-item">Adaptability & Problem-Solving</li>
-                        </ul>
-                    </div>
-                    <div class="card fade-in" style="animation-delay: 0.4s;">
-                        <h3 class="flex items-center text-blue-300">
-                            <svg class="w-5 h-5 mr-2 text-purple-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7 2a1 1 0 00-1 1v1h4a1 1 0 010 2H4a1 1 0 00-1-1V3a1 1 0 00-1-1zm3 14a1 1 0 100-2 1 1 0 000 2zM5 7a1 1 0 011-1h8a1 1 0 011 1v7a1 1 0 01-1 1H6a1 1 0 01-1-1V7z" clip-rule="evenodd"></path></svg>
-                            Languages
-                        </h3>
-                        <ul class="space-y-1.5 mt-2">
-                            <li class="skill-item">English (Fluent)</li>
-                            <li class="skill-item">Tamil (Native)</li>
-                            <li class="skill-item">Malayalam (Conversational)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      <article class="card" role="region" aria-labelledby="project-excel-powerbi">
+        <h3 id="project-excel-powerbi" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
+          Excel to Power BI Converter
+          <button class="collapsible-btn" data-collapsible-id="excel-powerbi" aria-expanded="false" aria-controls="excel-powerbi-details" aria-label="Toggle Excel to Power BI project details" tabindex="0">View Details</button>
+        </h3>
+        <section id="excel-powerbi-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
+          <div class="flex justify-end mb-3">
+            <a href="https://fabian-william.github.io/excel-to-power-bi/" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="View Excel to Power BI converter demo" tabindex="0">
+              <span class="material-icons" aria-hidden="true">open_in_new</span>View Project
+            </a>
+          </div>
+          <div class="project-grid">
+           
+ <div class="project-image-container"><img src="https://i.ibb.co/NnxyR47C/Screenshot-2025-06-16-122643.png"alt="Excel data preview screenshot" class="project-image" loading="lazy" draggable="false" /></div>
+            
+<div class="project-image-container"><img src="https://i.ibb.co/XrYt1gwf/Screenshot-2025-06-16-122657.png"alt="Data cleansing steps screenshot" class="project-image" loading="lazy" draggable="false" /></div>
+            
+<div class="project-image-container"><img src="https://i.ibb.co/S43Rm4F3/Screenshot-2025-06-16-123114.png"alt="Power BI dashboard example with charts and graphs" class="project-image" loading="lazy" draggable="false" /></div>
+           
+ <div class="project-image-container"><img src="https://i.ibb.co/20zJ5DWX/Screenshot-2025-06-16-122622.png" alt="Data transformation process screenshot" class="project-image" loading="lazy" draggable="false" /></div>
+          </div>
+          <p class="mt-4">
+            A practical solution converting Excel spreadsheets into Power BI dashboards by cleaning, modeling data for insightful visualization. Demonstrates expertise in data handling and BI toolsets.
+          </p>
         </section>
+      </article>
+    </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="content-section">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <h2 class="section-heading fade-in" style="animation-delay: 0.1s;">Professional Training</h2>
-                <div class="card fade-in" style="animation-delay: 0.2s;">
-                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-2 flex items-center">
-                        <span>Python Programming Intern</span>
-                        <button class="collapsible-btn" data-collapsible-id="python-intern" aria-label="Toggle Python Internship Details">View Details</button>
-                    </h3>
-                    <p class="text-base text-gray-300 mb-3">Top Tech Developers, Chennai</p>
-                    <div id="python-intern-details" class="collapsible-details">
-                        <ul class="list-disc list-inside space-y-2 text-gray-300 mb-4">
-                            <li>Automated tasks with Python scripts, boosting efficiency by 40%.</li>
-                            <li>Conducted comprehensive code reviews and refactoring sessions that improved code maintainability scores by 25%, facilitating smoother integration for future projects and enhancing collaboration among cross-functional teams.</li>
-                        </ul>
-                        <h4 class="text-lg font-semibold text-gray-300 mb-2">Internship Certificate:</h4>
-                        <img src="https://i.ibb.co/BVdKDdkj/7.jpg" alt="Python Internship Certificate" class="rounded-md shadow-md w-full max-w-md mx-auto" loading="lazy">
-                    </div>
-                </div>
-            </div>
+    <!-- Certifications -->
+    <section id="certifications" class="content-section" tabindex="-1" aria-label="Certifications section">
+      <h2 class="section-heading">Certifications</h2>
+      <article class="card" role="region" aria-labelledby="cert-python-beginners">
+        <h3 id="cert-python-beginners" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
+          Python for Beginners - Simplilearn
+          <button class="collapsible-btn" data-collapsible-id="python-simplilearn" aria-expanded="false" aria-controls="python-simplilearn-details" aria-label="Toggle Python certification details" tabindex="0">View Details</button>
+        </h3>
+        <section id="python-simplilearn-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
+          <img src="https://i.ibb.co/x9WYP0N/1.jpg" alt="Python for Beginners certification by Simplilearn" class="rounded-md shadow-md w-full max-w-md mx-auto" loading="lazy" draggable="false" />
+          <p class="mt-4 text-center">
+            Certificate showcasing Fabian's dedication to foundational programming concepts and proactive skill development, supporting his readiness for software development career growth.
+          </p>
         </section>
+      </article>
+    </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="content-section">
-            <div class="container mx-auto px-4 max-w-6xl">
-                <h2 class="section-heading fade-in" style="animation-delay: 0.1s;">Projects</h2>
-                <div class="grid grid-cols-1 gap-8">
-                    <div class="project-card fade-in" style="animation-delay: 0.2s;">
-                        <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">
-                            <span>AI Navigator</span>
-                            <button class="collapsible-btn" data-collapsible-id="ai-navigator" aria-label="Toggle AI Navigator Details">View Details</button>
-                        </h3>
-                        <div id="ai-navigator-details" class="collapsible-details">
-                            <div class="flex justify-end mb-3">
-                                <a href="https://fabian-william.github.io/AI-NAVIGATOR/" target="_blank" class="btn-primary" aria-label="View AI Navigator Project">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
-                                    View Project
-                                </a>
-                            </div>
-                            <div class="project-grid">
-                                <div class="project-image-container"><img src="https://i.ibb.co/DPnznn8v/Screenshot-2025-06-12-215552.png" alt="AI Navigator Screenshot 1" class="project-image" loading="lazy"></div>
-                                <div class="project-image-container"><img src="https://i.ibb.co/pvR2zBv7/Screenshot-2025-06-16-133251.png" alt="AI Navigator Screenshot 2" class="project-image" loading="lazy"></div>
-                                <div class="project-image-container"><img src="https://i.ibb.co/WNXNNTc8/Screenshot-2025-06-16-133317.png" alt="AI Navigator Screenshot 3" class="project-image" loading="lazy"></div>
-                                <div class="project-image-container"><img src="https://i.ibb.co/b5J6gJ6B/Screenshot-2025-06-16-132553.png" alt="AI Navigator Screenshot 4" class="project-image" loading="lazy"></div>
-                            </div>
-                            <p class="text-base text-gray-300 leading-relaxed mt-4">
-                                The AI Navigator is a comprehensive web application designed to help users discover and explore a wide variety of digital tools. It functions as a curated directory for AI platforms, business management software, productivity utilities, and development resources. The platform makes it easy to find both free and freemium solutions across diverse categories, streamlining the process of identifying the best tools for any task.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="project-card fade-in" style="animation-delay: 0.3s;">
-                        <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">
-                            <span>IoT Based Car Parking System</span>
-                            <button class="collapsible-btn" data-collapsible-id="iot-parking" aria-label="Toggle IoT Parking System Details">View Details</button>
-                        </h3>
-                        <div id="iot-parking-details" class="collapsible-details">
-                            <div class="project-grid">
-                                <div class="project-image-container"><img src="https://i.ibb.co/KptKf4Dk/5.jpg" alt="IoT Parking System Diagram 1" class="project-image" loading="lazy"></div>
-                                <div class="project-image-container"><img src="https://i.ibb.co/pr1hrYxq/4.jpg" alt="IoT Parking System Diagram 2" class="project-image" loading="lazy"></div>
-                                <div class="project-image-container"><img src="https://i.ibb.co/39h8dw3L/2.jpg" alt="IoT Parking System Interface" class="project-image" loading="lazy"></div>
-                                <div class="project-image-container"><img src="https://i.ibb.co/VG7DQLY/3.jpg" alt="IoT Parking System Hardware" class="project-image" loading="lazy"></div>
-                            </div>
-                            <p class="text-base text-gray-300 leading-relaxed mt-4">
-                                Developed an innovative IoT-based car parking system designed to optimize parking space utilization and enhance user convenience. This project leverages sensors to detect parking slot availability in real-time, transmitting data to a central server. Users can view available slots via a mobile or web interface, reducing search time and traffic congestion. The system incorporates efficient algorithms for slot allocation and provides intuitive navigation, demonstrating practical application of IoT principles and software development skills in creating smart solutions for everyday problems.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="project-card fade-in" style="animation-delay: 0.4s;">
-                        <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4">
-                            <span>Excel to Power BI Converter</span>
-                            <button class="collapsible-btn" data-collapsible-id="excel-powerbi" aria-label="Toggle Excel to Power BI Converter Details">View Details</button>
-                        </h3>
-                        <div id="excel-powerbi-details" class="collapsible-details">
-                            <div class="flex justify-end mb-3">
-                                <a href="https://fabian-william.github.io/excel-to-power-bi/" target="_blank" class="btn-primary" aria-label="View Excel to Power BI Project">
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
-                                    View Project
-                                </a>
-                            </div>
-                            <div class="project-grid">
-                                <div class="project-image-container"><img src="https://i.ibb.co/NnxyR47C/Screenshot-2025-06-16-122643.png" alt="Excel to Power BI Screenshot 1" class="project-image" loading="lazy"></div>
-                                <div class="project-image-container"><img src="https://i.ibb.co/XrYt1gwf/Screenshot-2025-06-16-122657.png" alt="Excel to Power BI Screenshot 2" class="project-image" loading="lazy"></div>
-                                <div class="project-image-container"><img src="https://i.ibb.co/S43Rm4F3/Screenshot-2025-06-16-123114.png" alt="Excel to Power BI Screenshot 3" class="project-image" loading="lazy"></div>
-                                <div class="project-image-container"><img src="https://i.ibb.co/20zJ5DWX/Screenshot-2025-06-16-122622.png" alt="Excel to Power BI Screenshot 4" class="project-image" loading="lazy"></div>
-                            </div>
-                            <p class="text-base text-gray-300 leading-relaxed mt-4">
-                                This project demonstrates a practical solution for transforming raw data from Excel spreadsheets into insightful visualizations and dashboards using Microsoft Power BI. It involves data cleaning, transformation, and modeling techniques to prepare the data for effective reporting. The converter streamlines the process of migrating data from traditional Excel formats to a dynamic, interactive Power BI environment, enabling users to derive actionable business intelligence more efficiently. This showcases my proficiency in data handling, business intelligence tools, and creating user-friendly data solutions.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Achievements -->
+    <section id="achievements" class="content-section" tabindex="-1" aria-label="Achievements section">
+      <h2 class="section-heading">Achievements</h2>
+      <article class="card" role="region" aria-labelledby="achievement-paper-presentation">
+        <h3 id="achievement-paper-presentation" class="mb-2 flex justify-between items-center font-semibold text-blue-300">
+          Second Prize - Technical Paper Presentation (Technology Day)
+          <button class="collapsible-btn" data-collapsible-id="paper-presentation" aria-expanded="false" aria-controls="paper-presentation-details" aria-label="Toggle paper presentation achievement details" tabindex="0">View Details</button>
+        </h3>
+        <p class="mb-3">DR M.G.R. Educational and Research Institute, Chennai</p>
+        <section id="paper-presentation-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
+          <img src="https://i.ibb.co/ksn43rWy/6.jpg" alt="Technical paper presentation award certificate" class="rounded-md shadow-md w-full max-w-md mx-auto" loading="lazy" draggable="false" />
+          <p class="my-4">
+            Awarded Second Prize at Technical Paper Presentation on Technology Day at DR M.G.R. Educational Institute, demonstrating strong research, presentation, and communication skills.
+          </p>
+          <p class="text-sm text-gray-400">Date: May 29, 2023</p>
+          <p class="text-sm text-gray-400">Organized by: Department of Computer Science, DR M.G.R. Educational and Research Institute.</p>
         </section>
+      </article>
+    </section>
 
-        <!-- Certifications Section -->
-        <section id="certifications" class="content-section">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <h2 class="section-heading fade-in" style="animation-delay: 0.1s;">Certifications</h2>
-                <div class="card fade-in" style="animation-delay: 0.2s;">
-                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-4 flex items-center">
-                        <span>Python for Beginners - Simplilearn</span>
-                        <button class="collapsible-btn" data-collapsible-id="python-simplilearn" aria-label="Toggle Python Certification Details">View Details</button>
-                    </h3>
-                    <div id="python-simplilearn-details" class="collapsible-details">
-                        <img src="https://i.ibb.co/x9WYP0N/1.jpg" alt="Python for Beginners Simplilearn Certificate" class="rounded-md shadow-md w-full max-w-md mx-auto" loading="lazy">
-                        <p class="text-base text-gray-300 text-center leading-relaxed mt-4">
-                            This certificate from Simplilearn for "Python for Beginners" showcases Fabian's proactive approach to skill development and commitment to mastering foundational programming concepts. It's a testament to his dedication and readiness to excel in the software development field.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Contact -->
+    <section id="contact" class="content-section" tabindex="-1" aria-label="Contact section - Get in Touch">
+      <h2 class="section-heading">Get in Touch</h2>
+      <p class="mb-10 text-center">
+        I'm always open to new opportunities and collaborations. Feel free to reach out!
+      </p>
+      <article class="card" role="region" aria-label="Contact Information and Links">
+        <div class="flex flex-col space-y-6">
+          <a href="mailto:fabianwilliamar@gmail.com" class="flex items-center space-x-4 text-gray-300 hover:text-blue-400 transition-colors" aria-label="Email Fabian" tabindex="0">
+            <span class="material-icons" aria-hidden="true">mail_outline</span>
+            <span class="text-lg font-medium">fabianwilliamar@gmail.com</span>
+          </a>
+          <div class="flex items-center space-x-4 text-gray-300" aria-label="Phone number" role="text">
+            <span class="material-icons" aria-hidden="true">phone</span>
+            <span class="text-lg font-medium">(+91) 75502-60124</span>
+          </div>
+          <div class="flex items-center space-x-4 text-gray-300 pt-6 border-t border-gray-700" aria-label="Location" role="text">
+            <span class="material-icons" aria-hidden="true">place</span>
+            <span class="text-lg font-medium">Chennai, Tamil Nadu, India</span>
+          </div>
+          <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-4 text-gray-300 hover:text-blue-400 transition-colors pt-6 border-t border-gray-700" aria-label="View LinkedIn Profile" tabindex="0">
+            <span class="material-icons" aria-hidden="true">linkedin</span>
+            <span class="text-lg font-medium">linkedin.com/in/ar-fabian-william/</span>
+          </a>
+        </div>
+      </article>
+    </section>
+  </main>
 
-        <!-- Achievements Section -->
-        <section id="achievements" class="content-section">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <h2 class="section-heading fade-in" style="animation-delay: 0.1s;">Achievements</h2>
-                <div class="card fade-in" style="animation-delay: 0.2s;">
-                    <h3 class="text-xl sm:text-2xl font-semibold text-blue-300 mb-2 flex items-center">
-                        <span>Second Prize - Technical Paper Presentation (Technology Day)</span>
-                        <button class="collapsible-btn" data-collapsible-id="paper-presentation" aria-label="Toggle Paper Presentation Details">View Details</button>
-                    </h3>
-                    <p class="text-base text-gray-300 mb-3">DR M.G.R. Educational and Research Institute, Chennai</p>
-                    <div id="paper-presentation-details" class="collapsible-details">
-                        <img src="https://i.ibb.co/ksn43rWy/6.jpg" alt="Technical Paper Presentation Achievement Certificate" class="rounded-md shadow-md w-full max-w-md mx-auto" loading="lazy">
-                        <p class="text-base text-gray-300 leading-relaxed my-4">
-                            Awarded Second Prize in the Technical Paper Presentation Competition during the Technology Day Celebration at DR M.G.R. Educational and Research Institute, Chennai. This achievement highlights my strong research, presentation, and communication skills in a competitive academic environment.
-                        </p>
-                        <p class="text-sm text-gray-400">Date: May 29, 2023</p>
-                        <p class="text-sm text-gray-400">Organized by: Department of Computer Science, DR M.G.R. Educational and Research Institute.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- Return to Top Button -->
+  <button id="return-to-home-btn" role="button" aria-label="Return to top" tabindex="0">
+    <span class="material-icons" aria-hidden="true" style="font-size: 32px;">keyboard_double_arrow_up</span>
+  </button>
 
-        <!-- Contact Section -->
-        <section id="contact" class="content-section">
-            <div class="container mx-auto px-4 max-w-2xl">
-                <h2 class="section-heading fade-in" style="animation-delay: 0.1s;">Get in Touch</h2>
-                <p class="text-lg sm:text-xl mb-10 text-center text-gray-300 fade-in" style="animation-delay: 0.2s;">I'm always open to new opportunities and collaborations. Feel free to reach out!</p>
-                <div class="card fade-in" style="animation-delay: 0.3s;">
-                    <div class="flex flex-col space-y-6">
-                        <!-- New Text Input Box -->
-                        <div>
-                            <label for="text-input" class="block text-gray-400 text-sm font-bold mb-2">Your Message:</label>
-                            <input type="text" id="text-input" name="text-input" placeholder="Type your message here..."
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline
-                                bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500">
-                        </div>
-                        <!-- Existing contact links -->
-                        <a href="mailto:fabianwilliamar@gmail.com" class="flex items-center space-x-4 text-gray-300 hover:text-blue-400 transition-colors duration-200" aria-label="Email Fabian">
-                            <svg class="w-6 h-6 text-blue-300" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-                            <span class="text-lg sm:text-xl font-medium">fabianwilliamar@gmail.com</span>
-                        </a>
-                        <div class="flex items-center space-x-4 text-gray-300">
-                            <svg class="w-6 h-6 text-blue-300" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>
-                            <span class="text-lg sm:text-xl font-medium">(+91) 75502-60124</span>
-                        </div>
-                        <div class="flex items-center space-x-4 text-gray-300 pt-6 border-t border-gray-700">
-                            <svg class="w-6 h-6 text-blue-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
-                            <span class="text-lg sm:text-xl font-medium">Chennai, Tamil Nadu, India</span>
-                        </div>
-                        <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="flex items-center space-x-4 text-gray-300 hover:text-blue-400 transition-colors duration-200 pt-6 border-t border-gray-700" aria-label="View LinkedIn Profile">
-                            <svg class="w-6 h-6 text-blue-300" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zM17.5 3c.827 0 1.5.673 1.5 1.5S18.327 6 17.5 6S16 5.327 16 4.5s.673-1.5 1.5-1.5zM9 16.25c0 .69.563 1.25 1.25 1.25h.5a1.25 1.25 0 11-2.5 0h.5zm10.25-4.5c-.69 0-1.25-.563-1.25-1.25s.563-1.25 1.25-1.25 1.25.563 1.25 1.25-.563 1.25-1.25 1.25zM4 16.25c0 .69.563 1.25 1.25 1.25h.5a1.25 1.25 0 11-2.5 0h.5zm10.25-10c-.69 0-1.25-.563-1.25-1.25s.563-1.25 1.25-1.25 1.25.563 1.25 1.25-.563 1.25-1.25 1.25z"></path></svg>
-                            <span class="text-lg sm:text-xl font-medium">linkedin.com/in/ar-fabian-william/</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('nav .nav-link');
+      const ctaLinksInWelcome = document.querySelectorAll('.welcome-section .nav-link-cta');
+      const allSectionNavTriggers = [...navLinks, ...ctaLinksInWelcome];
+      const contentSections = document.querySelectorAll('.content-section');
+      const returnToHomeBtn = document.getElementById('return-to-home-btn');
+      let currentActiveSectionId = 'welcome';
+      let isTransitioning = false;
 
-    <!-- Return to Top Button -->
-    <button id="return-to-home-btn" aria-label="Return to top">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-        </svg>
-    </button>
+      function showSection(sectionId, skipAnimation = false) {
+        // If already transitioning and not skipping animation, or if already on target section, return.
+        if ((isTransitioning && !skipAnimation) || sectionId === currentActiveSectionId) {
+          return;
+        }
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                const navLinks = document.querySelectorAll('#main-nav .nav-link');
-                const ctaLinksInWelcome = document.querySelectorAll('#welcome .nav-link-cta');
-                const allSectionNavTriggers = [...navLinks, ...ctaLinksInWelcome];
-                const contentSections = document.querySelectorAll('.content-section');
-                const returnToHomeBtn = document.getElementById('return-to-home-btn');
-                const mainHeader = document.getElementById('main-header');
-                let currentActiveSectionId = 'welcome';
-                let isTransitioning = false;
+        isTransitioning = true; // Set flag to indicate transition is in progress
 
-                /**
-                 * Controls the display and animation of content sections.
-                 * @param {string} sectionId - The ID of the section to show.
-                 * @param {boolean} skipAnimation - If true, the animation is skipped.
-                 */
-                function showSection(sectionId, skipAnimation = false) {
-                    if (isTransitioning || sectionId === currentActiveSectionId) return;
-                    isTransitioning = true;
+        const currentActiveEl = document.querySelector('.content-section.active-section');
+        if (currentActiveEl) {
+          // Remove active class and start fade-out/slide-down
+          currentActiveEl.classList.remove('active-section');
+          currentActiveEl.style.opacity = '0';
+          currentActiveEl.style.transform = 'translateY(20px)';
 
-                    contentSections.forEach(section => {
-                        if (section.classList.contains('active-section')) {
-                            section.classList.remove('active-section');
-                            section.addEventListener('transitionend', function handler() {
-                                section.style.display = 'none';
-                                section.removeEventListener('transitionend', handler);
-                            }, { once: true });
-                        }
-                    });
+          // Use a short timeout instead of transitionend for faster and more reliable hiding
+          // This avoids issues if the transitionend event doesn't fire as expected
+          setTimeout(() => {
+            currentActiveEl.style.display = 'none'; // Hide the old section
+            // After old section is hidden, reveal the new one
+            revealTargetSection(sectionId);
+          }, 400); // Should be slightly longer than the CSS transition duration (0.4s)
+        } else {
+          // Case when no active element (initial load) or if currentActiveEl is not found for some reason
+          revealTargetSection(sectionId);
+        }
 
-                    const targetSection = document.getElementById(sectionId);
-                    if (targetSection) {
-                        targetSection.style.display = 'block';
-                        requestAnimationFrame(() => {
-                            if (!skipAnimation) {
-                                targetSection.classList.add('active-section');
-                            } else {
-                                targetSection.classList.add('active-section');
-                                targetSection.style.opacity = '1';
-                                targetSection.style.transform = 'translateY(0)';
-                            }
-                        });
-                    }
+        // Helper function to reveal the target section
+        function revealTargetSection(targetSectionId) {
+          const targetSection = document.getElementById(targetSectionId);
+          if (targetSection) {
+            targetSection.style.display = 'block'; // Make target section visible immediately
+            targetSection.scrollTop = 0; // Scroll to top of the new section
 
-                    setActiveNavLink(sectionId);
-                    currentActiveSectionId = sectionId;
-                    // When removing scrolling, smooth scrolling to top for new sections is handled by JS logic, not native scroll behavior
-                    // window.scrollTo({ top: 0, behavior: 'smooth' }); // Removed as per new overflow:hidden requirement
+            // Use requestAnimationFrame for next paint to ensure CSS properties are applied for transition
+            requestAnimationFrame(() => {
+              targetSection.classList.add('active-section'); // Trigger fade-in/slide-up
+              targetSection.style.opacity = '1';
+              targetSection.style.transform = 'translateY(0)';
+              isTransitioning = false; // Reset flag once new section animation starts
+            });
+          }
+        }
 
-                    setTimeout(() => {
-                        isTransitioning = false;
-                    }, 400); // Match this with content-section transition duration
-                }
+        setActiveNavLink(sectionId);
+        currentActiveSectionId = sectionId;
+        returnToHomeBtn.classList.toggle('show', currentActiveSectionId !== 'welcome');
+      }
 
-                /**
-                 * Sets the active class on the corresponding navigation link.
-                 * @param {string} sectionId - The ID of the currently active section.
-                 */
-                function setActiveNavLink(sectionId) {
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active', link.dataset.section === sectionId);
-                    });
-                }
-
-                // Attach event listeners to all navigation triggers
-                allSectionNavTriggers.forEach(link => {
-                    link.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        const sectionId = event.currentTarget.dataset.section;
-                        showSection(sectionId);
-                    });
-                });
-
-                // Initialize the first section
-                showSection(currentActiveSectionId, true);
-
-                // Handle sticky header on scroll (Only affects visual sticky class, not actual scrolling behaviour)
-                window.addEventListener('scroll', () => {
-                    if (window.scrollY > 0) {
-                        mainHeader.classList.add('sticky');
-                    } else {
-                        mainHeader.classList.remove('sticky');
-                    }
-                    // returnToHomeBtn.classList.toggle('show', window.scrollY > 300); // This will no longer work with overflow:hidden on body
-                    // Instead, trigger visibility based on active section (e.g., hide on welcome, show on others)
-                    returnToHomeBtn.classList.toggle('show', currentActiveSectionId !== 'welcome');
-                });
-
-
-                // Initialize Typed.js
-                const typedOutputEl = document.getElementById('typed-output');
-                if (typedOutputEl && typeof Typed !== 'undefined') {
-                    typedOutputEl.textContent = '';
-                    new Typed('#typed-output', {
-                        strings: ["Aspiring Software Developer", "Creative Problem-Solver", "Python & Web Enthusiast", "Building Innovative Solutions", "Ready to Make an Impact"],
-                        typeSpeed: 50,
-                        backSpeed: 30,
-                        backDelay: 1500,
-                        loop: true,
-                        smartBackspace: true,
-                        showCursor: true,
-                        cursorChar: '|',
-                    });
-                }
-
-                // Handle collapsible sections (View Details buttons)
-                document.querySelectorAll('button[data-collapsible-id]').forEach(button => {
-                    button.addEventListener('click', () => {
-                        const collapsibleId = button.dataset.collapsibleId;
-                        const detailsDiv = document.getElementById(`${collapsibleId}-details`);
-                        if (detailsDiv) {
-                            const isOpen = detailsDiv.classList.contains('open');
-
-                            detailsDiv.classList.toggle('open');
-                            if (!isOpen) {
-                                // To get correct scrollHeight, ensure it's temporarily visible if display:none was used
-                                detailsDiv.style.display = 'block'; // Temporarily make it block to measure
-                                detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
-                                detailsDiv.style.opacity = '1';
-                                // Immediately hide after setting maxHeight, then let transition handle it
-                                detailsDiv.style.display = ''; // Reset display style
-                            } else {
-                                detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px'; // Capture current height
-                                requestAnimationFrame(() => { // Use rAF to ensure style is applied before transition
-                                    detailsDiv.style.maxHeight = '0';
-                                    detailsDiv.style.opacity = '0';
-                                });
-                            }
-                            button.setAttribute('aria-label', `Toggle ${collapsibleId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} Details (${isOpen ? 'Closed' : 'Open'})`);
-
-                            detailsDiv.addEventListener('transitionend', function handler() {
-                                if (detailsDiv.classList.contains('open')) {
-                                    detailsDiv.style.maxHeight = 'none';
-                                } else {
-                                    detailsDiv.style.maxHeight = '0';
-                                    detailsDiv.style.display = 'none'; // Ensure it's hidden when collapsed
-                                }
-                                detailsDiv.removeEventListener('transitionend', handler);
-                            }, { once: true });
-                        }
-                    });
-                });
-
-                // Ensure initially open collapsible sections have correct max-height
-                document.querySelectorAll('.collapsible-details.open').forEach(detailsDiv => {
-                    detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
-                });
-
-
-                // Handle "Return to Top" button click
-                returnToHomeBtn.addEventListener('click', () => {
-                    showSection('welcome');
-                });
-
-                // Initialize Particles.js
-                if (window.particlesJS) {
-                    window.particlesJS('particles-js', {
-                        particles: {
-                            number: { value: 40, density: { enable: true, value_area: 1000 } },
-                            color: { value: '#60A5FA' }, /* Blue accent for particles */
-                            shape: { type: 'circle' },
-                            opacity: { value: 0.6, random: true },
-                            size: { value: 2.5, random: true },
-                            line_linked: { enable: true, distance: 120, color: '#60A5FA', opacity: 0.3, width: 1 },
-                            move: { enable: true, speed: 0.8, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
-                        },
-                        interactivity: {
-                            detect_on: 'canvas',
-                            events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
-                            modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } }, push: { particles_nb: 3 } }
-                        },
-                        retina_detect: true
-                    });
-                }
-
-                // Disable image context menu and dragging
-                document.body.addEventListener('contextmenu', e => {
-                    if (e.target.tagName === 'IMG') e.preventDefault();
-                });
-                document.body.addEventListener('dragstart', e => {
-                    if (e.target.tagName === 'IMG') e.preventDefault();
-                });
-            } catch (error) {
-                console.error('Initialization error:', error);
-            }
+      function setActiveNavLink(sectionId) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.section === sectionId);
+          link.setAttribute('aria-current', link.dataset.section === sectionId ? 'page' : 'false');
+          link.tabIndex = link.dataset.section === sectionId ? '0' : '-1';
         });
-    </script>
+      }
+
+      allSectionNavTriggers.forEach(link => {
+        link.addEventListener('click', (event) => {
+          event.preventDefault();
+          const sectionId = event.currentTarget.dataset.section;
+          showSection(sectionId);
+          const section = document.getElementById(sectionId);
+          if (section) section.focus();
+        });
+      });
+
+      // Show the welcome section initially without animation.
+      // This ensures the initial state is correct.
+      showSection(currentActiveSectionId, true);
+
+      const typedOutputEl = document.getElementById('typed-output');
+      if (typedOutputEl && typeof Typed !== 'undefined') {
+        typedOutputEl.textContent = '';
+        new Typed('#typed-output', {
+          strings: [
+            "Aspiring Software Developer",
+            "Creative Problem-Solver",
+            "Python & Web Enthusiast",
+            "Building Innovative Solutions",
+            "Ready to Make an Impact",
+          ],
+          typeSpeed: 50,
+          backSpeed: 30,
+          backDelay: 1500,
+          loop: true,
+          smartBackspace: true,
+          showCursor: true,
+          cursorChar: '|',
+        });
+      }
+
+      document.querySelectorAll('button[data-collapsible-id]').forEach(button => {
+        button.addEventListener('click', () => {
+          const collapsibleId = button.dataset.collapsibleId;
+          const detailsDiv = document.getElementById(`${collapsibleId}-details`);
+          if (!detailsDiv) return;
+
+          const isOpen = detailsDiv.classList.contains('open');
+          detailsDiv.classList.toggle('open');
+          button.setAttribute('aria-expanded', !isOpen);
+
+          if (!isOpen) {
+            detailsDiv.style.display = 'block';
+            detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
+            detailsDiv.style.opacity = '1';
+            detailsDiv.setAttribute('aria-hidden', 'false');
+            setTimeout(() => { detailsDiv.style.maxHeight = 'none'; }, 300);
+          } else {
+            detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
+            requestAnimationFrame(() => {
+              detailsDiv.style.maxHeight = '0';
+              detailsDiv.style.opacity = '0';
+              detailsDiv.setAttribute('aria-hidden', 'true');
+            });
+            detailsDiv.addEventListener('transitionend', function handler() {
+              detailsDiv.style.display = 'none';
+              detailsDiv.removeEventListener('transitionend', handler);
+            }, { once: true });
+          }
+
+          button.setAttribute('aria-label', `Toggle ${collapsibleId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} Details (${isOpen ? 'Closed' : 'Open'})`);
+        });
+      });
+
+      document.querySelectorAll('.collapsible-details.open').forEach(detailsDiv => {
+        detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
+        detailsDiv.setAttribute('aria-hidden', 'false');
+      });
+
+      returnToHomeBtn.addEventListener('click', () => {
+        showSection('welcome');
+        const welcomeSection = document.getElementById('welcome');
+        if (welcomeSection) welcomeSection.focus();
+      });
+
+      if (window.particlesJS) {
+        window.particlesJS('particles-js', {
+          particles: {
+            number: { value: 40, density: { enable: true, value_area: 1000 } },
+            color: { value: '#60A5FA' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.6, random: true },
+            size: { value: 2.5, random: true },
+            line_linked: { enable: true, distance: 120, color: '#60A5FA', opacity: 0.3, width: 1 },
+            move: { enable: true, speed: 0.8, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
+          },
+          interactivity: {
+            detect_on: 'canvas',
+            events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
+            modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } }, push: { particles_nb: 3 } }
+          },
+          retina_detect: true
+        });
+      }
+
+      document.body.addEventListener('contextmenu', e => {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+      });
+      document.body.addEventListener('dragstart', e => {
+        if (e.target.tagName === 'IMG') e.preventDefault();
+      });
+    });
+  </script>
 </body>
 </html>
