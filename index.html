@@ -168,8 +168,6 @@
       z-index: 1;
       max-width: 800px;
       padding: 0 1rem;
-      /* Ensure this div is centered within its flex parent (welcome-section) */
-      /* align-items: center on welcome-section should handle this */
     }
     .profile-pic {
       width: 9rem;
@@ -450,25 +448,24 @@
     }
   </style>
 </head>
-<body oncontextmenu="return false;">
+<body>
   <header role="banner" aria-label="Primary navigation">
     <nav role="navigation" aria-label="Main menu" class="container mx-auto px-4" aria-live="polite" aria-relevant="additions removals" aria-atomic="true">
       <div class="flex flex-wrap justify-center gap-x-6 gap-y-4 py-3">
-        <a href="#" class="nav-link active" role="link" data-section="welcome" tabindex="0" aria-current="page" aria-label="Navigate to Home section">Home</a>
-        <a href="#" class="nav-link" role="link" data-section="about" tabindex="-1" aria-label="Navigate to About section">About</a>
-        <a href="#" class="nav-link" role="link" data-section="education" tabindex="-1" aria-label="Navigate to Education section">Education</a>
-        <a href="#" class="nav-link" role="link" data-section="skills" tabindex="-1" aria-label="Navigate to Skills section">Skills</a>
-        <a href="#" class="nav-link" role="link" data-section="experience" tabindex="-1" aria-label="Navigate to Experience section">Experience</a>
-        <a href="#" class="nav-link" role="link" data-section="projects" tabindex="-1" aria-label="Navigate to Projects section">Projects</a>
-        <a href="#" class="nav-link" role="link" data-section="certifications" tabindex="-1" aria-label="Navigate to Certifications section">Certifications</a>
-        <a href="#" class="nav-link" role="link" data-section="achievements" tabindex="-1" aria-label="Navigate to Achievements section">Achievements</a>
-        <a href="#" class="nav-link" role="link" data-section="contact" tabindex="-1" aria-label="Navigate to Contact section">Contact</a>
+        <a href="#welcome" class="nav-link active" role="link" data-section="welcome" tabindex="0" aria-current="page" aria-label="Navigate to Home section">Home</a>
+        <a href="#about" class="nav-link" role="link" data-section="about" tabindex="-1" aria-label="Navigate to About section">About</a>
+        <a href="#education" class="nav-link" role="link" data-section="education" tabindex="-1" aria-label="Navigate to Education section">Education</a>
+        <a href="#skills" class="nav-link" role="link" data-section="skills" tabindex="-1" aria-label="Navigate to Skills section">Skills</a>
+        <a href="#experience" class="nav-link" role="link" data-section="experience" tabindex="-1" aria-label="Navigate to Experience section">Experience</a>
+        <a href="#projects" class="nav-link" role="link" data-section="projects" tabindex="-1" aria-label="Navigate to Projects section">Projects</a>
+        <a href="#certifications" class="nav-link" role="link" data-section="certifications" tabindex="-1" aria-label="Navigate to Certifications section">Certifications</a>
+        <a href="#achievements" class="nav-link" role="link" data-section="achievements" tabindex="-1" aria-label="Navigate to Achievements section">Achievements</a>
+        <a href="#contact" class="nav-link" role="link" data-section="contact" tabindex="-1" aria-label="Navigate to Contact section">Contact</a>
       </div>
     </nav>
   </header>
 
   <main id="content-area" role="main">
-    <!-- Welcome -->
     <section id="welcome" class="content-section welcome-section active-section" tabindex="0" aria-label="Welcome section of portfolio">
       <div id="particles-js" aria-hidden="true"></div>
       <div>
@@ -479,17 +476,16 @@
           A dedicated and results-oriented Developer transforming complex ideas into efficient, user-friendly software. Eager to leverage my skills in Python, C++, and modern web technologies to contribute to impactful projects.
         </p>
         <div class="welcome-buttons">
-          <a href="#" class="btn-primary nav-link-cta" role="button" tabindex="0" data-section="projects" aria-label="View My Work section">
+          <a href="#projects" class="btn-primary nav-link-cta" role="button" tabindex="0" data-section="projects" aria-label="View My Work section">
             <span class="material-icons" aria-hidden="true">work_outline</span>View My Work
           </a>
-          <a href="#" class="btn-secondary nav-link-cta" role="button" tabindex="0" data-section="contact" aria-label="Get in Touch section">
+          <a href="#contact" class="btn-secondary nav-link-cta" role="button" tabindex="0" data-section="contact" aria-label="Get in Touch section">
             <span class="material-icons" aria-hidden="true">mail_outline</span>Get in Touch
           </a>
         </div>
       </div>
     </section>
 
-    <!-- About -->
     <section id="about" class="content-section" tabindex="-1" aria-label="About Me section">
       <h2 class="section-heading">About Me</h2>
       <article class="card" role="region" aria-labelledby="about-heading">
@@ -501,13 +497,12 @@
             <span class="material-icons" aria-hidden="true">email</span>Email Me
           </a>
           <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" rel="noopener noreferrer" class="btn-secondary border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white" aria-label="Open Fabian William's LinkedIn profile in a new window" tabindex="0">
-            <span class="material-icons" aria-hidden="true">linkedin</span>LinkedIn Profile
+            <img src="https://i.ibb.co/L8yWd0z/hd-blue-linkedin-in-icon-text-symbol-sign-png-701751695045684u80vwrnzwy.jpg" alt="LinkedIn icon" class="w-5 h-5 mr-2" />LinkedIn Profile
           </a>
         </div>
       </article>
     </section>
 
-    <!-- Education -->
     <section id="education" class="content-section" tabindex="-1" aria-label="Education section">
       <h2 class="section-heading">Education</h2>
       <article class="card" role="region" aria-labelledby="education1">
@@ -522,7 +517,6 @@
       </article>
     </section>
 
-    <!-- Skills -->
     <section id="skills" class="content-section" tabindex="-1" aria-label="Skills section">
       <h2 class="section-heading">Skills</h2>
       <article class="card" role="region" aria-labelledby="tech-skills">
@@ -534,7 +528,7 @@
           <li class="skill-item">Languages: Python, C, C++</li>
           <li class="skill-item">Web: HTML, CSS, JavaScript</li>
           <li class="skill-item">Frameworks/Libraries: Tailwind CSS</li>
-          <li class="skill-item">Tools: Git, Jupyter Notebooks, PyCharm, VS Code, Power BI</li>
+          <li class="skill-item">Tools: Git, GitHub, Jupyter Notebooks, PyCharm, VS Code, Power BI</li>
           <li class="skill-item">AI Tools: ChatGPT, Meta AI, Gemini AI, Llama AI, Blackbox AI, Cursor AI</li>
         </ul>
       </article>
@@ -564,7 +558,6 @@
       </article>
     </section>
 
-    <!-- Experience -->
     <section id="experience" class="content-section" tabindex="-1" aria-label="Professional Training section">
       <h2 class="section-heading">Professional Training</h2>
       <article class="card" role="region" aria-labelledby="python-intern">
@@ -584,7 +577,6 @@
       </article>
     </section>
 
-    <!-- Projects -->
     <section id="projects" class="content-section" tabindex="-1" aria-label="Projects section">
       <h2 class="section-heading">Projects</h2>
       <article class="card" role="region" aria-labelledby="project-ai-navigator">
@@ -604,6 +596,8 @@
             <div class="project-image-container"><img src="https://i.ibb.co/WNXNNTc8/Screenshot-2025-06-16-133317.png" alt="Screenshot 3 of AI Navigator app dashboard with favorites list" class="project-image" loading="lazy" draggable="false" /></div>
             <div class="project-image-container"><img src="https://i.ibb.co/b5J6gJ6B/Screenshot-2025-06-16-132553.png" alt="Screenshot 4 of AI Navigator app, detailed tool view" class="project-image" loading="lazy" draggable="false" /></div>
           </div>
+          <h4 class="font-semibold mt-4 mb-2">Tech Stack:</h4>
+          <p class="text-sm text-gray-400 mb-4">HTML, Tailwind CSS, JavaScript</p>
           <p class="mt-4">
             AI Navigator is a web app designed to help users explore a broad range of digital tools including AI platforms, productivity software, and business applications. It serves as a curated directory making it easy to find free and paid tools tailored for different needs.
           </p>
@@ -622,6 +616,8 @@
             <div class="project-image-container"><img src="https://i.ibb.co/39h8dw3L/2.jpg" alt="Mobile interface screenshot showing parking slot availability" class="project-image" loading="lazy" draggable="false" /></div>
             <div class="project-image-container"><img src="https://i.ibb.co/VG7DQLY/3.jpg" alt="Photo showing hardware parking setup with sensors" class="project-image" loading="lazy" draggable="false" /></div>
           </div>
+          <h4 class="font-semibold mt-4 mb-2">Tech Stack:</h4>
+          <p class="text-sm text-gray-400 mb-4">C++, IoT Sensors, Real-Time Database, Web/Mobile UI</p>
           <p class="mt-4">
             An innovative IoT-based parking solution optimizing usage of parking spaces by real-time monitoring with sensors, efficient slot allocation algorithms, and a user-friendly mobile/web interface to reduce searching time.
           </p>
@@ -640,15 +636,13 @@
             </a>
           </div>
           <div class="project-grid">
-           
- <div class="project-image-container"><img src="https://i.ibb.co/NnxyR47C/Screenshot-2025-06-16-122643.png"alt="Excel data preview screenshot" class="project-image" loading="lazy" draggable="false" /></div>
-            
-<div class="project-image-container"><img src="https://i.ibb.co/XrYt1gwf/Screenshot-2025-06-16-122657.png"alt="Data cleansing steps screenshot" class="project-image" loading="lazy" draggable="false" /></div>
-            
-<div class="project-image-container"><img src="https://i.ibb.co/S43Rm4F3/Screenshot-2025-06-16-123114.png"alt="Power BI dashboard example with charts and graphs" class="project-image" loading="lazy" draggable="false" /></div>
-           
- <div class="project-image-container"><img src="https://i.ibb.co/20zJ5DWX/Screenshot-2025-06-16-122622.png" alt="Data transformation process screenshot" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/NnxyR47C/Screenshot-2025-06-16-122643.png" alt="Excel data preview screenshot" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/XrYt1gwf/Screenshot-2025-06-16-122657.png" alt="Data cleansing steps screenshot" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/S43Rm4F3/Screenshot-2025-06-16-123114.png" alt="Power BI dashboard example with charts and graphs" class="project-image" loading="lazy" draggable="false" /></div>
+            <div class="project-image-container"><img src="https://i.ibb.co/20zJ5DWX/Screenshot-2025-06-16-122622.png" alt="Data transformation process screenshot" class="project-image" loading="lazy" draggable="false" /></div>
           </div>
+          <h4 class="font-semibold mt-4 mb-2">Tech Stack:</h4>
+          <p class="text-sm text-gray-400 mb-4">Microsoft Excel, Microsoft Power BI</p>
           <p class="mt-4">
             A practical solution converting Excel spreadsheets into Power BI dashboards by cleaning, modeling data for insightful visualization. Demonstrates expertise in data handling and BI toolsets.
           </p>
@@ -656,7 +650,6 @@
       </article>
     </section>
 
-    <!-- Certifications -->
     <section id="certifications" class="content-section" tabindex="-1" aria-label="Certifications section">
       <h2 class="section-heading">Certifications</h2>
       <article class="card" role="region" aria-labelledby="cert-python-beginners">
@@ -673,7 +666,6 @@
       </article>
     </section>
 
-    <!-- Achievements -->
     <section id="achievements" class="content-section" tabindex="-1" aria-label="Achievements section">
       <h2 class="section-heading">Achievements</h2>
       <article class="card" role="region" aria-labelledby="achievement-paper-presentation">
@@ -693,36 +685,40 @@
       </article>
     </section>
 
-    <!-- Contact -->
     <section id="contact" class="content-section" tabindex="-1" aria-label="Contact section - Get in Touch">
       <h2 class="section-heading">Get in Touch</h2>
       <p class="mb-10 text-center">
         I'm always open to new opportunities and collaborations. Feel free to reach out!
       </p>
-      <article class="card" role="region" aria-label="Contact Information and Links">
-        <div class="flex flex-col space-y-6">
-          <a href="mailto:fabianwilliamar@gmail.com" class="flex items-center space-x-4 text-gray-300 hover:text-blue-400 transition-colors" aria-label="Email Fabian" tabindex="0">
+      <article class="card text-center" role="region" aria-label="Contact Information">
+        <div class="mb-6">
+          <div class="flex items-center justify-center space-x-4 text-gray-300 mb-4">
             <span class="material-icons" aria-hidden="true">mail_outline</span>
             <span class="text-lg font-medium">fabianwilliamar@gmail.com</span>
-          </a>
-          <div class="flex items-center space-x-4 text-gray-300" aria-label="Phone number" role="text">
+          </div>
+          <div class="flex items-center justify-center space-x-4 text-gray-300">
             <span class="material-icons" aria-hidden="true">phone</span>
             <span class="text-lg font-medium">(+91) 75502-60124</span>
           </div>
-          <div class="flex items-center space-x-4 text-gray-300 pt-6 border-t border-gray-700" aria-label="Location" role="text">
-            <span class="material-icons" aria-hidden="true">place</span>
-            <span class="text-lg font-medium">Chennai, Tamil Nadu, India</span>
+           <div class="flex items-center justify-center space-x-4 text-gray-300 mt-4">
+                <span class="material-icons" aria-hidden="true">place</span>
+                <span class="text-lg font-medium">Chennai, Tamil Nadu, India</span>
           </div>
-          <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-4 text-gray-300 hover:text-blue-400 transition-colors pt-6 border-t border-gray-700" aria-label="View LinkedIn Profile" tabindex="0">
-            <span class="material-icons" aria-hidden="true">linkedin</span>
-            <span class="text-lg font-medium">linkedin.com/in/ar-fabian-william/</span>
+        </div>
+        
+        <div class="flex flex-wrap justify-center gap-4 pt-6 border-t border-gray-700" role="group" aria-label="Social and Professional Profiles">
+          <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" rel="noopener noreferrer" class="btn-secondary border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white inline-flex items-center gap-2" aria-label="View Fabian William's LinkedIn profile in a new window" tabindex="0">
+            <img src="https://i.ibb.co/L8yWd0z/hd-blue-linkedin-in-icon-text-symbol-sign-png-701751695045684u80vwrnzwy.jpg" alt="LinkedIn icon" class="w-5 h-5 mr-2" />View LinkedIn
+          </a>
+          <a href="https://github.com/Fabian-william" target="_blank" rel="noopener noreferrer" class="btn-secondary border-gray-500 text-gray-300 hover:bg-gray-600 hover:text-white inline-flex items-center gap-2" aria-label="View Fabian William's GitHub profile in a new window" tabindex="0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true" class="mr-1"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View GitHub
           </a>
         </div>
       </article>
     </section>
   </main>
 
-  <!-- Return to Top Button -->
   <button id="return-to-home-btn" role="button" aria-label="Return to top" tabindex="0">
     <span class="material-icons" aria-hidden="true" style="font-size: 32px;">keyboard_double_arrow_up</span>
   </button>
@@ -738,47 +734,42 @@
       let isTransitioning = false;
 
       function showSection(sectionId, skipAnimation = false) {
-        // If already transitioning and not skipping animation, or if already on target section, return.
         if ((isTransitioning && !skipAnimation) || sectionId === currentActiveSectionId) {
           return;
         }
-
-        isTransitioning = true; // Set flag to indicate transition is in progress
+        isTransitioning = true;
 
         const currentActiveEl = document.querySelector('.content-section.active-section');
         if (currentActiveEl) {
-          // Remove active class and start fade-out/slide-down
           currentActiveEl.classList.remove('active-section');
           currentActiveEl.style.opacity = '0';
           currentActiveEl.style.transform = 'translateY(20px)';
-
-          // Use a short timeout instead of transitionend for faster and more reliable hiding
-          // This avoids issues if the transitionend event doesn't fire as expected
           setTimeout(() => {
-            currentActiveEl.style.display = 'none'; // Hide the old section
-            // After old section is hidden, reveal the new one
+            currentActiveEl.style.display = 'none';
             revealTargetSection(sectionId);
-          }, 400); // Should be slightly longer than the CSS transition duration (0.4s)
+          }, 400); 
         } else {
-          // Case when no active element (initial load) or if currentActiveEl is not found for some reason
           revealTargetSection(sectionId);
         }
 
-        // Helper function to reveal the target section
         function revealTargetSection(targetSectionId) {
           const targetSection = document.getElementById(targetSectionId);
           if (targetSection) {
-            targetSection.style.display = 'block'; // Make target section visible immediately
-            targetSection.scrollTop = 0; // Scroll to top of the new section
-
-            // Use requestAnimationFrame for next paint to ensure CSS properties are applied for transition
+            targetSection.style.display = 'block';
+            targetSection.scrollTop = 0;
             requestAnimationFrame(() => {
-              targetSection.classList.add('active-section'); // Trigger fade-in/slide-up
+              targetSection.classList.add('active-section');
               targetSection.style.opacity = '1';
               targetSection.style.transform = 'translateY(0)';
-              isTransitioning = false; // Reset flag once new section animation starts
+              isTransitioning = false;
             });
           }
+        }
+
+        if (history.pushState) {
+            history.pushState(null, null, `#${sectionId}`);
+        } else {
+            location.hash = sectionId;
         }
 
         setActiveNavLink(sectionId);
@@ -804,9 +795,12 @@
         });
       });
 
-      // Show the welcome section initially without animation.
-      // This ensures the initial state is correct.
-      showSection(currentActiveSectionId, true);
+      const initialSectionId = window.location.hash ? window.location.hash.substring(1) : 'welcome';
+      if(document.getElementById(initialSectionId)) {
+        showSection(initialSectionId, true);
+      } else {
+        showSection('welcome', true);
+      }
 
       const typedOutputEl = document.getElementById('typed-output');
       if (typedOutputEl && typeof Typed !== 'undefined') {
@@ -838,6 +832,8 @@
           const isOpen = detailsDiv.classList.contains('open');
           detailsDiv.classList.toggle('open');
           button.setAttribute('aria-expanded', !isOpen);
+          
+          button.textContent = isOpen ? 'View Details' : 'Hide Details';
 
           if (!isOpen) {
             detailsDiv.style.display = 'block';
@@ -893,11 +889,18 @@
         });
       }
 
-      document.body.addEventListener('contextmenu', e => {
-        if (e.target.tagName === 'IMG') e.preventDefault();
+      // Prevent context menu on images to discourage downloading
+      document.addEventListener('contextmenu', e => {
+        if (e.target.tagName === 'IMG') {
+          e.preventDefault();
+        }
       });
-      document.body.addEventListener('dragstart', e => {
-        if (e.target.tagName === 'IMG') e.preventDefault();
+
+      // Prevent dragging images
+      document.addEventListener('dragstart', e => {
+        if (e.target.tagName === 'IMG') {
+          e.preventDefault();
+        }
       });
     });
   </script>
