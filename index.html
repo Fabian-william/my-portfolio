@@ -2,1011 +2,657 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AR Fabian William Portfolio</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AR Fabian William — Developer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <style>
-    /* Base and Reset */
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0F172A;
-      color: #E2E8F0;
-      overflow: hidden; /* Keep hidden to prevent scrollbars from individual sections */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.6;
-      cursor: default;
-    }
-    :focus-visible {
-      outline: 3px solid #60A5FA;
-      outline-offset: 2px;
-    }
+    :root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:rgba(255,255,255,0.07);--accent:#4f8ef7;--accent2:#a78bfa;--accent3:#34d399;--gold:#fbbf24;--text:#e8edf5;--muted:#8a95a8;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.4;}
+    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
+    img{-webkit-user-select:none;user-select:none;pointer-events:none;-webkit-user-drag:none;}
+    @media print{body{display:none!important;}}
 
-    /* Custom cursor */
-    body {
-      cursor: default;
-    }
-    a, button, .nav-link, .btn-primary, .btn-secondary, .collapsible-btn {
-      cursor: pointer;
-      transition: transform 0.15s ease;
-    }
-    a:hover, button:hover, .nav-link:hover, .btn-primary:hover, .btn-secondary:hover, .collapsible-btn:hover {
-      transform: scale(1.05);
-    }
+    nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:0.85rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(5,8,16,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--text);text-decoration:none;letter-spacing:-0.02em;}
+    .nav-logo span{color:var(--accent);}
+    .nav-links{display:flex;gap:0.2rem;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--muted);font-size:0.8rem;font-weight:500;padding:0.35rem 0.75rem;border-radius:6px;transition:all 0.2s;}
+    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.05);}
+    .nav-links a.active{color:var(--accent);background:rgba(79,142,247,0.1);}
+    .nav-cta{font-size:0.8rem;font-weight:500;padding:0.4rem 1.1rem;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;transition:all 0.2s;white-space:nowrap;}
+    .nav-cta:hover{background:#6da0ff;transform:translateY(-1px);box-shadow:0 4px 20px rgba(79,142,247,0.4);}
+    .mobile-menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.6rem;color:var(--text);cursor:pointer;font-size:1.1rem;}
+    @media(max-width:768px){.nav-links,.nav-cta{display:none;}.mobile-menu-btn{display:flex;align-items:center;}.nav-links.mobile-open{display:flex;flex-direction:column;position:fixed;top:57px;left:0;right:0;background:rgba(5,8,16,0.98);backdrop-filter:blur(20px);padding:1rem;border-bottom:1px solid var(--border);gap:0.2rem;}}
 
-    /* Scrollbar */
-    .content-section::-webkit-scrollbar {
-      width: 8px;
-    }
-    .content-section::-webkit-scrollbar-track {
-      background: #1e293b;
-      border-radius: 4px;
-    }
-    .content-section::-webkit-scrollbar-thumb {
-      background: #475569;
-      border-radius: 4px;
-    }
-    .content-section::-webkit-scrollbar-thumb:hover {
-      background: #60a5fa;
-    }
+    #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:7rem 2rem 4rem;}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(79,142,247,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(79,142,247,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 20%,transparent 100%);}
+    .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
+    .hero-orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(79,142,247,0.12) 0%,transparent 70%);top:-100px;right:-100px;}
+    .hero-orb-2{width:400px;height:400px;background:radial-gradient(circle,rgba(167,139,250,0.1) 0%,transparent 70%);bottom:-100px;left:-50px;}
+    .hero-content{position:relative;z-index:1;max-width:780px;width:100%;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem;padding:0.38rem 1rem;border:1px solid rgba(79,142,247,0.3);border-radius:100px;background:rgba(79,142,247,0.05);width:fit-content;}
+    .hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--accent3);border-radius:50%;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+    .hero-name{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,5.5rem);line-height:1.0;letter-spacing:-0.03em;margin-bottom:1.25rem;}
+    .hero-name .line-1{display:block;color:var(--text);}
+    .hero-name .line-2{display:block;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 60%,#f472b6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+    .hero-typed{font-family:'JetBrains Mono',monospace;font-size:1.05rem;color:var(--accent2);margin-bottom:1.5rem;min-height:1.8rem;}
+    .hero-desc{font-size:1rem;color:var(--muted);max-width:580px;margin-bottom:2.5rem;line-height:1.75;}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+    .btn-primary{display:inline-flex;align-items:center;gap:0.5rem;padding:0.72rem 1.7rem;background:var(--accent);color:#fff;border-radius:10px;font-weight:500;font-size:0.92rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;}
+    .btn-primary:hover{background:#6da0ff;transform:translateY(-2px);box-shadow:0 8px 30px rgba(79,142,247,0.4);}
+    .btn-outline{display:inline-flex;align-items:center;gap:0.5rem;padding:0.72rem 1.7rem;background:transparent;color:var(--text);border-radius:10px;font-weight:500;font-size:0.92rem;text-decoration:none;transition:all 0.2s;border:1px solid var(--border);cursor:pointer;}
+    .btn-outline:hover{border-color:rgba(79,142,247,0.4);background:rgba(79,142,247,0.05);transform:translateY(-2px);}
+    .hero-stats{display:flex;gap:2.5rem;margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
+    .stat-number{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--text);line-height:1;}
+    .stat-number span{color:var(--accent);}
+    .stat-label{font-size:0.78rem;color:var(--muted);margin-top:0.25rem;letter-spacing:0.05em;text-transform:uppercase;}
 
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #000;
-      z-index: 1000;
-      border-bottom: 1px solid #334155;
-      padding: 0.75rem 1rem;
-      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-    header.sticky {
-      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
-      background-color: #000;
-    }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem 1rem;
-    }
-    .nav-link {
-      color: #CBD5E1;
-      font-weight: 500;
-      font-size: 1rem;
-      padding: 0.375rem 0.75rem;
-      border-radius: 6px;
-      cursor: pointer;
-      text-decoration: none;
-      user-select: none;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    .nav-link:hover,
-    .nav-link:focus-visible {
-      background-color: #2563eb;
-      color: #fff;
-      outline: none;
-    }
-    .nav-link.active {
-      background-color: #2563eb;
-      color: #fff;
-      font-weight: 700;
-      cursor: default;
-    }
+    section{padding:5rem 2rem;}
+    .container{max-width:960px;margin:0 auto;}
+    .section-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.75rem;}
+    .section-title{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;letter-spacing:-0.025em;color:var(--text);margin-bottom:1rem;line-height:1.1;}
+    .section-desc{color:var(--muted);max-width:500px;margin-bottom:3rem;}
+    .gradient-divider{height:1px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);opacity:0.2;}
 
-    /* Return to Top Button */
-    #return-to-home-btn {
-      position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
-      background-color: #2563eb;
-      color: white;
-      width: 3.5rem;
-      height: 3.5rem;
-      border-radius: 9999px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.5);
-      cursor: pointer;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(15px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      user-select: none;
-      z-index: 1001;
-    }
-    #return-to-home-btn.show {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-    #return-to-home-btn:hover,
-    #return-to-home-btn:focus-visible {
-      background-color: #1e40af;
-      outline: none;
-      box-shadow: 0 12px 28px rgba(30, 64, 175, 0.75);
-    }
-    #return-to-home-btn svg {
-      width: 24px;
-      height: 24px;
-    }
+    #about{background:var(--surface);}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+    @media(max-width:720px){.about-grid{grid-template-columns:1fr;}}
+    .about-text p{color:var(--muted);line-height:1.8;margin-bottom:1.25rem;}
+    .about-text p strong{color:var(--text);font-weight:500;}
+    .about-links{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem;}
+    .link-chip{display:inline-flex;align-items:center;gap:0.4rem;padding:0.42rem 1rem;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:0.83rem;text-decoration:none;transition:all 0.2s;background:var(--surface2);}
+    .link-chip:hover{color:var(--text);border-color:rgba(79,142,247,0.4);background:rgba(79,142,247,0.05);}
+    .info-grid{display:flex;flex-direction:column;gap:1rem;}
+    .info-item{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;display:flex;gap:0.75rem;align-items:flex-start;transition:border-color 0.2s;}
+    .info-item:hover{border-color:rgba(79,142,247,0.3);}
+    .info-icon{font-size:1.2rem;margin-top:0.1rem;flex-shrink:0;}
+    .info-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;}
+    .info-value{font-size:0.88rem;color:var(--text);font-weight:500;}
 
-    /* Welcome Section */
-    .welcome-section {
-      position: relative;
-      height: 100vh;
-      min-height: 600px;
-      padding-top: 6rem;
-      padding-bottom: 6rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center; /* This centers children horizontally in column flex */
-      color: #F8FAFC;
-      background: linear-gradient(135deg, #0F172A, #1A2035, #2D3748);
-      overflow: hidden;
-      text-align: center; /* This centers inline-block and text within it */
-    }
-    #particles-js {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      user-select: none;
-    }
-    .welcome-section > div:not(#particles-js) {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      padding: 0 1rem;
-    }
-    .profile-pic {
-      width: 9rem;
-      height: 9rem;
-      border-radius: 9999px;
-      border: 4px solid #2563eb;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.6);
-      object-fit: cover;
-      margin: 0 auto 1.5rem;
-      user-select: none;
-    }
-    h1.welcome-name {
-      font-weight: 900;
-      font-size: 3.75rem;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      user-select: text;
-    }
-    p.typed-text {
-      color: #60A5FA;
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      user-select: none;
-      position: relative;
-      line-height: 1.5rem;
-      display: inline-block; /* Essential for cursor alignment with Typed.js */
-    }
-    .typed-cursor {
-      font-size: 1.5rem;
-      line-height: 1.5rem;
-      vertical-align: top; /* Align cursor to the top of the text */
-      position: relative;
-      top: -0.1em; /* Fine-tune if needed */
-    }
+    .timeline{position:relative;padding-left:2rem;}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--accent),var(--accent2),transparent);}
+    .timeline-item{position:relative;margin-bottom:2.5rem;}
+    .timeline-item::before{content:'';position:absolute;left:-2.4rem;top:0.35rem;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(79,142,247,0.6);}
+    .timeline-year{font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--accent);margin-bottom:0.4rem;}
+    .timeline-title{font-family:'Syne',sans-serif;font-size:1.12rem;font-weight:700;color:var(--text);margin-bottom:0.25rem;}
+    .timeline-sub{font-size:0.86rem;color:var(--muted);}
+    .timeline-badge{display:inline-block;margin-top:0.5rem;padding:0.2rem 0.7rem;border-radius:100px;font-size:0.7rem;font-weight:500;}
+    .badge-green{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.25);color:var(--accent3);}
+    .badge-blue{background:rgba(79,142,247,0.1);border:1px solid rgba(79,142,247,0.3);color:var(--accent);}
 
-    p.welcome-description {
-      font-size: 1.125rem;
-      line-height: 1.6;
-      margin-bottom: 2.5rem;
-      color: #cbd5e1;
-      user-select: text;
-    }
-    .welcome-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .btn-primary,
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      padding: 0.625rem 1.75rem;
-      border-radius: 8px;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease;
-      border: none;
-      font-size: 1rem;
-      text-decoration: none;
-      outline-offset: 2px;
-    }
-    .btn-primary:hover,
-    .btn-primary:focus-visible {
-      background-color: #1d4ed8;
-      outline: none;
-      transform: translateY(-2px);
-    }
-    .btn-secondary:hover,
-    .btn-secondary:focus-visible {
-      background-color: #7c3aed;
-      color: white;
-      outline: none;
-      transform: translateY(-2px);
-    }
-    .material-icons {
-      font-size: 1.25rem;
-      margin-right: 0.5rem;
-      user-select: none;
-    }
+    #skills{background:var(--surface);}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.5rem;}
+    .skill-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:all 0.25s;position:relative;overflow:hidden;}
+    .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+    .skill-card:hover{border-color:rgba(79,142,247,0.3);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3);}
+    .skill-card:hover::before{transform:scaleX(1);}
+    .skill-card-icon{font-size:1.7rem;margin-bottom:0.75rem;}
+    .skill-card-title{font-family:'Syne',sans-serif;font-size:0.98rem;font-weight:700;color:var(--text);margin-bottom:1rem;}
+    .skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+    .skill-tag{padding:0.2rem 0.6rem;background:var(--surface2);border:1px solid var(--border);border-radius:5px;font-size:0.73rem;color:var(--muted);font-family:'JetBrains Mono',monospace;transition:all 0.2s;}
+    .skill-tag:hover{color:var(--accent);border-color:rgba(79,142,247,0.3);}
 
-    /* Main content area */
-    #content-area {
-      max-width: 960px; /* Max width for all content */
-      margin: 0 auto; /* Center the entire main content area */
-      position: relative; /* Needed for absolute positioning of sections */
-      height: 100vh; /* Ensure main takes full viewport height for sections to layer correctly */
-      overflow: hidden; /* Hide overflow of sections when not active */
-    }
+    .exp-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.5rem;}
+    .exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;}
+    .exp-title{font-family:'Syne',sans-serif;font-size:1.18rem;font-weight:700;color:var(--text);}
+    .exp-company{font-size:0.88rem;color:var(--accent);margin-top:0.2rem;}
+    .exp-period{font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.28rem 0.8rem;white-space:nowrap;}
+    .exp-list{list-style:none;padding:0;}
+    .exp-list li{padding:0.38rem 0 0.38rem 1.25rem;position:relative;color:var(--muted);font-size:0.9rem;}
+    .exp-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);}
+    .toggle-btn{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;padding:0.38rem 1rem;background:transparent;border:1px solid var(--border);border-radius:7px;color:var(--muted);font-size:0.8rem;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
+    .toggle-btn:hover{color:var(--text);border-color:rgba(79,142,247,0.4);background:rgba(79,142,247,0.05);}
+    .collapse-box{max-height:0;overflow:hidden;transition:max-height 0.45s ease;}
+    .collapse-box.open{max-height:1400px;}
+    .collapse-box > img{margin-top:1rem;border-radius:10px;width:100%;max-width:420px;border:1px solid var(--border);}
 
-    /* Content Sections */
-    .content-section {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-      padding-top: 5rem;
-      padding-bottom: 4rem;
-      overflow-y: auto;
-      height: 100%; /* Take full height of #content-area */
-      width: 100%; /* Take full width of #content-area */
-      position: absolute; /* Essential for layering sections correctly within #content-area */
-      top: 0;
-      left: 0;
-      display: none; /* Hidden by default */
-      scroll-behavior: smooth;
-      outline-offset: 3px;
-      padding-left: 1rem; /* Padding relative to content-area */
-      padding-right: 1rem; /* Padding relative to content-area */
-      user-select: text;
-    }
-    .content-section.active-section {
-      opacity: 1;
-      transform: translateY(0);
-      display: block; /* Ensure display is block when active */
-      z-index: 10; /* Bring active section to front */
-    }
-    .content-section:focus-visible {
-      outline: 3px solid #60A5FA;
-      outline-offset: 5px;
-    }
+    #projects{background:var(--surface);}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem;}
+    .project-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.25s;display:flex;flex-direction:column;}
+    .project-card:hover{border-color:rgba(79,142,247,0.3);transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,0.4);}
+    .project-color-bar{height:3px;}
+    .project-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
+    .project-number{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:0.5rem;}
+    .project-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.75rem;}
+    .project-desc{font-size:0.86rem;color:var(--muted);line-height:1.6;flex:1;margin-bottom:1.25rem;}
+    .project-stack{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1rem;}
+    .stack-tag{font-family:'JetBrains Mono',monospace;font-size:0.66rem;padding:0.15rem 0.5rem;background:var(--surface2);color:var(--accent2);border-radius:4px;}
+    .project-actions{display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;}
+    .project-link{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.8rem;color:var(--accent);text-decoration:none;font-weight:500;transition:gap 0.2s;}
+    .project-link:hover{gap:0.6rem;}
+    .gallery-btn{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.78rem;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:6px;padding:0.25rem 0.7rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+    .gallery-btn:hover{color:var(--text);border-color:rgba(79,142,247,0.4);}
+    .gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;padding:0.75rem 0 0.5rem;}
+    .gallery-grid img{width:100%;border-radius:8px;border:1px solid var(--border);object-fit:cover;aspect-ratio:16/9;}
 
-    /* Section Heading */
-    .section-heading {
-      font-size: 2.25rem;
-      font-weight: 900;
-      margin-bottom: 2rem;
-      text-align: center;
-      background: linear-gradient(to right, #60A5FA, #7c3aed, #ec4899);
-      color: transparent;
-      -webkit-background-clip: text;
-      background-clip: text;
-      user-select: text;
-    }
+    .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1.25rem;}
+    .cert-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all 0.25s;cursor:pointer;}
+    .cert-card:hover{border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.03);}
+    .cert-icon{font-size:1.9rem;margin-bottom:0.75rem;}
+    .cert-name{font-family:'Syne',sans-serif;font-size:0.93rem;font-weight:700;color:var(--text);margin-bottom:0.35rem;line-height:1.3;}
+    .cert-issuer{font-size:0.76rem;color:var(--accent2);}
+    .cert-hint{font-size:0.7rem;color:var(--muted);margin-top:0.5rem;}
+    .cert-img-wrap{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+    .cert-img-wrap.open{max-height:500px;}
+    .cert-img-wrap img{margin-top:1rem;width:100%;border-radius:8px;border:1px solid var(--border);}
 
-    /* Card */
-    .card {
-      background-color: rgba(31, 41, 55, 0.85);
-      backdrop-filter: blur(12px);
-      border-radius: 1rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      padding: 1.5rem 2rem;
-      margin-bottom: 2rem;
-      border: 1px solid #334155;
-      color: #e0e7ff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      user-select: text;
-    }
-    .card:hover,
-    .card:focus-within {
-      transform: translateY(-5px);
-      box-shadow: 0 25px 45px rgba(99, 102, 241, 0.7);
-      outline: none;
-    }
-    .card h3 {
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: #bbbde1;
-      margin-bottom: 0.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      user-select: text;
-    }
+    #achievements{background:var(--surface);}
+    .achievement-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;transition:all 0.25s;}
+    .achievement-card:hover{border-color:rgba(251,191,36,0.3);}
+    .achievement-badge{width:58px;height:58px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex-shrink:0;box-shadow:0 4px 20px rgba(251,191,36,0.2);}
+    .achievement-title{font-family:'Syne',sans-serif;font-size:1.08rem;font-weight:700;color:var(--text);margin-bottom:0.35rem;}
+    .achievement-meta{font-size:0.83rem;color:var(--muted);margin-bottom:0.75rem;}
+    .achievement-desc{font-size:0.86rem;color:var(--muted);line-height:1.65;}
+    .ach-cert-img{display:block;margin-top:1rem;width:100%;max-width:350px;border-radius:10px;border:1px solid var(--border);}
 
-    /* Skill Items */
-    ul {
-      padding-left: 1.25rem;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-    li.skill-item {
-      position: relative;
-      margin-bottom: 0.5rem;
-      color: #cbd5e1;
-      padding-left: 1.25rem;
-      user-select: text;
-    }
-    li.skill-item::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: #60A5FA;
-      font-weight: 900;
-    }
+    .contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+    @media(max-width:720px){.contact-wrapper{grid-template-columns:1fr;}}
+    .contact-item{display:flex;align-items:center;gap:1rem;padding:1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:0.75rem;text-decoration:none;transition:all 0.2s;color:var(--text);}
+    .contact-item:hover{border-color:rgba(79,142,247,0.3);background:rgba(79,142,247,0.03);transform:translateX(4px);}
+    .contact-icon{width:42px;height:42px;background:var(--bg);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+    .contact-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;}
+    .contact-value{font-size:0.88rem;color:var(--text);font-weight:500;}
+    .contact-cta-box{background:linear-gradient(135deg,rgba(79,142,247,0.08) 0%,rgba(167,139,250,0.08) 100%);border:1px solid rgba(79,142,247,0.2);border-radius:20px;padding:2.5rem;}
+    .contact-cta-box h3{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:700;margin-bottom:0.75rem;}
+    .contact-cta-box p{color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.7;}
 
-    /* Collapsible Button */
-    .collapsible-btn {
-      background-color: #374151;
-      color: white;
-      border: 2px solid white;
-      font-weight: 600;
-      padding: 0.3rem 0.75rem;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.25s ease, border-color 0.25s ease;
-      user-select: none;
-    }
-    .collapsible-btn:hover,
-    .collapsible-btn:focus-visible {
-      background-color: #2563eb;
-      border-color: #60A5FA;
-      outline: none;
-    }
+    footer{padding:2rem;text-align:center;border-top:1px solid var(--border);color:var(--muted);font-size:0.8rem;}
+    footer span{color:var(--accent);}
+    #scroll-top{position:fixed;bottom:1.5rem;right:1.5rem;width:42px;height:42px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all 0.3s;color:var(--muted);z-index:800;font-size:1.1rem;}
+    #scroll-top.visible{opacity:1;transform:translateY(0);}
+    #scroll-top:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
 
-    /* Collapsible Details */
-    .collapsible-details {
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      padding: 0 1rem;
-      transition: max-height 0.3s ease, opacity 0.3s ease;
-      color: #cbd5e1;
-      user-select: text;
-    }
-    .collapsible-details.open {
-      opacity: 1;
-      padding: 1rem;
-    }
-
-    /* Responsive Project Image Grid */
-    .project-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.25rem;
-      justify-content: center;
-    }
-    .project-image-container {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #334155;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-      height: 320px;
-      width: 320px;
-      margin: 0 auto;
-      user-select: none;
-    }
-    .project-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    /* Responsive utilities */
-    @media (max-width: 1024px) {
-      .project-grid {
-        grid-template-columns: 1fr;
-      }
-      .project-image-container {
-        width: 100%;
-        max-width: 100%;
-        height: 260px;
-      }
-    }
-    @media (max-width: 640px) {
-      h1.welcome-name {
-        font-size: 2.5rem;
-      }
-      .welcome-section > div:not(#particles-js) {
-        max-width: 100%;
-        padding: 0 0.5rem;
-      }
-      .btn-primary,
-      .btn-secondary {
-        width: 100%;
-        justify-content: center;
-      }
-      .welcome-buttons {
-        flex-direction: column;
-        gap: 0.75rem;
-      }
-    }
+    .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .fade-up.visible{opacity:1;transform:translateY(0);}
+    .stagger-1{transition-delay:0.1s;}.stagger-2{transition-delay:0.2s;}.stagger-3{transition-delay:0.3s;}.stagger-4{transition-delay:0.4s;}
   </style>
 </head>
 <body>
-  <header role="banner" aria-label="Primary navigation">
-    <nav role="navigation" aria-label="Main menu" class="container mx-auto px-4" aria-live="polite" aria-relevant="additions removals" aria-atomic="true">
-      <div class="flex flex-wrap justify-center gap-x-6 gap-y-4 py-3">
-        <a href="#welcome" class="nav-link active" role="link" data-section="welcome" tabindex="0" aria-current="page" aria-label="Navigate to Home section">Home</a>
-        <a href="#about" class="nav-link" role="link" data-section="about" tabindex="-1" aria-label="Navigate to About section">About</a>
-        <a href="#education" class="nav-link" role="link" data-section="education" tabindex="-1" aria-label="Navigate to Education section">Education</a>
-        <a href="#skills" class="nav-link" role="link" data-section="skills" tabindex="-1" aria-label="Navigate to Skills section">Skills</a>
-        <a href="#experience" class="nav-link" role="link" data-section="experience" tabindex="-1" aria-label="Navigate to Experience section">Experience</a>
-        <a href="#projects" class="nav-link" role="link" data-section="projects" tabindex="-1" aria-label="Navigate to Projects section">Projects</a>
-        <a href="#certifications" class="nav-link" role="link" data-section="certifications" tabindex="-1" aria-label="Navigate to Certifications section">Certifications</a>
-        <a href="#achievements" class="nav-link" role="link" data-section="achievements" tabindex="-1" aria-label="Navigate to Achievements section">Achievements</a>
-        <a href="#contact" class="nav-link" role="link" data-section="contact" tabindex="-1" aria-label="Navigate to Contact section">Contact</a>
+
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">FW<span>.</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about" class="nav-link-item">About</a></li>
+      <li><a href="#education" class="nav-link-item">Education</a></li>
+      <li><a href="#skills" class="nav-link-item">Skills</a></li>
+      <li><a href="#experience" class="nav-link-item">Experience</a></li>
+      <li><a href="#projects" class="nav-link-item">Projects</a></li>
+      <li><a href="#certifications" class="nav-link-item">Certs</a></li>
+      <li><a href="#achievements" class="nav-link-item">Awards</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Contact Me →</a>
+    <button class="mobile-menu-btn" id="mobile-btn">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Available for opportunities</div>
+      <h1 class="hero-name">
+        <span class="line-1">AR Fabian</span>
+        <span class="line-2">William</span>
+      </h1>
+      <div class="hero-typed"><span id="typed-output"></span></div>
+      <p class="hero-desc">A dedicated developer transforming complex ideas into efficient, user-friendly software. Specializing in Python, C++, and modern web technologies.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View My Work ↓</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
       </div>
-    </nav>
-  </header>
+      <div class="hero-stats">
+        <div><div class="stat-number">7<span>+</span></div><div class="stat-label">Projects</div></div>
+        <div><div class="stat-number">5<span>+</span></div><div class="stat-label">Certifications</div></div>
+        <div><div class="stat-number">1<span>×</span></div><div class="stat-label">Award Winner</div></div>
+        <div><div class="stat-number">MCA</div><div class="stat-label">Pursuing</div></div>
+      </div>
+    </div>
+  </section>
+  <div class="gradient-divider"></div>
 
-  <main id="content-area" role="main">
-    <section id="welcome" class="content-section welcome-section active-section" tabindex="0" aria-label="Welcome section of portfolio">
-      <div id="particles-js" aria-hidden="true"></div>
-      <div>
-        <img src="https://i.ibb.co/ynjd0pP1/Whats-App-Image-2025-06-02-at-11-54-04-e148af01.jpg" alt="Profile picture of AR Fabian William, developer in casual attire, smiling" class="profile-pic" draggable="false" />
-        <h1 class="welcome-name">AR FABIAN WILLIAM</h1>
-        <p class="typed-text" id="typed-output" aria-live="polite" aria-atomic="true"></p>
-        <p class="welcome-description">
-          A dedicated and results-oriented Developer transforming complex ideas into efficient, user-friendly software. Eager to leverage my skills in Python, C++, and modern web technologies to contribute to impactful projects.
-        </p>
-        <div class="welcome-buttons">
-          <a href="#projects" class="btn-primary nav-link-cta" role="button" tabindex="0" data-section="projects" aria-label="View My Work section">
-            <span class="material-icons" aria-hidden="true">work_outline</span>View My Work
-          </a>
-          <a href="#contact" class="btn-secondary nav-link-cta" role="button" tabindex="0" data-section="contact" aria-label="Get in Touch section">
-            <span class="material-icons" aria-hidden="true">mail_outline</span>Get in Touch
-          </a>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label fade-up">01 / About</div>
+      <h2 class="section-title fade-up stagger-1">Who I Am</h2>
+      <div class="about-grid">
+        <div class="about-text fade-up stagger-2">
+          <p>I'm a <strong>highly motivated and adaptable developer</strong> with a strong foundational understanding of programming principles and a passion for building solutions that matter.</p>
+          <p>Proficient in leveraging <strong>AI tools</strong> like ChatGPT, Gemini AI, Cursor AI, Meta AI, Llama AI, and Blackbox AI to enhance development workflows, automate tasks, and generate innovative solutions.</p>
+          <p>Currently pursuing my <strong>MCA at DR MGR Educational and Research University</strong>, eager to contribute to cutting-edge software projects.</p>
+          <div class="about-links">
+            <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="link-chip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/Fabian-william" target="_blank" class="link-chip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="mailto:arfabianwilliam@gmail.com" class="link-chip">✉ Email Me</a>
+          </div>
+        </div>
+        <div class="info-grid fade-up stagger-3">
+          <div class="info-item"><div class="info-icon">📍</div><div><div class="info-label">Location</div><div class="info-value">Chennai, Tamil Nadu, India</div></div></div>
+          <div class="info-item"><div class="info-icon">📞</div><div><div class="info-label">Phone</div><div class="info-value">(+91) 75502-60124</div></div></div>
+          <div class="info-item"><div class="info-icon">🎓</div><div><div class="info-label">Currently Studying</div><div class="info-value">MCA — DR MGR University</div></div></div>
+          <div class="info-item"><div class="info-icon">🌐</div><div><div class="info-label">Languages</div><div class="info-value">English · Tamil · Malayalam</div></div></div>
+          <div class="info-item"><div class="info-icon">✅</div><div><div class="info-label">Status</div><div class="info-value" style="color:var(--accent3);">Open to opportunities</div></div></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+  <div class="gradient-divider"></div>
 
-    <section id="about" class="content-section" tabindex="-1" aria-label="About Me section">
-      <h2 class="section-heading">About Me</h2>
-      <article class="card" role="region" aria-labelledby="about-heading">
-        <p id="about-heading" class="mb-6">
-          A highly motivated and adaptable Developer with a strong foundational understanding of programming principles. Proficient in utilizing AI tools like ChatGPT, Meta AI, Gemini AI, Llama AI, Blackbox AI, and Cursor AI to enhance development workflows, automate tasks, and generate innovative solutions. Eager to contribute to cutting-edge software projects, leveraging problem-solving skills and a collaborative spirit to develop efficient and cutting-edge solutions in an entry-level role.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4" role="group" aria-label="Contact Links">
-          <a href="mailto:fabianwilliamar@gmail.com" class="btn-secondary border-red-500 text-red-400 hover:bg-red-500 hover:text-white" aria-label="Send email to Fabian William" tabindex="0">
-            <span class="material-icons" aria-hidden="true">email</span>Email Me
-          </a>
-          <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" rel="noopener noreferrer" class="btn-secondary border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white" aria-label="Open Fabian William's LinkedIn profile in a new window" tabindex="0">
-            <span class="material-icons" aria-hidden="true">linkedin</span>LinkedIn Profile
-          </a>
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label fade-up">02 / Education</div>
+      <h2 class="section-title fade-up stagger-1">Academic Journey</h2>
+      <div class="timeline fade-up stagger-3">
+        <div class="timeline-item">
+          <div class="timeline-year">2025 – 2027</div>
+          <div class="timeline-title">Master of Computer Applications (MCA)</div>
+          <div class="timeline-sub">DR MGR Educational And Research University, Chennai</div>
+          <div class="timeline-badge badge-green">Currently Pursuing</div>
         </div>
-      </article>
-    </section>
+        <div class="timeline-item">
+          <div class="timeline-year">2022 – 2025</div>
+          <div class="timeline-title">B.Sc in Computer Science</div>
+          <div class="timeline-sub">DR MGR Educational And Research University, Chennai</div>
+          <div class="timeline-badge badge-blue">Completed</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="gradient-divider"></div>
 
-    <section id="education" class="content-section" tabindex="-1" aria-label="Education section">
-      <h2 class="section-heading">Education</h2>
-      <article class="card" role="region" aria-labelledby="education1">
-        <h3 id="education1" class="mb-2 font-semibold text-blue-300">B.Sc in Computer Science</h3>
-        <p>DR MGR Educational And Research University, Chennai, India</p>
-        <p class="text-gray-400">2022-2025</p>
-      </article>
-      <article class="card" role="region" aria-labelledby="education2">
-        <h3 id="education2" class="mb-2 font-semibold text-blue-300">Master of Computer Applications (MCA)</h3>
-        <p>DR MGR Educational And Research University, Chennai, India</p>
-        <p class="text-gray-400">Currently Pursuing (2025-2027)</p>
-      </article>
-    </section>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label fade-up">03 / Skills</div>
+      <h2 class="section-title fade-up stagger-1">Technical Arsenal</h2>
+      <div class="skills-grid">
+        <div class="skill-card fade-up stagger-1"><div class="skill-card-icon">⚡</div><div class="skill-card-title">Languages</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">C</span><span class="skill-tag">C++</span><span class="skill-tag">JavaScript</span></div></div>
+        <div class="skill-card fade-up stagger-2"><div class="skill-card-icon">🌐</div><div class="skill-card-title">Web Development</div><div class="skill-tags"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Tailwind CSS</span></div></div>
+        <div class="skill-card fade-up stagger-3"><div class="skill-card-icon">🛠️</div><div class="skill-card-title">Tools &amp; Platforms</div><div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">VS Code</span><span class="skill-tag">PyCharm</span><span class="skill-tag">Jupyter</span><span class="skill-tag">Power BI</span></div></div>
+        <div class="skill-card fade-up stagger-4"><div class="skill-card-icon">🤖</div><div class="skill-card-title">AI Tools</div><div class="skill-tags"><span class="skill-tag">ChatGPT</span><span class="skill-tag">Gemini AI</span><span class="skill-tag">Cursor AI</span><span class="skill-tag">Meta AI</span><span class="skill-tag">Llama AI</span><span class="skill-tag">Blackbox AI</span></div></div>
+        <div class="skill-card fade-up stagger-1"><div class="skill-card-icon">🧠</div><div class="skill-card-title">Soft Skills</div><div class="skill-tags"><span class="skill-tag">Communication</span><span class="skill-tag">Leadership</span><span class="skill-tag">Time Mgmt</span><span class="skill-tag">Adaptability</span><span class="skill-tag">Problem Solving</span></div></div>
+      </div>
+    </div>
+  </section>
+  <div class="gradient-divider"></div>
 
-    <section id="skills" class="content-section" tabindex="-1" aria-label="Skills section">
-      <h2 class="section-heading">Skills</h2>
-      <article class="card" role="region" aria-labelledby="tech-skills">
-        <h3 id="tech-skills" class="flex items-center text-blue-300 mb-4 font-semibold">
-          <span class="material-icons mr-2 text-pink-300" aria-hidden="true">settings</span>
-          Technical Skills
-        </h3>
-        <ul>
-          <li class="skill-item">Languages: Python, C, C++</li>
-          <li class="skill-item">Web: HTML, CSS, JavaScript</li>
-          <li class="skill-item">Frameworks/Libraries: Tailwind CSS</li>
-          <li class="skill-item">Tools: Git, GitHub, Jupyter Notebooks, PyCharm, VS Code, Power BI</li>
-          <li class="skill-item">AI Tools: ChatGPT, Meta AI, Gemini AI, Llama AI, Blackbox AI, Cursor AI</li>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label fade-up">04 / Experience</div>
+      <h2 class="section-title fade-up stagger-1">Professional Training</h2>
+      <div class="exp-card fade-up stagger-3">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Python Programming Intern</div>
+            <div class="exp-company">Top Tech Developers, Chennai</div>
+          </div>
+          <div class="exp-period">2024</div>
+        </div>
+        <ul class="exp-list">
+          <li>Automated repetitive tasks with Python scripts, boosting team efficiency by <strong style="color:var(--accent3)">40%</strong>.</li>
+          <li>Conducted comprehensive code reviews and refactoring sessions improving maintainability scores by <strong style="color:var(--accent3)">25%</strong>.</li>
+          <li>Facilitated smoother integration for future projects and enhanced collaboration across cross-functional teams.</li>
         </ul>
-      </article>
-      <article class="card" role="region" aria-labelledby="soft-skills">
-        <h3 id="soft-skills" class="flex items-center text-blue-300 mb-4 font-semibold">
-          <span class="material-icons mr-2 text-lime-300" aria-hidden="true">psychology</span>
-          Soft Skills
-        </h3>
-        <ul>
-          <li class="skill-item">Communication</li>
-          <li class="skill-item">Leadership skills</li>
-          <li class="skill-item">Resource management</li>
-          <li class="skill-item">Time management</li>
-          <li class="skill-item">Adaptability & Problem-Solving</li>
-        </ul>
-      </article>
-      <article class="card" role="region" aria-labelledby="languages">
-        <h3 id="languages" class="flex items-center text-blue-300 mb-4 font-semibold">
-          <span class="material-icons mr-2 text-purple-300" aria-hidden="true">translate</span>
-          Languages
-        </h3>
-        <ul>
-          <li class="skill-item">English (Fluent)</li>
-          <li class="skill-item">Tamil (Native)</li>
-          <li class="skill-item">Malayalam (Conversational)</li>
-        </ul>
-      </article>
-    </section>
+        <button class="toggle-btn" onclick="toggleBox(this)">📄 View Certificate</button>
+        <div class="collapse-box">
+          <img src="https://i.ibb.co/BVdKDdkj/7.jpg" alt="Python Internship Certificate" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="gradient-divider"></div>
 
-    <section id="experience" class="content-section" tabindex="-1" aria-label="Professional Training section">
-      <h2 class="section-heading">Professional Training</h2>
-      <article class="card" role="region" aria-labelledby="python-intern">
-        <h3 id="python-intern" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          Python Programming Intern
-          <button class="collapsible-btn" data-collapsible-id="python-intern" aria-expanded="false" aria-controls="python-intern-details" aria-label="Toggle Python internship details" tabindex="0">View Details</button>
-        </h3>
-        <p class="mb-3">Top Tech Developers, Chennai</p>
-        <section id="python-intern-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <ul class="list-disc list-inside space-y-2">
-            <li>Automated tasks with Python scripts, boosting efficiency by 40%.</li>
-            <li>Conducted comprehensive code reviews and refactoring sessions that improved code maintainability scores by 25%, facilitating smoother integration for future projects and enhancing collaboration among cross-functional teams.</li>
-          </ul>
-          <h4 class="mb-2 font-semibold">Internship Certificate:</h4>
-          <img src="https://i.ibb.co/BVdKDdkj/7.jpg" alt="Python Internship Completion Certificate from Top Tech Developers, Chennai" class="rounded-md shadow-md w-full max-w-md mx-auto" loading="lazy" draggable="false" />
-        </section>
-      </article>
-    </section>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label fade-up">05 / Projects</div>
+      <h2 class="section-title fade-up stagger-1">What I've Built</h2>
+      <p class="section-desc fade-up stagger-2">Click the gallery button on each card to see project screenshots.</p>
+      <div class="projects-grid">
 
-    <section id="projects" class="content-section" tabindex="-1" aria-label="Projects section">
-      <h2 class="section-heading">Projects</h2>
-      
-      <article class="card" role="region" aria-labelledby="project-resume-io">
-        <h3 id="project-resume-io" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          Resume.io
-          <button class="collapsible-btn" data-collapsible-id="resume-io" aria-expanded="false" aria-controls="resume-io-details" aria-label="Toggle Resume.io project details" tabindex="0">View Details</button>
-        </h3>
-        <section id="resume-io-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <div class="flex justify-end mb-3">
-            <a href="https://fabian-william.github.io/Resume.io/" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="View Resume.io live demo" tabindex="0">
-              <span class="material-icons" aria-hidden="true">open_in_new</span>View Project
-            </a>
-          </div>
-          <div class="project-grid">
-             <div class="project-image-container"><img src="https://via.placeholder.com/320x320?text=Resume.io+Screenshot+1" alt="Screenshot of Resume.io project" class="project-image" loading="lazy" draggable="false" /></div>
-             <div class="project-image-container"><img src="https://via.placeholder.com/320x320?text=Resume.io+Screenshot+2" alt="Screenshot of Resume.io project" class="project-image" loading="lazy" draggable="false" /></div>
-             <div class="project-image-container"><img src="https://via.placeholder.com/320x320?text=Resume.io+Screenshot+3" alt="Screenshot of Resume.io project" class="project-image" loading="lazy" draggable="false" /></div>
-             <div class="project-image-container"><img src="https://via.placeholder.com/320x320?text=Resume.io+Screenshot+4" alt="Screenshot of Resume.io project" class="project-image" loading="lazy" draggable="false" /></div>
-          </div>
-          <h4 class="font-semibold mt-4 mb-2">Tech Stack:</h4>
-          <p class="text-sm text-gray-400 mb-4">HTML, CSS, JavaScript</p>
-          <p class="mt-4">
-            Resume.io is a web application designed to help users easily create professional resumes. It provides a user-friendly interface to input personal details, work experience, education, skills, and more, generating a well-formatted resume suitable for job applications.
-          </p>
-        </section>
-      </article>
-
-      <article class="card" role="region" aria-labelledby="project-scientific-calculator">
-        <h3 id="project-scientific-calculator" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          Scientific Calculator
-          <button class="collapsible-btn" data-collapsible-id="scientific-calculator" aria-expanded="false" aria-controls="scientific-calculator-details" aria-label="Toggle Scientific Calculator project details" tabindex="0">View Details</button>
-        </h3>
-        <section id="scientific-calculator-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <div class="flex justify-end mb-3">
-            <a href="https://fabian-william.github.io/scientific-calculator/" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="View Scientific Calculator live demo" tabindex="0">
-              <span class="material-icons" aria-hidden="true">open_in_new</span>View Project
-            </a>
-          </div>
-          <div class="project-grid">
-             <div class="project-image-container"><img src="https://i.ibb.co/DPF2rW51/Screenshot-2025-06-26-115831.png" alt="Screenshot of the Scientific Calculator showing a clean user interface" class="project-image" loading="lazy" draggable="false" /></div>
-             <div class="project-image-container"><img src="https://i.ibb.co/zHBq0h2h/Screenshot-2025-06-26-115824.png" alt="Screenshot of the Scientific Calculator demonstrating advanced functions" class="project-image" loading="lazy" draggable="false" /></div>
-             <div class="project-image-container"><img src="https://i.ibb.co/9khQ2Fcr/Screenshot-2025-06-26-115816.png" alt="Screenshot of the Scientific Calculator on a mobile device" class="project-image" loading="lazy" draggable="false" /></div>
-             <div class="project-image-container"><img src="https://i.ibb.co/C56mKdbB/Screenshot-2025-06-26-115809.png" alt="Screenshot of the Scientific Calculator showing the calculation history" class="project-image" loading="lazy" draggable="false" /></div>
-          </div>
-          <h4 class="font-semibold mt-4 mb-2">Tech Stack:</h4>
-          <p class="text-sm text-gray-400 mb-4">HTML, CSS, JavaScript</p>
-          <p class="mt-4">
-            A fully functional scientific calculator built with pure HTML, CSS, and JavaScript. This web application supports a wide range of mathematical operations, including trigonometric functions, logarithms, and exponentiation, all within a sleek and user-friendly interface.
-          </p>
-        </section>
-      </article>
-
-      <article class="card" role="region" aria-labelledby="project-snake-game">
-        <h3 id="project-snake-game" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          Classic Snake Game
-          <button class="collapsible-btn" data-collapsible-id="snake-game" aria-expanded="false" aria-controls="snake-game-details" aria-label="Toggle Classic Snake Game project details" tabindex="0">View Details</button>
-        </h3>
-        <section id="snake-game-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <div class="flex justify-end mb-3">
-            <a href="https://fabian-william.github.io/snake-game/" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="View Classic Snake Game live demo" tabindex="0">
-              <span class="material-icons" aria-hidden="true">open_in_new</span>View Project
-            </a>
-          </div>
-          <div class="project-grid">
-            <div class="project-image-container"><img src="https://i.ibb.co/7JK6bdsc/brave-screenshot-14.png" alt="Screenshot 1 of the Snake Game showing the start screen" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/8Lv8sK3f/brave-screenshot-13.png" alt="Screenshot 2 of the Snake Game showing gameplay in progress" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/F4XxvgFK/brave-screenshot-12.png" alt="Screenshot 3 of the Snake Game showing a longer snake" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/CKj3qKjh/brave-screenshot-11.png" alt="Screenshot 4 of the Snake Game showing the game over screen" class="project-image" loading="lazy" draggable="false" /></div>
-          </div>
-          <h4 class="font-semibold mt-4 mb-2">Tech Stack:</h4>
-          <p class="text-sm text-gray-400 mb-4">HTML, CSS, JavaScript</p>
-          <p class="mt-4">
-            A modern implementation of the timeless classic, this Snake Game is built with pure HTML, CSS, and JavaScript. It features a clean interface, responsive controls, and a classic gameplay loop, challenging players to grow their snake as long as possible without crashing.
-          </p>
-        </section>
-      </article>
-
-      <article class="card" role="region" aria-labelledby="project-ai-navigator">
-        <h3 id="project-ai-navigator" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          AI Navigator
-          <button class="collapsible-btn" data-collapsible-id="ai-navigator" aria-expanded="false" aria-controls="ai-navigator-details" aria-label="Toggle AI Navigator project details" tabindex="0">View Details</button>
-        </h3>
-        <section id="ai-navigator-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <div class="flex justify-end mb-3">
-            <a href="https://fabian-william.github.io/AI-NAVIGATOR/" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="View AI Navigator project live demo" tabindex="0">
-              <span class="material-icons" aria-hidden="true">open_in_new</span>View Project
-            </a>
-          </div>
-          <div class="project-grid">
-            <div class="project-image-container"><img src="https://i.ibb.co/DPnznn8v/Screenshot-2025-06-12-215552.png" alt="Screenshot 1 of AI Navigator app showing main UI and map view" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/pvR2zBv7/Screenshot-2025-06-16-133251.png" alt="Screenshot 2 of AI Navigator app showing tool categories and filters" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/WNXNNTc8/Screenshot-2025-06-16-133317.png" alt="Screenshot 3 of AI Navigator app dashboard with favorites list" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/b5J6gJ6B/Screenshot-2025-06-16-132553.png" alt="Screenshot 4 of AI Navigator app, detailed tool view" class="project-image" loading="lazy" draggable="false" /></div>
-          </div>
-          <h4 class="font-semibold mt-4 mb-2">Tech Stack:</h4>
-          <p class="text-sm text-gray-400 mb-4">HTML, Tailwind CSS, JavaScript</p>
-          <p class="mt-4">
-            The AI Navigator is a comprehensive web application designed to help users discover and explore a wide variety of digital tools. It functions as a curated directory for AI platforms, business management software, productivity utilities, and development resources. The platform makes it easy to find both free and freemium solutions across diverse categories, streamlining the process of identifying the best tools for any task.
-          </p>
-        </section>
-      </article>
-
-      <article class="card" role="region" aria-labelledby="project-iot-parking">
-        <h3 id="project-iot-parking" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          IoT Based Car Parking System
-          <button class="collapsible-btn" data-collapsible-id="iot-parking" aria-expanded="false" aria-controls="iot-parking-details" aria-label="Toggle IoT parking system project details" tabindex="0">View Details</button>
-        </h3>
-        <section id="iot-parking-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <div class="project-grid">
-            <div class="project-image-container"><img src="https://i.ibb.co/KptKf4Dk/5.jpg" alt="Diagram showing IoT car parking system sensors and flow" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/pr1hrYxq/4.jpg" alt="Flowchart depicting data flow in IoT parking system" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/39h8dw3L/2.jpg" alt="Mobile interface screenshot showing parking slot availability" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/VG7DQLY/3.jpg" alt="Photo showing hardware parking setup with sensors" class="project-image" loading="lazy" draggable="false" /></div>
-          </div>
-          <h4 class="font-semibold mt-4 mb-2">Tech Stack:</h4>
-          <p class="text-sm text-gray-400 mb-4">C++, IoT Sensors, Real-Time Database, Web/Mobile UI</p>
-          <p class="mt-4">
-            An innovative IoT-based parking solution optimizing usage of parking spaces by real-time monitoring with sensors, efficient slot allocation algorithms, and a user-friendly mobile/web interface to reduce searching time.
-          </p>
-        </section>
-      </article>
-
-      <article class="card" role="region" aria-labelledby="project-excel-powerbi">
-        <h3 id="project-excel-powerbi" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          Excel to Power BI Converter
-          <button class="collapsible-btn" data-collapsible-id="excel-powerbi" aria-expanded="false" aria-controls="excel-powerbi-details" aria-label="Toggle Excel to Power BI project details" tabindex="0">View Details</button>
-        </h3>
-        <section id="excel-powerbi-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <div class="flex justify-end mb-3">
-            <a href="https://fabian-william.github.io/excel-to-power-bi/" target="_blank" rel="noopener noreferrer" class="btn-primary" aria-label="View Excel to Power BI converter demo" tabindex="0">
-              <span class="material-icons" aria-hidden="true">open_in_new</span>View Project
-            </a>
-          </div>
-          <div class="project-grid">
-            <div class="project-image-container"><img src="https://i.ibb.co/NnxyR47C/Screenshot-2025-06-16-122643.png" alt="Excel data preview screenshot" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/XrYt1gwf/Screenshot-2025-06-16-122657.png" alt="Data cleansing steps screenshot" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/S43Rm4F3/Screenshot-2025-06-16-123114.png" alt="Power BI dashboard example with charts and graphs" class="project-image" loading="lazy" draggable="false" /></div>
-            <div class="project-image-container"><img src="https://i.ibb.co/20zJ5DWX/Screenshot-2025-06-16-122622.png" alt="Data transformation process screenshot" class="project-image" loading="lazy" draggable="false" /></div>
-          </div>
-          <h4 class="font-semibold mt-4 mb-2">Tech Stack:</h4>
-          <p class="text-sm text-gray-400 mb-4">Microsoft Excel, Microsoft Power BI</p>
-          <p class="mt-4">
-            A practical solution converting Excel spreadsheets into Power BI dashboards by cleaning, modeling data for insightful visualization. Demonstrates expertise in data handling and BI toolsets.
-          </p>
-        </section>
-      </article>
-    </section>
-
-    <section id="certifications" class="content-section" tabindex="-1" aria-label="Certifications section">
-      <h2 class="section-heading">Certifications</h2>
-      <article class="card" role="region" aria-labelledby="cert-responsible-ai">
-        <h3 id="cert-responsible-ai" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          Responsible AI with Google Cloud - Simplilearn
-          <button class="collapsible-btn" data-collapsible-id="responsible-ai" aria-expanded="false" aria-controls="responsible-ai-details" aria-label="Toggle Responsible AI certification details" tabindex="0">View Details</button>
-        </h3>
-        <section id="responsible-ai-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <img src="https://i.ibb.co/TDYThSYn/Whats-App-Image-2025-06-24-at-12-25-31-e19ac9b7.jpg" alt="Whats-App-Image-2025-06-24-at-12-25-31-e19ac9b7" border="0">
-          <p class="mt-4 text-center">
-            This certification, powered by Google Cloud, validates expertise in applying ethical AI principles. It covers fairness, transparency, and accountability in AI systems, demonstrating a commitment to developing trustworthy and responsible technology.
-          </p>
-        </section>
-      </article>
-
-      <article class="card" role="region" aria-labelledby="cert-prompt-engineering">
-        <h3 id="cert-prompt-engineering" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          Introduction to Prompt Engineering - Simplilearn
-          <button class="collapsible-btn" data-collapsible-id="prompt-engineering" aria-expanded="false" aria-controls="prompt-engineering-details" aria-label="Toggle Prompt Engineering certification details" tabindex="0">View Details</button>
-        </h3>
-        <section id="prompt-engineering-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <img src="https://i.ibb.co/20T8YvgK/Whats-App-Image-2025-06-24-at-12-25-32-994ad6ad.jpg" alt="Whats-App-Image-2025-06-24-at-12-25-32-994ad6ad" border="0">
-
-          <p class="mt-4 text-center">
-            This course completion demonstrates proficiency in the art and science of crafting effective prompts for large language models (LLMs). This skill is crucial for guiding AI to produce accurate, relevant, and creative outputs.
-          </p>
-        </section>
-      </article>
-
-      <article class="card" role="region" aria-labelledby="cert-python-beginners">
-        <h3 id="cert-python-beginners" class="mb-4 flex justify-between items-center font-semibold text-blue-300">
-          Python for Beginners - Simplilearn
-          <button class="collapsible-btn" data-collapsible-id="python-simplilearn" aria-expanded="false" aria-controls="python-simplilearn-details" aria-label="Toggle Python certification details" tabindex="0">View Details</button>
-        </h3>
-        <section id="python-simplilearn-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <img src="https://i.ibb.co/x9WYP0N/1.jpg" alt="Python for Beginners certification by Simplilearn" class="rounded-md shadow-md w-full max-w-md mx-auto" loading="lazy" draggable="false" />
-          <p class="mt-4 text-center">
-            Certificate showcasing a dedication to foundational programming concepts in Python and proactive skill development, supporting readiness for a career in software development.
-          </p>
-        </section>
-      </article>
-    </section>
-
-    <section id="achievements" class="content-section" tabindex="-1" aria-label="Achievements section">
-      <h2 class="section-heading">Achievements</h2>
-      <article class="card" role="region" aria-labelledby="achievement-paper-presentation">
-        <h3 id="achievement-paper-presentation" class="mb-2 flex justify-between items-center font-semibold text-blue-300">
-          Second Prize - Technical Paper Presentation (Technology Day)
-          <button class="collapsible-btn" data-collapsible-id="paper-presentation" aria-expanded="false" aria-controls="paper-presentation-details" aria-label="Toggle paper presentation achievement details" tabindex="0">View Details</button>
-        </h3>
-        <p class="mb-3">DR M.G.R. Educational and Research Institute, Chennai</p>
-        <section id="paper-presentation-details" class="collapsible-details" aria-hidden="true" tabindex="-1">
-          <img src="https://i.ibb.co/ksn43rWy/6.jpg" alt="Technical paper presentation award certificate" class="rounded-md shadow-md w-full max-w-md mx-auto" loading="lazy" draggable="false" />
-          <p class="my-4">
-            Awarded Second Prize at Technical Paper Presentation on Technology Day at DR M.G.R. Educational Institute, demonstrating strong research, presentation, and communication skills.
-          </p>
-          <p class="text-sm text-gray-400">Date: May 29, 2023</p>
-          <p class="text-sm text-gray-400">Organized by: Department of Computer Science, DR M.G.R. Educational and Research Institute.</p>
-        </section>
-      </article>
-    </section>
-
-    <section id="contact" class="content-section" tabindex="-1" aria-label="Contact section - Get in Touch">
-      <h2 class="section-heading">Get in Touch</h2>
-      <p class="mb-10 text-center">
-        I'm always open to new opportunities and collaborations. Feel free to reach out!
-      </p>
-      <article class="card text-center" role="region" aria-label="Contact Information">
-        <div class="mb-6">
-          <div class="flex items-center justify-center space-x-4 text-gray-300 mb-4">
-            <span class="material-icons" aria-hidden="true">mail_outline</span>
-            <span class="text-lg font-medium">fabianwilliamar@gmail.com</span>
-          </div>
-          <div class="flex items-center justify-center space-x-4 text-gray-300">
-            <span class="material-icons" aria-hidden="true">phone</span>
-            <span class="text-lg font-medium">(+91) 75502-60124</span>
-          </div>
-           <div class="flex items-center justify-center space-x-4 text-gray-300 mt-4">
-                <span class="material-icons" aria-hidden="true">place</span>
-                <span class="text-lg font-medium">Chennai, Tamil Nadu, India</span>
+        <!-- 01 AI Navigator -->
+        <div class="project-card fade-up stagger-1">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#4f8ef7,#a78bfa);"></div>
+          <div class="project-body">
+            <div class="project-number">01</div>
+            <div class="project-title">AI Navigator</div>
+            <p class="project-desc">A comprehensive web directory to discover and explore AI platforms, business software, productivity utilities, and development resources across diverse categories.</p>
+            <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span></div>
+            <div class="project-actions">
+              <a href="https://fabian-william.github.io/AI-NAVIGATOR/" target="_blank" class="project-link">Live Demo →</a>
+              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
+            </div>
+            <div class="collapse-box">
+              <div class="gallery-grid">
+                <img src="https://i.ibb.co/DPnznn8v/Screenshot-2025-06-12-215552.png" alt="AI Navigator 1" loading="lazy"/>
+                <img src="https://i.ibb.co/pvR2zBv7/Screenshot-2025-06-16-133251.png" alt="AI Navigator 2" loading="lazy"/>
+                <img src="https://i.ibb.co/WNXNNTc8/Screenshot-2025-06-16-133317.png" alt="AI Navigator 3" loading="lazy"/>
+                <img src="https://i.ibb.co/b5J6gJ6B/Screenshot-2025-06-16-132553.png" alt="AI Navigator 4" loading="lazy"/>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <div class="flex flex-wrap justify-center gap-4 pt-6 border-t border-gray-700" role="group" aria-label="Social and Professional Profiles">
-          <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" rel="noopener noreferrer" class="btn-secondary border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white inline-flex items-center gap-2" aria-label="View Fabian William's LinkedIn profile in a new window" tabindex="0">
-            <span class="material-icons !mr-0" aria-hidden="true">linkedin</span>
-            View LinkedIn
+
+        <!-- 02 Resume.io -->
+        <div class="project-card fade-up stagger-2">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#34d399,#4f8ef7);"></div>
+          <div class="project-body">
+            <div class="project-number">02</div>
+            <div class="project-title">Resume.io</div>
+            <p class="project-desc">A web app to create professional resumes with a user-friendly interface for personal details, work experience, education, and skills — generating a ready-to-download resume.</p>
+            <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span></div>
+            <div class="project-actions">
+              <a href="https://fabian-william.github.io/Resume.io/" target="_blank" class="project-link">Live Demo →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 Scientific Calculator -->
+        <div class="project-card fade-up stagger-3">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#f472b6,#a78bfa);"></div>
+          <div class="project-body">
+            <div class="project-number">03</div>
+            <div class="project-title">Scientific Calculator</div>
+            <p class="project-desc">A fully functional scientific calculator with advanced mathematical functions, calculation history, and a responsive mobile-friendly design built in pure JavaScript.</p>
+            <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span></div>
+            <div class="project-actions">
+              <a href="https://fabian-william.github.io/scientific-calculator/" target="_blank" class="project-link">Live Demo →</a>
+              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
+            </div>
+            <div class="collapse-box">
+              <div class="gallery-grid">
+                <img src="https://i.ibb.co/DPF2rW51/Screenshot-2025-06-26-115831.png" alt="Calc 1" loading="lazy"/>
+                <img src="https://i.ibb.co/zHBq0h2h/Screenshot-2025-06-26-115824.png" alt="Calc 2" loading="lazy"/>
+                <img src="https://i.ibb.co/9khQ2Fcr/Screenshot-2025-06-26-115816.png" alt="Calc 3" loading="lazy"/>
+                <img src="https://i.ibb.co/C56mKdbB/Screenshot-2025-06-26-115809.png" alt="Calc 4" loading="lazy"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 Classic Snake Game -->
+        <div class="project-card fade-up stagger-4">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#fbbf24,#f87171);"></div>
+          <div class="project-body">
+            <div class="project-number">04</div>
+            <div class="project-title">Classic Snake Game</div>
+            <p class="project-desc">A browser-based recreation of the classic Snake game with smooth gameplay, score tracking, difficulty levels, and a polished game-over screen built in pure JavaScript.</p>
+            <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span><span class="stack-tag">Canvas API</span></div>
+            <div class="project-actions">
+              <a href="https://fabian-william.github.io/snake-game/" target="_blank" class="project-link">Live Demo →</a>
+              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
+            </div>
+            <div class="collapse-box">
+              <div class="gallery-grid">
+                <img src="https://i.ibb.co/7JK6bdsc/brave-screenshot-14.png" alt="Snake 1" loading="lazy"/>
+                <img src="https://i.ibb.co/8Lv8sK3f/brave-screenshot-13.png" alt="Snake 2" loading="lazy"/>
+                <img src="https://i.ibb.co/F4XxvgFK/brave-screenshot-12.png" alt="Snake 3" loading="lazy"/>
+                <img src="https://i.ibb.co/CKj3qKjh/brave-screenshot-11.png" alt="Snake 4" loading="lazy"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 ArthaSutra -->
+        <div class="project-card fade-up stagger-1">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#fbbf24,#f97316);"></div>
+          <div class="project-body">
+            <div class="project-number">05</div>
+            <div class="project-title">ArthaSūtra™ Financial Planner</div>
+            <p class="project-desc">A Python-based financial planning app calculating SIP returns, retirement corpuses, and tax-saving opportunities — tailored for the Indian middle-class demographic with 20–30 year projections.</p>
+            <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">FinTech</span></div>
+            <div class="project-actions">
+              <a href="https://fabian-william.github.io/arthasutra/" target="_blank" class="project-link">Live Demo →</a>
+              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
+            </div>
+            <div class="collapse-box">
+              <div class="gallery-grid">
+                <img src="https://i.ibb.co/Rp2m6MsS/Screenshot-2026-03-02-125301.png" alt="ArthaSutra 1" loading="lazy"/>
+                <img src="https://i.ibb.co/RGGqmMN1/Screenshot-2026-03-02-125211.png" alt="ArthaSutra 2" loading="lazy"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 IoT Smart Parking -->
+        <div class="project-card fade-up stagger-2">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#34d399,#fbbf24);"></div>
+          <div class="project-body">
+            <div class="project-number">06</div>
+            <div class="project-title">IoT Smart Parking System</div>
+            <p class="project-desc">A real-time hardware-software system detecting parking slot occupancy via ultrasonic sensors with an instant central dashboard. C++ micro-controller logic for low-latency response.</p>
+            <div class="project-stack"><span class="stack-tag">C++</span><span class="stack-tag">IoT</span><span class="stack-tag">Real-Time DB</span></div>
+            <div class="project-actions">
+              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
+            </div>
+            <div class="collapse-box">
+              <div class="gallery-grid">
+                <img src="https://i.ibb.co/KptKf4Dk/5.jpg" alt="Parking 1" loading="lazy"/>
+                <img src="https://i.ibb.co/pr1hrYxq/4.jpg" alt="Parking 2" loading="lazy"/>
+                <img src="https://i.ibb.co/39h8dw3L/2.jpg" alt="Parking 3" loading="lazy"/>
+                <img src="https://i.ibb.co/VG7DQLY/3.jpg" alt="Parking 4" loading="lazy"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 Excel to Power BI -->
+        <div class="project-card fade-up stagger-3">
+          <div class="project-color-bar" style="background:linear-gradient(90deg,#a78bfa,#f472b6);"></div>
+          <div class="project-body">
+            <div class="project-number">07</div>
+            <div class="project-title">Excel → Power BI Converter</div>
+            <p class="project-desc">Converts Excel spreadsheets into interactive Power BI dashboards by cleaning and modeling data for insightful visualization. Demonstrates data handling and BI expertise.</p>
+            <div class="project-stack"><span class="stack-tag">Excel</span><span class="stack-tag">Power BI</span></div>
+            <div class="project-actions">
+              <a href="https://fabian-william.github.io/excel-to-power-bi/" target="_blank" class="project-link">Live Demo →</a>
+              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
+            </div>
+            <div class="collapse-box">
+              <div class="gallery-grid">
+                <img src="https://i.ibb.co/NnxyR47C/Screenshot-2025-06-16-122643.png" alt="Power BI 1" loading="lazy"/>
+                <img src="https://i.ibb.co/XrYt1gwf/Screenshot-2025-06-16-122657.png" alt="Power BI 2" loading="lazy"/>
+                <img src="https://i.ibb.co/S43Rm4F3/Screenshot-2025-06-16-123114.png" alt="Power BI 3" loading="lazy"/>
+                <img src="https://i.ibb.co/20zJ5DWX/Screenshot-2025-06-16-122622.png" alt="Power BI 4" loading="lazy"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <div class="gradient-divider"></div>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="container">
+      <div class="section-label fade-up">06 / Certifications</div>
+      <h2 class="section-title fade-up stagger-1">Credentials</h2>
+      <p class="section-desc fade-up stagger-2">Click any card to reveal the certificate photo.</p>
+      <div class="cert-grid">
+
+        <div class="cert-card fade-up stagger-1" onclick="toggleCert(this)">
+          <div class="cert-icon">🤖</div>
+          <div class="cert-name">Responsible AI with Google Cloud</div>
+          <div class="cert-issuer">Simplilearn · 2025</div>
+          <div class="cert-hint">Click to view ↓</div>
+          <div class="cert-img-wrap"><img src="https://i.ibb.co/TDYThSYn/Whats-App-Image-2025-06-24-at-12-25-31-e19ac9b7.jpg" alt="Responsible AI Cert" loading="lazy"/></div>
+        </div>
+
+        <div class="cert-card fade-up stagger-2" onclick="toggleCert(this)">
+          <div class="cert-icon">✍️</div>
+          <div class="cert-name">Introduction to Prompt Engineering</div>
+          <div class="cert-issuer">Simplilearn · 2025</div>
+          <div class="cert-hint">Click to view ↓</div>
+          <div class="cert-img-wrap"><img src="https://i.ibb.co/20T8YvgK/Whats-App-Image-2025-06-24-at-12-25-32-994ad6ad.jpg" alt="Prompt Eng Cert" loading="lazy"/></div>
+        </div>
+
+        <div class="cert-card fade-up stagger-3" onclick="toggleCert(this)">
+          <div class="cert-icon">🐍</div>
+          <div class="cert-name">Python for Beginners</div>
+          <div class="cert-issuer">Simplilearn · 2024</div>
+          <div class="cert-hint">Click to view ↓</div>
+          <div class="cert-img-wrap"><img src="https://i.ibb.co/x9WYP0N/1.jpg" alt="Python Cert" loading="lazy"/></div>
+        </div>
+
+        <div class="cert-card fade-up stagger-4" onclick="toggleCert(this)">
+          <div class="cert-icon">⚙️</div>
+          <div class="cert-name">Advanced C++ Programming</div>
+          <div class="cert-issuer">Inheritance, Encapsulation &amp; Polymorphism · 2026</div>
+          <div class="cert-hint">Click to view ↓</div>
+          <div class="cert-img-wrap"><img src="https://i.ibb.co/1YRjWDq7/Screenshot-20260224-152418.jpg" alt="C++ Advanced Cert" loading="lazy"/></div>
+        </div>
+
+        <div class="cert-card fade-up stagger-1" onclick="toggleCert(this)">
+          <div class="cert-icon">🔁</div>
+          <div class="cert-name">C++ Logic &amp; Iteration</div>
+          <div class="cert-issuer">Loops, Conditionals &amp; Logic Building · 2026</div>
+          <div class="cert-hint">Click to view ↓</div>
+          <div class="cert-img-wrap"><img src="https://i.ibb.co/TqLwY9Db/Screenshot-20260224-152437.jpg" alt="C++ Logic Cert" loading="lazy"/></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <div class="gradient-divider"></div>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="container">
+      <div class="section-label fade-up">07 / Achievements</div>
+      <h2 class="section-title fade-up stagger-1">Recognition</h2>
+      <div class="achievement-card fade-up stagger-3">
+        <div class="achievement-badge">🥈</div>
+        <div>
+          <div class="achievement-title">Second Prize — Technical Paper Presentation</div>
+          <div class="achievement-meta">Technology Day · DR M.G.R. Educational and Research Institute, Chennai · May 29, 2023</div>
+          <div class="achievement-desc">Awarded Second Prize at the Technical Paper Presentation on Technology Day, demonstrating strong research, analytical, and public communication skills. Organized by the Department of Computer Science.</div>
+          <img src="https://i.ibb.co/ksn43rWy/6.jpg" alt="6" border="0" class="ach-cert-img" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="gradient-divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label fade-up">08 / Contact</div>
+      <h2 class="section-title fade-up stagger-1">Let's Connect</h2>
+      <div class="contact-wrapper">
+        <div class="fade-up stagger-2">
+          <a href="mailto:arfabianwilliam@gmail.com" class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div><div class="contact-label">Email</div><div class="contact-value">arfabianwilliam@gmail.com</div></div>
           </a>
-          <a href="https://github.com/Fabian-william" target="_blank" rel="noopener noreferrer" class="btn-secondary border-gray-500 text-gray-300 hover:bg-gray-600 hover:text-white inline-flex items-center gap-2" aria-label="View Fabian William's GitHub profile in a new window" tabindex="0">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true" class="mr-1"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            View GitHub
+          <div class="contact-item" style="cursor:default;">
+            <div class="contact-icon">📞</div>
+            <div><div class="contact-label">Phone</div><div class="contact-value">(+91) 75502-60124</div></div>
+          </div>
+          <div class="contact-item" style="cursor:default;">
+            <div class="contact-icon">📍</div>
+            <div><div class="contact-label">Location</div><div class="contact-value">Chennai, Tamil Nadu, India</div></div>
+          </div>
+          <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="contact-item">
+            <div class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div><div class="contact-label">LinkedIn</div><div class="contact-value">ar-fabian-william</div></div>
+          </a>
+          <a href="https://github.com/Fabian-william" target="_blank" class="contact-item">
+            <div class="contact-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </div>
+            <div><div class="contact-label">GitHub</div><div class="contact-value">Fabian-william</div></div>
           </a>
         </div>
-      </article>
-    </section>
-  </main>
+        <div class="contact-cta-box fade-up stagger-3">
+          <h3>Open to New Opportunities</h3>
+          <p>I'm actively looking for entry-level software development roles where I can bring value and continue growing. Whether it's a full-time position, internship, or freelance project — I'd love to hear from you.</p>
+          <a href="mailto:arfabianwilliam@gmail.com?subject=Opportunity%20for%20AR%20Fabian%20William&body=Hi%20Fabian%2C%0A%0AI%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect.%0A%0A" class="btn-primary">Send Me a Message →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <button id="return-to-home-btn" role="button" aria-label="Return to top" tabindex="0">
-    <span class="material-icons" aria-hidden="true" style="font-size: 32px;">keyboard_double_arrow_up</span>
-  </button>
+  <footer><p>Designed &amp; built by <span>AR Fabian William</span> · Chennai, India · 2025</p></footer>
+  <div id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const navLinks = document.querySelectorAll('nav .nav-link');
-      const ctaLinksInWelcome = document.querySelectorAll('.welcome-section .nav-link-cta');
-      const allSectionNavTriggers = [...navLinks, ...ctaLinksInWelcome];
-      const contentSections = document.querySelectorAll('.content-section');
-      const returnToHomeBtn = document.getElementById('return-to-home-btn');
-      let currentActiveSectionId = 'welcome';
-      let isTransitioning = false;
+    new Typed('#typed-output', {
+      strings: ['Aspiring Software Developer','Python & Web Enthusiast','Creative Problem-Solver','AI-Augmented Developer','Building Innovative Solutions'],
+      typeSpeed: 55, backSpeed: 30, backDelay: 1800, loop: true, smartBackspace: true
+    });
 
-      function showSection(sectionId, skipAnimation = false) {
-        if ((isTransitioning && !skipAnimation) || sectionId === currentActiveSectionId) {
-          return;
-        }
-        isTransitioning = true;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-        const currentActiveEl = document.querySelector('.content-section.active-section');
-        if (currentActiveEl) {
-          currentActiveEl.classList.remove('active-section');
-          currentActiveEl.style.opacity = '0';
-          currentActiveEl.style.transform = 'translateY(20px)';
-          setTimeout(() => {
-            currentActiveEl.style.display = 'none';
-            revealTargetSection(sectionId);
-          }, 400); 
-        } else {
-          revealTargetSection(sectionId);
-        }
+    const secs = document.querySelectorAll('section[id]');
+    const navA = document.querySelectorAll('.nav-link-item');
+    window.addEventListener('scroll', () => {
+      let c = '';
+      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 120) c = s.id; });
+      navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + c));
+      document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 400);
+    });
 
-        function revealTargetSection(targetSectionId) {
-          const targetSection = document.getElementById(targetSectionId);
-          if (targetSection) {
-            targetSection.style.display = 'block';
-            targetSection.scrollTop = 0;
-            requestAnimationFrame(() => {
-              targetSection.classList.add('active-section');
-              targetSection.style.opacity = '1';
-              targetSection.style.transform = 'translateY(0)';
-              isTransitioning = false;
-            });
-          }
-        }
+    document.getElementById('mobile-btn').addEventListener('click', () =>
+      document.getElementById('nav-links').classList.toggle('mobile-open')
+    );
 
-        if (history.pushState) {
-            history.pushState(null, null, `#${sectionId}`);
-        } else {
-            location.hash = sectionId;
-        }
-
-        setActiveNavLink(sectionId);
-        currentActiveSectionId = sectionId;
-        returnToHomeBtn.classList.toggle('show', currentActiveSectionId !== 'welcome');
-      }
-
-      function setActiveNavLink(sectionId) {
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.dataset.section === sectionId);
-          link.setAttribute('aria-current', link.dataset.section === sectionId ? 'page' : 'false');
-          link.tabIndex = link.dataset.section === sectionId ? '0' : '-1';
-        });
-      }
-
-      allSectionNavTriggers.forEach(link => {
-        link.addEventListener('click', (event) => {
-          event.preventDefault();
-          const sectionId = event.currentTarget.dataset.section;
-          showSection(sectionId);
-          const section = document.getElementById(sectionId);
-          if (section) section.focus();
-        });
-      });
-
-      const initialSectionId = window.location.hash ? window.location.hash.substring(1) : 'welcome';
-      if(document.getElementById(initialSectionId)) {
-        showSection(initialSectionId, true);
-      } else {
-        showSection('welcome', true);
-      }
-
-      const typedOutputEl = document.getElementById('typed-output');
-      if (typedOutputEl && typeof Typed !== 'undefined') {
-        typedOutputEl.textContent = '';
-        new Typed('#typed-output', {
-          strings: [
-            "Aspiring Software Developer",
-            "Creative Problem-Solver",
-            "Python & Web Enthusiast",
-            "Building Innovative Solutions",
-            "Ready to Make an Impact",
-          ],
-          typeSpeed: 50,
-          backSpeed: 30,
-          backDelay: 1500,
-          loop: true,
-          smartBackspace: true,
-          showCursor: true,
-          cursorChar: '|',
-        });
-      }
-
-      document.querySelectorAll('button[data-collapsible-id]').forEach(button => {
-        button.addEventListener('click', () => {
-          const collapsibleId = button.dataset.collapsibleId;
-          const detailsDiv = document.getElementById(`${collapsibleId}-details`);
-          if (!detailsDiv) return;
-
-          const isOpen = detailsDiv.classList.contains('open');
-          detailsDiv.classList.toggle('open');
-          button.setAttribute('aria-expanded', !isOpen);
-          
-          button.textContent = isOpen ? 'View Details' : 'Hide Details';
-
-          if (!isOpen) {
-            detailsDiv.style.display = 'block';
-            detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
-            detailsDiv.style.opacity = '1';
-            detailsDiv.setAttribute('aria-hidden', 'false');
-            setTimeout(() => { detailsDiv.style.maxHeight = 'none'; }, 300);
-          } else {
-            detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
-            requestAnimationFrame(() => {
-              detailsDiv.style.maxHeight = '0';
-              detailsDiv.style.opacity = '0';
-              detailsDiv.setAttribute('aria-hidden', 'true');
-            });
-            detailsDiv.addEventListener('transitionend', function handler() {
-              detailsDiv.style.display = 'none';
-              detailsDiv.removeEventListener('transitionend', handler);
-            }, { once: true });
-          }
-
-          button.setAttribute('aria-label', `Toggle ${collapsibleId.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())} Details (${isOpen ? 'Closed' : 'Open'})`);
-        });
-      });
-
-      document.querySelectorAll('.collapsible-details.open').forEach(detailsDiv => {
-        detailsDiv.style.maxHeight = detailsDiv.scrollHeight + 'px';
-        detailsDiv.setAttribute('aria-hidden', 'false');
-      });
-
-      returnToHomeBtn.addEventListener('click', () => {
-        showSection('welcome');
-        const welcomeSection = document.getElementById('welcome');
-        if (welcomeSection) welcomeSection.focus();
-      });
-
-      if (window.particlesJS) {
-        window.particlesJS('particles-js', {
-          particles: {
-            number: { value: 40, density: { enable: true, value_area: 1000 } },
-            color: { value: '#60A5FA' },
-            shape: { type: 'circle' },
-            opacity: { value: 0.6, random: true },
-            size: { value: 2.5, random: true },
-            line_linked: { enable: true, distance: 120, color: '#60A5FA', opacity: 0.3, width: 1 },
-            move: { enable: true, speed: 0.8, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
-          },
-          interactivity: {
-            detect_on: 'canvas',
-            events: { onhover: { enable: true, mode: 'grab' }, onclick: { enable: true, mode: 'push' }, resize: true },
-            modes: { grab: { distance: 140, line_linked: { opacity: 0.5 } }, push: { particles_nb: 3 } }
-          },
-          retina_detect: true
-        });
-      }
-
-      // Prevent context menu on images to discourage downloading
-      document.addEventListener('contextmenu', e => {
-        if (e.target.tagName === 'IMG') {
-          e.preventDefault();
-        }
-      });
-
-      // Prevent dragging images
-      document.addEventListener('dragstart', e => {
-        if (e.target.tagName === 'IMG') {
-          e.preventDefault();
-        }
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); document.getElementById('nav-links').classList.remove('mobile-open'); }
       });
     });
+
+    // Image & screenshot protection
+    document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'PrintScreen') { e.preventDefault(); navigator.clipboard?.writeText(''); }
+      if (e.metaKey && e.shiftKey && ['3','4','5'].includes(e.key)) e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's') e.preventDefault();
+    });
+
+    function toggleBox(btn) {
+      const box = btn.nextElementSibling;
+      const open = box.classList.toggle('open');
+      btn.textContent = open ? '✕ Hide Certificate' : '📄 View Certificate';
+    }
+
+    function toggleGallery(btn) {
+      const body = btn.closest('.project-body');
+      const box = body.querySelector('.collapse-box');
+      const open = box.classList.toggle('open');
+      btn.textContent = open ? '✕ Close' : '🖼 Gallery';
+    }
+
+    function toggleCert(card) {
+      const wrap = card.querySelector('.cert-img-wrap');
+      const hint = card.querySelector('.cert-hint');
+      const open = wrap.classList.toggle('open');
+      hint.textContent = open ? 'Click to hide ↑' : 'Click to view ↓';
+    }
   </script>
 </body>
 </html>
