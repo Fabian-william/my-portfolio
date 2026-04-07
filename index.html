@@ -1,1404 +1,1086 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AR Fabian William — Developer Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
-  <style>
-    :root{--bg:#050810;--surface:#0c1120;--surface2:#111827;--border:rgba(255,255,255,0.07);--accent:#4f8ef7;--accent2:#a78bfa;--accent3:#34d399;--gold:#fbbf24;--text:#e8edf5;--muted:#8a95a8;}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    html{scroll-behavior:smooth;}
-    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7;}
-    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:0.4;}
-    ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
-    img{-webkit-user-select:none;user-select:none;pointer-events:none;-webkit-user-drag:none;}
-    @media print{body{display:none!important;}}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AR Fabian William — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+<style>
+:root{
+  --bg:#04060f;--s1:#08101f;--s2:#0d1526;--s3:#121f34;
+  --bdr:rgba(255,255,255,0.065);
+  --a:#4f8ef7;--a2:#a78bfa;--a3:#34d399;--pk:#f472b6;--gd:#fbbf24;
+  --tx:#dce6f5;--mu:#5e7096;--su:#7b8fad;
+  --fh:'Syne',sans-serif;
+  --fb:'DM Sans',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);overflow-x:hidden;line-height:1.7}
+/* noise */
+body::before{content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;opacity:.32;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.04'/%3E%3C/svg%3E")}
+img{-webkit-user-select:none;user-select:none;pointer-events:none;-webkit-user-drag:none}
+@media print{body{display:none!important}}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--a);border-radius:2px}
 
-    nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:0.85rem 2rem;display:flex;justify-content:space-between;align-items:center;background:rgba(5,8,16,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--text);text-decoration:none;letter-spacing:-0.02em;}
-    .nav-logo span{color:var(--accent);}
-    .nav-links{display:flex;gap:0.2rem;list-style:none;}
-    .nav-links a{text-decoration:none;color:var(--muted);font-size:0.8rem;font-weight:500;padding:0.35rem 0.75rem;border-radius:6px;transition:all 0.2s;}
-    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.05);}
-    .nav-links a.active{color:var(--accent);background:rgba(79,142,247,0.1);}
-    .nav-cta{font-size:0.8rem;font-weight:500;padding:0.4rem 1.1rem;background:var(--accent);color:#fff;border-radius:8px;text-decoration:none;transition:all 0.2s;white-space:nowrap;}
-    .nav-cta:hover{background:#6da0ff;transform:translateY(-1px);box-shadow:0 4px 20px rgba(79,142,247,0.4);}
-    .mobile-menu-btn{display:none;background:none;border:1px solid var(--border);border-radius:8px;padding:0.4rem 0.6rem;color:var(--text);cursor:pointer;font-size:1.1rem;}
-    @media(max-width:768px){.nav-links,.nav-cta{display:none;}.mobile-menu-btn{display:flex;align-items:center;}.nav-links.mobile-open{display:flex;flex-direction:column;position:fixed;top:57px;left:0;right:0;background:rgba(5,8,16,0.98);backdrop-filter:blur(20px);padding:1rem;border-bottom:1px solid var(--border);gap:0.2rem;}}
+/* ── NAV ── */
+#nav{position:fixed;top:0;left:0;right:0;z-index:900;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;background:rgba(4,6,15,.82);backdrop-filter:blur(28px);border-bottom:1px solid var(--bdr)}
+.logo{font-family:var(--fh);font-weight:800;font-size:1.08rem;color:var(--tx);text-decoration:none;letter-spacing:-.03em}
+.logo b{color:var(--a);font-weight:800}
+#nl{display:flex;gap:.1rem;list-style:none}
+#nl a{color:var(--mu);font-size:.79rem;font-weight:500;text-decoration:none;padding:.3rem .72rem;border-radius:6px;transition:all .18s;letter-spacing:.01em}
+#nl a:hover,#nl a.on{color:var(--tx);background:rgba(79,142,247,.1)}
+#nl a.on{color:var(--a)}
+.nhire{font-size:.79rem;font-weight:600;padding:.38rem 1.1rem;background:var(--a);color:#fff;border-radius:8px;text-decoration:none;transition:all .18s;white-space:nowrap}
+.nhire:hover{background:#6da0ff;transform:translateY(-1px);box-shadow:0 4px 18px rgba(79,142,247,.45)}
+#mbtn{display:none;background:none;border:1px solid var(--bdr);border-radius:7px;padding:.35rem .58rem;color:var(--tx);cursor:pointer;font-size:1rem;line-height:1}
+@media(max-width:768px){
+  #nl,.nhire{display:none}
+  #mbtn{display:flex;align-items:center}
+  #nl.show{display:flex;flex-direction:column;position:fixed;top:58px;left:0;right:0;background:rgba(4,6,15,.97);backdrop-filter:blur(28px);padding:1.2rem 1.8rem;border-bottom:1px solid var(--bdr);gap:.1rem;z-index:899}
+}
 
-    #hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:7rem 2rem 4rem;}
-    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(79,142,247,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(79,142,247,0.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black 20%,transparent 100%);}
-    .hero-orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;}
-    .hero-orb-1{width:500px;height:500px;background:radial-gradient(circle,rgba(79,142,247,0.12) 0%,transparent 70%);top:-100px;right:-100px;}
-    .hero-orb-2{width:400px;height:400px;background:radial-gradient(circle,rgba(167,139,250,0.1) 0%,transparent 70%);bottom:-100px;left:-50px;}
-    .hero-content{position:relative;z-index:1;max-width:780px;width:100%;}
-    .hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.5rem;padding:0.38rem 1rem;border:1px solid rgba(79,142,247,0.3);border-radius:100px;background:rgba(79,142,247,0.05);width:fit-content;}
-    .hero-eyebrow::before{content:'';width:6px;height:6px;background:var(--accent3);border-radius:50%;animation:pulse 2s infinite;}
-    @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
-    .hero-name{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,5.5rem);line-height:1.0;letter-spacing:-0.03em;margin-bottom:1.25rem;}
-    .hero-name .line-1{display:block;color:var(--text);}
-    .hero-name .line-2{display:block;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 60%,#f472b6 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
-    .hero-typed{font-family:'JetBrains Mono',monospace;font-size:1.05rem;color:var(--accent2);margin-bottom:1.5rem;min-height:1.8rem;}
-    .hero-desc{font-size:1rem;color:var(--muted);max-width:580px;margin-bottom:2.5rem;line-height:1.75;}
-    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
-    .btn-primary{display:inline-flex;align-items:center;gap:0.5rem;padding:0.72rem 1.7rem;background:var(--accent);color:#fff;border-radius:10px;font-weight:500;font-size:0.92rem;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer;}
-    .btn-primary:hover{background:#6da0ff;transform:translateY(-2px);box-shadow:0 8px 30px rgba(79,142,247,0.4);}
-    .btn-outline{display:inline-flex;align-items:center;gap:0.5rem;padding:0.72rem 1.7rem;background:transparent;color:var(--text);border-radius:10px;font-weight:500;font-size:0.92rem;text-decoration:none;transition:all 0.2s;border:1px solid var(--border);cursor:pointer;}
-    .btn-outline:hover{border-color:rgba(79,142,247,0.4);background:rgba(79,142,247,0.05);transform:translateY(-2px);}
-    .hero-stats{display:flex;gap:2.5rem;margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--border);flex-wrap:wrap;}
-    .stat-number{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--text);line-height:1;}
-    .stat-number span{color:var(--accent);}
-    .stat-label{font-size:0.78rem;color:var(--muted);margin-top:0.25rem;letter-spacing:0.05em;text-transform:uppercase;}
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:9rem 2.5rem 5rem}
+.hg{position:absolute;inset:0;background-image:linear-gradient(rgba(79,142,247,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(79,142,247,.03) 1px,transparent 1px);background-size:58px 58px;mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,#000 20%,transparent 100%)}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none}
+.ob1{width:700px;height:700px;background:radial-gradient(rgba(79,142,247,.09),transparent 70%);top:-180px;right:-200px}
+.ob2{width:500px;height:500px;background:radial-gradient(rgba(167,139,250,.07),transparent 70%);bottom:-100px;left:-100px}
+.ob3{width:350px;height:350px;background:radial-gradient(rgba(52,211,153,.05),transparent 70%);top:35%;left:30%}
+.hc{position:relative;z-index:1;max-width:840px;width:100%}
+.htag{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.7rem;color:var(--a);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;padding:.35rem 1rem;border:1px solid rgba(79,142,247,.28);border-radius:100px;background:rgba(79,142,247,.04)}
+.htag::before{content:'';width:6px;height:6px;background:var(--a3);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+h1.hn{font-family:var(--fh);font-weight:800;font-size:clamp(3.4rem,9.5vw,6.5rem);line-height:.92;letter-spacing:-.045em;margin-bottom:1.5rem}
+.hn .n1{display:block;color:var(--tx)}
+.hn .n2{display:block;background:linear-gradient(115deg,var(--a),var(--a2) 50%,var(--pk) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.htp{font-family:var(--fm);font-size:.98rem;color:var(--a2);margin-bottom:1.7rem;min-height:1.55rem}
+.hd{font-size:1rem;color:var(--su);max-width:540px;margin-bottom:3rem;line-height:1.82}
+.hbtns{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
+.btnp{display:inline-flex;align-items:center;gap:.5rem;padding:.78rem 1.9rem;background:var(--a);color:#fff;border-radius:10px;font-weight:600;font-size:.9rem;text-decoration:none;transition:all .2s;border:none;cursor:pointer}
+.btnp:hover{background:#6da0ff;transform:translateY(-2px);box-shadow:0 10px 32px rgba(79,142,247,.45)}
+.btno{display:inline-flex;align-items:center;gap:.5rem;padding:.78rem 1.9rem;background:transparent;color:var(--tx);border-radius:10px;font-weight:500;font-size:.9rem;text-decoration:none;transition:all .2s;border:1px solid var(--bdr);cursor:pointer}
+.btno:hover{border-color:rgba(79,142,247,.4);background:rgba(79,142,247,.05);transform:translateY(-2px)}
+.hst{display:flex;gap:3.5rem;padding-top:2rem;border-top:1px solid var(--bdr);flex-wrap:wrap}
+.sn{font-family:var(--fh);font-size:2.4rem;font-weight:800;color:var(--tx);line-height:1}
+.sn em{color:var(--a);font-style:normal}
+.sl{font-size:.7rem;color:var(--mu);margin-top:.28rem;letter-spacing:.07em;text-transform:uppercase}
 
-    section{padding:5rem 2rem;}
-    .container{max-width:960px;margin:0 auto;}
-    .section-label{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:0.75rem;}
-    .section-title{font-family:'Syne',sans-serif;font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800;letter-spacing:-0.025em;color:var(--text);margin-bottom:1rem;line-height:1.1;}
-    .section-desc{color:var(--muted);max-width:500px;margin-bottom:3rem;}
-    .gradient-divider{height:1px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);opacity:0.2;}
+/* ── SECTION BASE ── */
+section{padding:5.5rem 2.5rem}
+.con{max-width:980px;margin:0 auto}
+.slb{font-family:var(--fm);font-size:.67rem;color:var(--a);text-transform:uppercase;letter-spacing:.15em;margin-bottom:.85rem}
+.st{font-family:var(--fh);font-size:clamp(2rem,4.5vw,2.9rem);font-weight:800;letter-spacing:-.035em;color:var(--tx);margin-bottom:1rem;line-height:1.02}
+.sd{color:var(--mu);max-width:520px;margin-bottom:3rem;font-size:.94rem}
+.dv{height:1px;background:linear-gradient(90deg,transparent,var(--a),var(--a2),transparent);opacity:.14}
 
-    #about{background:var(--surface);}
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
-    @media(max-width:720px){.about-grid{grid-template-columns:1fr;}}
-    .about-text p{color:var(--muted);line-height:1.8;margin-bottom:1.25rem;}
-    .about-text p strong{color:var(--text);font-weight:500;}
-    .about-links{display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1.5rem;}
-    .link-chip{display:inline-flex;align-items:center;gap:0.4rem;padding:0.42rem 1rem;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:0.83rem;text-decoration:none;transition:all 0.2s;background:var(--surface2);}
-    .link-chip:hover{color:var(--text);border-color:rgba(79,142,247,0.4);background:rgba(79,142,247,0.05);}
-    .info-grid{display:flex;flex-direction:column;gap:1rem;}
-    .info-item{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;display:flex;gap:0.75rem;align-items:flex-start;transition:border-color 0.2s;}
-    .info-item:hover{border-color:rgba(79,142,247,0.3);}
-    .info-icon{font-size:1.2rem;margin-top:0.1rem;flex-shrink:0;}
-    .info-label{font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.2rem;}
-    .info-value{font-size:0.88rem;color:var(--text);font-weight:500;}
+/* fade-up */
+.fu{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.fu.v{opacity:1;transform:none}
+.d1{transition-delay:.07s}.d2{transition-delay:.13s}.d3{transition-delay:.19s}.d4{transition-delay:.25s}
 
-    .timeline{position:relative;padding-left:2rem;}
-    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--accent),var(--accent2),transparent);}
-    .timeline-item{position:relative;margin-bottom:2.5rem;}
-    .timeline-item::before{content:'';position:absolute;left:-2.4rem;top:0.35rem;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(79,142,247,0.6);}
-    .timeline-year{font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--accent);margin-bottom:0.4rem;}
-    .timeline-title{font-family:'Syne',sans-serif;font-size:1.12rem;font-weight:700;color:var(--text);margin-bottom:0.25rem;}
-    .timeline-sub{font-size:0.86rem;color:var(--muted);}
-    .timeline-badge{display:inline-block;margin-top:0.5rem;padding:0.2rem 0.7rem;border-radius:100px;font-size:0.7rem;font-weight:500;}
-    .badge-green{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.25);color:var(--accent3);}
-    .badge-blue{background:rgba(79,142,247,0.1);border:1px solid rgba(79,142,247,0.3);color:var(--accent);}
+/* ── ABOUT ── */
+#about{background:var(--s1)}
+.ag{display:grid;grid-template-columns:1.15fr 1fr;gap:3.5rem;align-items:start}
+@media(max-width:740px){.ag{grid-template-columns:1fr}}
+.at p{color:var(--su);line-height:1.86;margin-bottom:1.3rem;font-size:.96rem}
+.at p strong{color:var(--tx);font-weight:500}
+.sr{display:flex;gap:.55rem;flex-wrap:wrap;margin-top:1.8rem}
+.chip{display:inline-flex;align-items:center;gap:.4rem;padding:.38rem .92rem;border:1px solid var(--bdr);border-radius:8px;color:var(--mu);font-size:.81rem;text-decoration:none;transition:all .18s;background:var(--s3)}
+.chip:hover{color:var(--tx);border-color:rgba(79,142,247,.4);background:rgba(79,142,247,.07)}
+.is{display:flex;flex-direction:column;gap:.85rem}
+.ir{background:var(--bg);border:1px solid var(--bdr);border-radius:12px;padding:.95rem 1.2rem;display:flex;gap:.72rem;align-items:flex-start;transition:border-color .2s}
+.ir:hover{border-color:rgba(79,142,247,.28)}
+.ic{font-size:1.05rem;margin-top:.1rem;flex-shrink:0}
+.il{font-size:.67rem;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.18rem}
+.iv{font-size:.86rem;color:var(--tx);font-weight:500}
 
-    #skills{background:var(--surface);}
-    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.5rem;}
-    .skill-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:1.5rem;transition:all 0.25s;position:relative;overflow:hidden;}
-    .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
-    .skill-card:hover{border-color:rgba(79,142,247,0.3);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.3);}
-    .skill-card:hover::before{transform:scaleX(1);}
-    .skill-card-icon{font-size:1.7rem;margin-bottom:0.75rem;}
-    .skill-card-title{font-family:'Syne',sans-serif;font-size:0.98rem;font-weight:700;color:var(--text);margin-bottom:1rem;}
-    .skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
-    .skill-tag{padding:0.2rem 0.6rem;background:var(--surface2);border:1px solid var(--border);border-radius:5px;font-size:0.73rem;color:var(--muted);font-family:'JetBrains Mono',monospace;transition:all 0.2s;}
-    .skill-tag:hover{color:var(--accent);border-color:rgba(79,142,247,0.3);}
+/* ── EDUCATION ── */
+.tl{position:relative;padding-left:2.2rem}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--a),var(--a2),transparent)}
+.ti{position:relative;margin-bottom:2.8rem}
+.ti::before{content:'';position:absolute;left:-2.55rem;top:.42rem;width:10px;height:10px;border-radius:50%;background:var(--a);box-shadow:0 0 16px rgba(79,142,247,.7)}
+.ty{font-family:var(--fm);font-size:.68rem;color:var(--a);margin-bottom:.4rem}
+.tt{font-family:var(--fh);font-size:1.08rem;font-weight:700;color:var(--tx);margin-bottom:.22rem}
+.ts{font-size:.84rem;color:var(--mu)}
+.tb{display:inline-block;margin-top:.55rem;padding:.2rem .7rem;border-radius:100px;font-size:.67rem;font-weight:600}
+.tg{background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);color:var(--a3)}
+.tb2{background:rgba(79,142,247,.08);border:1px solid rgba(79,142,247,.2);color:var(--a)}
 
-    .exp-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.5rem;}
-    .exp-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;}
-    .exp-title{font-family:'Syne',sans-serif;font-size:1.18rem;font-weight:700;color:var(--text);}
-    .exp-company{font-size:0.88rem;color:var(--accent);margin-top:0.2rem;}
-    .exp-period{font-family:'JetBrains Mono',monospace;font-size:0.73rem;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:0.28rem 0.8rem;white-space:nowrap;}
-    .exp-list{list-style:none;padding:0;}
-    .exp-list li{padding:0.38rem 0 0.38rem 1.25rem;position:relative;color:var(--muted);font-size:0.9rem;}
-    .exp-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);}
-    .toggle-btn{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1rem;padding:0.38rem 1rem;background:transparent;border:1px solid var(--border);border-radius:7px;color:var(--muted);font-size:0.8rem;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;}
-    .toggle-btn:hover{color:var(--text);border-color:rgba(79,142,247,0.4);background:rgba(79,142,247,0.05);}
-    .collapse-box{max-height:0;overflow:hidden;transition:max-height 0.45s ease;}
-    .collapse-box.open{max-height:1400px;}
-    .collapse-box > img{margin-top:1rem;border-radius:10px;width:100%;max-width:420px;border:1px solid var(--border);}
+/* ── SKILLS ── */
+#skills{background:var(--s1)}
+.skg{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:1.35rem}
+.skc{background:var(--bg);border:1px solid var(--bdr);border-radius:16px;padding:1.5rem;transition:all .22s;position:relative;overflow:hidden}
+.skc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--a),var(--a2));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.skc:hover{border-color:rgba(79,142,247,.28);transform:translateY(-3px);box-shadow:0 14px 48px rgba(0,0,0,.38)}
+.skc:hover::after{transform:scaleX(1)}
+.ski{font-size:1.6rem;margin-bottom:.72rem}
+.skn{font-family:var(--fh);font-size:.95rem;font-weight:700;color:var(--tx);margin-bottom:.88rem}
+.tr{display:flex;flex-wrap:wrap;gap:.38rem}
+.tg2{padding:.18rem .56rem;background:var(--s2);border:1px solid var(--bdr);border-radius:5px;font-size:.69rem;color:var(--mu);font-family:var(--fm);transition:all .18s}
+.tg2:hover{color:var(--a);border-color:rgba(79,142,247,.3)}
 
-    #projects{background:var(--surface);}
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.5rem;}
-    .project-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.25s;display:flex;flex-direction:column;}
-    .project-card:hover{border-color:rgba(79,142,247,0.3);transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,0.4);}
-    .project-color-bar{height:3px;}
-    .project-body{padding:1.5rem;flex:1;display:flex;flex-direction:column;}
-    .project-number{font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:var(--muted);margin-bottom:0.5rem;}
-    .project-title{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.75rem;}
-    .project-desc{font-size:0.86rem;color:var(--muted);line-height:1.6;flex:1;margin-bottom:1.25rem;}
-    .project-stack{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1rem;}
-    .stack-tag{font-family:'JetBrains Mono',monospace;font-size:0.66rem;padding:0.15rem 0.5rem;background:var(--surface2);color:var(--accent2);border-radius:4px;}
-    .project-actions{display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap;}
-    .project-link{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.8rem;color:var(--accent);text-decoration:none;font-weight:500;transition:gap 0.2s;}
-    .project-link:hover{gap:0.6rem;}
-    .gallery-btn{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.78rem;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:6px;padding:0.25rem 0.7rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
-    .gallery-btn:hover{color:var(--text);border-color:rgba(79,142,247,0.4);}
-    .gallery-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;padding:0.75rem 0 0.5rem;}
-    .gallery-grid img{width:100%;border-radius:8px;border:1px solid var(--border);object-fit:cover;aspect-ratio:16/9;}
+/* ── EXPERIENCE ── */
+.exc{background:var(--s1);border:1px solid var(--bdr);border-radius:18px;padding:2rem;transition:border-color .2s}
+.exc:hover{border-color:rgba(79,142,247,.24)}
+.exh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem}
+.ext{font-family:var(--fh);font-size:1.12rem;font-weight:700;color:var(--tx)}
+.exc2{font-size:.86rem;color:var(--a);margin-top:.2rem}
+.exy{font-family:var(--fm);font-size:.69rem;color:var(--mu);background:var(--s3);border:1px solid var(--bdr);border-radius:100px;padding:.24rem .78rem;white-space:nowrap}
+.exl{list-style:none}
+.exl li{padding:.35rem 0 .35rem 1.3rem;position:relative;color:var(--su);font-size:.89rem}
+.exl li::before{content:'▸';position:absolute;left:0;color:var(--a)}
+.tbtn{display:inline-flex;align-items:center;gap:.38rem;margin-top:1rem;padding:.36rem .95rem;background:transparent;border:1px solid var(--bdr);border-radius:8px;color:var(--mu);font-size:.79rem;cursor:pointer;transition:all .18s;font-family:var(--fb)}
+.tbtn:hover{color:var(--tx);border-color:rgba(79,142,247,.4);background:rgba(79,142,247,.06)}
+.cb{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.cb.on{max-height:1500px}
+.cb>img{margin-top:1rem;border-radius:10px;width:100%;max-width:400px;border:1px solid var(--bdr)}
 
-    .cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1.25rem;}
-    .cert-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all 0.25s;cursor:pointer;display:flex;flex-direction:column;}
-    .cert-card:hover{border-color:rgba(167,139,250,0.3);background:rgba(167,139,250,0.03);}
-    .cert-icon{font-size:1.9rem;margin-bottom:0.75rem;display:block;}
-    .cert-name{font-family:'Syne',sans-serif;font-size:0.93rem;font-weight:700;color:var(--text)!important;margin-bottom:0.35rem;line-height:1.3;display:block;visibility:visible!important;opacity:1!important;}
-    .cert-issuer{font-size:0.76rem;color:var(--accent2);display:block;visibility:visible!important;opacity:1!important;}
-    .cert-hint{font-size:0.7rem;color:var(--muted);margin-top:0.5rem;display:block;}
-    .cert-img-wrap{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
-    .cert-img-wrap.open{max-height:600px;}
-    .cert-img-wrap img{margin-top:1rem;width:100%;border-radius:8px;border:1px solid var(--border);display:block;}
-    .cert-img-wrap img.img-error{display:none;}
-    .cert-img-fallback{display:none;margin-top:1rem;padding:1rem;background:var(--surface2);border:1px dashed var(--border);border-radius:8px;font-size:0.8rem;color:var(--muted);text-align:center;}
-    .cert-img-fallback.show{display:block;}
+/* ── PROJECTS ── */
+#projects{background:var(--s1)}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(292px,1fr));gap:1.45rem}
+.pc{background:var(--bg);border:1px solid var(--bdr);border-radius:18px;overflow:hidden;transition:all .22s;display:flex;flex-direction:column}
+.pc:hover{border-color:rgba(79,142,247,.28);transform:translateY(-4px);box-shadow:0 20px 58px rgba(0,0,0,.48)}
+.pb2{height:3px}
+.pbd{padding:1.5rem;flex:1;display:flex;flex-direction:column}
+.pn{font-family:var(--fm);font-size:.65rem;color:var(--mu);margin-bottom:.48rem}
+.ptit{font-family:var(--fh);font-size:1.04rem;font-weight:700;color:var(--tx);margin-bottom:.72rem}
+.pdsc{font-size:.85rem;color:var(--su);line-height:1.65;flex:1;margin-bottom:1.15rem}
+.str{display:flex;flex-wrap:wrap;gap:.32rem;margin-bottom:.85rem}
+.stag{font-family:var(--fm);font-size:.63rem;padding:.13rem .48rem;background:var(--s2);color:var(--a2);border-radius:4px}
+.pa{display:flex;gap:.65rem;align-items:center;flex-wrap:wrap}
+.pl{display:inline-flex;align-items:center;gap:.32rem;font-size:.79rem;color:var(--a);text-decoration:none;font-weight:600;transition:gap .18s}
+.pl:hover{gap:.55rem}
+.gb{display:inline-flex;align-items:center;gap:.32rem;font-size:.76rem;color:var(--mu);background:transparent;border:1px solid var(--bdr);border-radius:6px;padding:.22rem .68rem;cursor:pointer;font-family:var(--fb);transition:all .18s}
+.gb:hover{color:var(--tx);border-color:rgba(79,142,247,.4)}
+.gg{display:grid;grid-template-columns:1fr 1fr;gap:.58rem;padding:.65rem 0 .45rem}
+.gg img{width:100%;border-radius:8px;border:1px solid var(--bdr);object-fit:cover;aspect-ratio:16/9}
 
-    #achievements{background:var(--surface);}
-    .achievement-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;transition:all 0.25s;}
-    .achievement-card:hover{border-color:rgba(251,191,36,0.3);}
-    .achievement-badge{width:58px;height:58px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;flex-shrink:0;box-shadow:0 4px 20px rgba(251,191,36,0.2);}
-    .achievement-title{font-family:'Syne',sans-serif;font-size:1.08rem;font-weight:700;color:var(--text);margin-bottom:0.35rem;}
-    .achievement-meta{font-size:0.83rem;color:var(--muted);margin-bottom:0.75rem;}
-    .achievement-desc{font-size:0.86rem;color:var(--muted);line-height:1.65;}
-    .ach-cert-img{display:block;margin-top:1rem;width:100%;max-width:350px;border-radius:10px;border:1px solid var(--border);}
+/* ── CERTIFICATIONS ── */
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:1.15rem}
+.cc{background:var(--s1);border:1px solid var(--bdr);border-radius:16px;padding:1.5rem;transition:all .22s;cursor:pointer;display:flex;flex-direction:column}
+.cc:hover{border-color:rgba(167,139,250,.3);background:rgba(167,139,250,.03)}
+.ci2{font-size:1.75rem;margin-bottom:.7rem;display:block}
+.cn{font-family:var(--fh);font-size:.91rem;font-weight:700;color:var(--tx);margin-bottom:.32rem;line-height:1.3;display:block}
+.cis{font-size:.73rem;color:var(--a2);display:block}
+.ch{font-size:.67rem;color:var(--mu);margin-top:.52rem;display:block}
+.cib{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.cib.on{max-height:600px}
+.cib img{margin-top:1rem;width:100%;border-radius:8px;border:1px solid var(--bdr);display:block}
 
-    .contact-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
-    @media(max-width:720px){.contact-wrapper{grid-template-columns:1fr;}}
-    .contact-item{display:flex;align-items:center;gap:1rem;padding:1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:0.75rem;text-decoration:none;transition:all 0.2s;color:var(--text);}
-    .contact-item:hover{border-color:rgba(79,142,247,0.3);background:rgba(79,142,247,0.03);transform:translateX(4px);}
-    .contact-icon{width:42px;height:42px;background:var(--bg);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
-    .contact-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;}
-    .contact-value{font-size:0.88rem;color:var(--text);font-weight:500;}
-    .contact-cta-box{background:linear-gradient(135deg,rgba(79,142,247,0.08) 0%,rgba(167,139,250,0.08) 100%);border:1px solid rgba(79,142,247,0.2);border-radius:20px;padding:2.5rem;}
-    .contact-cta-box h3{font-family:'Syne',sans-serif;font-size:1.45rem;font-weight:700;margin-bottom:0.75rem;}
-    .contact-cta-box p{color:var(--muted);font-size:0.9rem;margin-bottom:1.5rem;line-height:1.7;}
+/* ── ACHIEVEMENTS ── */
+#achievements{background:var(--s1)}
+.ac{background:var(--bg);border:1px solid var(--bdr);border-radius:18px;padding:2rem;display:flex;gap:1.5rem;align-items:flex-start;transition:border-color .2s}
+.ac:hover{border-color:rgba(251,191,36,.3)}
+.abd{width:54px;height:54px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.55rem;flex-shrink:0;box-shadow:0 4px 20px rgba(251,191,36,.22)}
+.at2{font-family:var(--fh);font-size:1.04rem;font-weight:700;color:var(--tx);margin-bottom:.32rem}
+.am{font-size:.8rem;color:var(--mu);margin-bottom:.72rem}
+.ad{font-size:.85rem;color:var(--su);line-height:1.65}
+.aimg{display:block;margin-top:1rem;width:100%;max-width:320px;border-radius:10px;border:1px solid var(--bdr)}
 
-    footer{padding:2rem;text-align:center;border-top:1px solid var(--border);color:var(--muted);font-size:0.8rem;}
-    footer span{color:var(--accent);}
-    #scroll-top{position:fixed;bottom:1.5rem;right:1.5rem;width:42px;height:42px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(10px);transition:all 0.3s;color:var(--muted);z-index:800;font-size:1.1rem;}
-    #scroll-top.visible{opacity:1;transform:translateY(0);}
-    #scroll-top:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+/* ── CONTACT ── */
+.cw{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media(max-width:740px){.cw{grid-template-columns:1fr}}
+.citm{display:flex;align-items:center;gap:.9rem;padding:1.12rem;background:var(--s1);border:1px solid var(--bdr);border-radius:12px;margin-bottom:.65rem;text-decoration:none;transition:all .18s;color:var(--tx)}
+.citm:hover{border-color:rgba(79,142,247,.3);background:rgba(79,142,247,.04);transform:translateX(4px)}
+.cico{width:38px;height:38px;background:var(--bg);border:1px solid var(--bdr);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.clbl{font-size:.67rem;color:var(--mu);text-transform:uppercase;letter-spacing:.07em}
+.cvl{font-size:.86rem;color:var(--tx);font-weight:500}
+.cta{background:linear-gradient(135deg,rgba(79,142,247,.07),rgba(167,139,250,.07));border:1px solid rgba(79,142,247,.17);border-radius:20px;padding:2.4rem}
+.cta h3{font-family:var(--fh);font-size:1.38rem;font-weight:700;margin-bottom:.72rem}
+.cta p{color:var(--mu);font-size:.9rem;margin-bottom:1.5rem;line-height:1.75}
 
-    .fade-up{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
-    .fade-up.visible{opacity:1;transform:translateY(0);}
-    .stagger-1{transition-delay:0.08s;}.stagger-2{transition-delay:0.15s;}.stagger-3{transition-delay:0.22s;}.stagger-4{transition-delay:0.29s;}
-  </style>
+/* ── FOOTER ── */
+footer{padding:1.8rem;text-align:center;border-top:1px solid var(--bdr);color:var(--mu);font-size:.79rem}
+footer em{color:var(--a);font-style:normal}
+
+/* ── SCROLL TOP ── */
+#sct{position:fixed;bottom:1.5rem;right:1.5rem;width:38px;height:38px;background:var(--s3);border:1px solid var(--bdr);border-radius:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(8px);transition:all .28s;color:var(--mu);z-index:700;font-size:.95rem}
+#sct.v{opacity:1;transform:none}
+#sct:hover{background:var(--a);color:#fff;border-color:var(--a)}
+
+/* ── JARVIS ── */
+#jfab{position:fixed;bottom:5.2rem;right:0;z-index:1001;background:none;border:none;padding:0;cursor:pointer}
+.jpill{display:flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-family:var(--fh);font-weight:700;font-size:.77rem;letter-spacing:.04em;padding:0 .95rem 0 .75rem;height:44px;border-radius:11px 0 0 11px;box-shadow:-4px 4px 26px rgba(79,142,247,.42);transform:translateX(calc(100% - 44px));transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .2s;white-space:nowrap;position:relative}
+.jiw{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.jiw svg{width:16px;height:16px}
+.jdot{position:absolute;top:7px;right:9px;width:7px;height:7px;background:var(--a3);border-radius:50%;border:2px solid rgba(255,255,255,.3);animation:pulse 2s infinite}
+#jfab:hover .jpill,#jfab.on .jpill{transform:translateX(0);box-shadow:-7px 7px 34px rgba(79,142,247,.58)}
+.icb{display:block}
+.icx{display:none}
+#jfab.on .icb{display:none}
+#jfab.on .icx{display:block}
+
+#jwin{position:fixed;bottom:8.5rem;right:0;width:365px;max-width:calc(100vw - .8rem);height:535px;max-height:calc(100vh - 10rem);background:var(--s1);border:1px solid rgba(79,142,247,.2);border-radius:18px 0 0 18px;box-shadow:-12px 12px 64px rgba(0,0,0,.65);z-index:1000;display:none;flex-direction:column;overflow:hidden}
+#jwin.on{display:flex}
+
+.jwh{padding:.9rem 1.15rem;background:linear-gradient(135deg,rgba(79,142,247,.13),rgba(167,139,250,.06));border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:.7rem;flex-shrink:0}
+.jwav{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--a),var(--a2));display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.jwav svg{width:18px;height:18px}
+.jwnm{font-family:var(--fh);font-weight:700;font-size:.88rem;color:var(--tx);display:flex;align-items:center;gap:.42rem}
+.jaib{font-family:var(--fm);font-size:.57rem;color:var(--a2);background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.28);border-radius:100px;padding:.08rem .45rem;letter-spacing:.05em}
+.jwst{font-size:.67rem;color:var(--a3);display:flex;align-items:center;gap:.28rem;margin-top:.08rem}
+.jwst::before{content:'';width:5px;height:5px;background:var(--a3);border-radius:50%;animation:pulse 2s infinite;display:inline-block}
+
+#jm{flex:1;overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:.65rem;scroll-behavior:smooth}
+#jm::-webkit-scrollbar{width:2px}
+#jm::-webkit-scrollbar-thumb{background:var(--bdr)}
+
+.jmsg{max-width:88%;padding:.58rem .88rem;border-radius:13px;font-size:.81rem;line-height:1.65;white-space:pre-wrap;word-break:break-word;animation:jmi .22s ease}
+@keyframes jmi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.jmsg.b{background:var(--s2);color:var(--tx);border-bottom-left-radius:4px;align-self:flex-start;border:1px solid var(--bdr)}
+.jmsg.u{background:linear-gradient(135deg,var(--a),#6da0ff);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.jmsg.t{background:var(--s2);border:1px solid var(--bdr);align-self:flex-start;padding:.62rem .88rem}
+.dots{display:flex;gap:4px;align-items:center}
+.dots span{width:5px;height:5px;background:var(--mu);border-radius:50%;animation:dot 1.2s infinite}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dot{0%,80%,100%{transform:scale(.65);opacity:.45}40%{transform:scale(1);opacity:1}}
+
+#jchips{padding:0 .9rem .65rem;display:flex;flex-wrap:wrap;gap:.36rem;flex-shrink:0}
+.jch{font-size:.69rem;padding:.24rem .65rem;border:1px solid rgba(79,142,247,.3);border-radius:100px;color:var(--a);background:rgba(79,142,247,.05);cursor:pointer;transition:all .18s;font-family:var(--fb)}
+.jch:hover{background:rgba(79,142,247,.15);border-color:var(--a)}
+
+.jir{padding:.68rem .95rem;border-top:1px solid var(--bdr);display:flex;gap:.48rem;flex-shrink:0;background:var(--s1)}
+#jinp{flex:1;background:var(--bg);border:1px solid var(--bdr);border-radius:9px;padding:.46rem .7rem;color:var(--tx);font-size:.81rem;font-family:var(--fb);outline:none;transition:border-color .18s}
+#jinp:focus{border-color:rgba(79,142,247,.48)}
+#jinp::placeholder{color:var(--mu)}
+#jsbtn{width:34px;height:34px;background:var(--a);border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .18s;align-self:flex-end}
+#jsbtn:hover{background:#6da0ff}
+#jsbtn svg{width:14px;height:14px;fill:#fff}
+</style>
 </head>
 <body>
 
-  <nav id="navbar">
-    <a href="#hero" class="nav-logo">FW<span>.</span></a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about" class="nav-link-item">About</a></li>
-      <li><a href="#education" class="nav-link-item">Education</a></li>
-      <li><a href="#skills" class="nav-link-item">Skills</a></li>
-      <li><a href="#experience" class="nav-link-item">Experience</a></li>
-      <li><a href="#projects" class="nav-link-item">Projects</a></li>
-      <li><a href="#certifications" class="nav-link-item">Certs</a></li>
-      <li><a href="#achievements" class="nav-link-item">Awards</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Contact Me →</a>
-    <button class="mobile-menu-btn" id="mobile-btn">☰</button>
-  </nav>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="logo">FW<b>.</b></a>
+  <ul id="nl">
+    <li><a href="#about" class="na">About</a></li>
+    <li><a href="#education" class="na">Education</a></li>
+    <li><a href="#skills" class="na">Skills</a></li>
+    <li><a href="#experience" class="na">Experience</a></li>
+    <li><a href="#projects" class="na">Projects</a></li>
+    <li><a href="#certifications" class="na">Certs</a></li>
+    <li><a href="#achievements" class="na">Awards</a></li>
+  </ul>
+  <a href="#contact" class="nhire">Contact →</a>
+  <button id="mbtn">☰</button>
+</nav>
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-grid"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-content">
-      <div class="hero-eyebrow">Available for opportunities</div>
-      <h1 class="hero-name">
-        <span class="line-1">AR Fabian</span>
-        <span class="line-2">William</span>
-      </h1>
-      <div class="hero-typed"><span id="typed-output"></span></div>
-      <p class="hero-desc">A dedicated developer transforming complex ideas into efficient, user-friendly software. Specializing in Python, C++, and modern web technologies.</p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn-primary">View My Work ↓</a>
-        <a href="#contact" class="btn-outline">Get in Touch</a>
-      </div>
-      <div class="hero-stats">
-        <div><div class="stat-number">7<span>+</span></div><div class="stat-label">Projects</div></div>
-        <div><div class="stat-number">5<span>+</span></div><div class="stat-label">Certifications</div></div>
-        <div><div class="stat-number">1<span>×</span></div><div class="stat-label">Award Winner</div></div>
-        <div><div class="stat-number">MCA</div><div class="stat-label">Pursuing</div></div>
-      </div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hg"></div>
+  <div class="orb ob1"></div><div class="orb ob2"></div><div class="orb ob3"></div>
+  <div class="hc">
+    <div class="htag">Available for opportunities</div>
+    <h1 class="hn">
+      <span class="n1">AR Fabian</span>
+      <span class="n2">William</span>
+    </h1>
+    <div class="htp"><span id="typed"></span></div>
+    <p class="hd">A creative, detail-oriented developer transforming ideas into efficient, polished software. Specialising in Python, C++, and modern web technologies.</p>
+    <div class="hbtns">
+      <a href="#projects" class="btnp">View My Work ↓</a>
+      <a href="#contact" class="btno">Get in Touch</a>
     </div>
-  </section>
-  <div class="gradient-divider"></div>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="container">
-      <div class="section-label fade-up">01 / About</div>
-      <h2 class="section-title fade-up stagger-1">Who I Am</h2>
-      <div class="about-grid">
-        <div class="about-text fade-up stagger-2">
-          <p>I'm a <strong>highly motivated and adaptable developer</strong> with a strong foundational understanding of programming principles and a passion for building solutions that matter.</p>
-          <p>Proficient in leveraging <strong>AI tools</strong> like ChatGPT, Gemini AI, Cursor AI, Meta AI, Llama AI, and Blackbox AI to enhance development workflows, automate tasks, and generate innovative solutions.</p>
-          <p>Currently pursuing my <strong>MCA at DR MGR Educational and Research University</strong>, eager to contribute to cutting-edge software projects.</p>
-          <div class="about-links">
-            <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="link-chip">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </a>
-            <a href="https://github.com/Fabian-william" target="_blank" class="link-chip">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              GitHub
-            </a>
-            <a href="/cdn-cgi/l/email-protection#58392a3e393a3139362f313434313935183f35393134763b3735" class="link-chip">✉ Email Me</a>
-          </div>
-        </div>
-        <div class="info-grid fade-up stagger-3">
-          <div class="info-item"><div class="info-icon">📍</div><div><div class="info-label">Location</div><div class="info-value">Chennai, Tamil Nadu, India</div></div></div>
-          <div class="info-item"><div class="info-icon">📞</div><div><div class="info-label">Phone</div><div class="info-value">(+91) 75502-60124</div></div></div>
-          <div class="info-item"><div class="info-icon">🎓</div><div><div class="info-label">Currently Studying</div><div class="info-value">MCA — DR MGR University</div></div></div>
-          <div class="info-item"><div class="info-icon">🌐</div><div><div class="info-label">Languages</div><div class="info-value">English · Tamil · Malayalam</div></div></div>
-          <div class="info-item"><div class="info-icon">✅</div><div><div class="info-label">Status</div><div class="info-value" style="color:var(--accent3);">Open to opportunities</div></div></div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="gradient-divider"></div>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="container">
-      <div class="section-label fade-up">02 / Education</div>
-      <h2 class="section-title fade-up stagger-1">Academic Journey</h2>
-      <div class="timeline fade-up stagger-3">
-        <div class="timeline-item">
-          <div class="timeline-year">2025 – 2027</div>
-          <div class="timeline-title">Master of Computer Applications (MCA)</div>
-          <div class="timeline-sub">DR MGR Educational And Research University, Chennai</div>
-          <div class="timeline-badge badge-green">Currently Pursuing</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-year">2022 – 2025</div>
-          <div class="timeline-title">B.Sc in Computer Science</div>
-          <div class="timeline-sub">DR MGR Educational And Research University, Chennai</div>
-          <div class="timeline-badge badge-blue">Completed</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="gradient-divider"></div>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-label fade-up">03 / Skills</div>
-      <h2 class="section-title fade-up stagger-1">Technical Arsenal</h2>
-      <div class="skills-grid">
-        <div class="skill-card fade-up stagger-1"><div class="skill-card-icon">⚡</div><div class="skill-card-title">Languages</div><div class="skill-tags"><span class="skill-tag">Python</span><span class="skill-tag">C</span><span class="skill-tag">C++</span><span class="skill-tag">JavaScript</span></div></div>
-        <div class="skill-card fade-up stagger-2"><div class="skill-card-icon">🌐</div><div class="skill-card-title">Web Development</div><div class="skill-tags"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">JavaScript</span><span class="skill-tag">Tailwind CSS</span></div></div>
-        <div class="skill-card fade-up stagger-3"><div class="skill-card-icon">🛠️</div><div class="skill-card-title">Tools &amp; Platforms</div><div class="skill-tags"><span class="skill-tag">Git</span><span class="skill-tag">GitHub</span><span class="skill-tag">VS Code</span><span class="skill-tag">PyCharm</span><span class="skill-tag">Jupyter</span><span class="skill-tag">Power BI</span></div></div>
-        <div class="skill-card fade-up stagger-4"><div class="skill-card-icon">🤖</div><div class="skill-card-title">AI Tools</div><div class="skill-tags"><span class="skill-tag">ChatGPT</span><span class="skill-tag">Gemini AI</span><span class="skill-tag">Cursor AI</span><span class="skill-tag">Meta AI</span><span class="skill-tag">Llama AI</span><span class="skill-tag">Blackbox AI</span></div></div>
-        <div class="skill-card fade-up stagger-1"><div class="skill-card-icon">🧠</div><div class="skill-card-title">Soft Skills</div><div class="skill-tags"><span class="skill-tag">Communication</span><span class="skill-tag">Leadership</span><span class="skill-tag">Time Mgmt</span><span class="skill-tag">Adaptability</span><span class="skill-tag">Problem Solving</span></div></div>
-      </div>
-    </div>
-  </section>
-  <div class="gradient-divider"></div>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-label fade-up">04 / Experience</div>
-      <h2 class="section-title fade-up stagger-1">Professional Training</h2>
-      <div class="exp-card fade-up stagger-3">
-        <div class="exp-header">
-          <div>
-            <div class="exp-title">Python Programming Intern</div>
-            <div class="exp-company">Top Tech Developers, Chennai</div>
-          </div>
-          <div class="exp-period">2024</div>
-        </div>
-        <ul class="exp-list">
-          <li>Automated repetitive tasks with Python scripts, boosting team efficiency by <strong style="color:var(--accent3)">40%</strong>.</li>
-          <li>Conducted comprehensive code reviews and refactoring sessions improving maintainability scores by <strong style="color:var(--accent3)">25%</strong>.</li>
-          <li>Facilitated smoother integration for future projects and enhanced collaboration across cross-functional teams.</li>
-        </ul>
-        <button class="toggle-btn" onclick="toggleBox(this)">📄 View Certificate</button>
-        <div class="collapse-box">
-          <img src="https://i.ibb.co/BVdKDdkj/7.jpg" alt="Python Internship Certificate" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="gradient-divider"></div>
-
-  <!-- PROJECTS -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-label fade-up">05 / Projects</div>
-      <h2 class="section-title fade-up stagger-1">What I've Built</h2>
-      <p class="section-desc fade-up stagger-2">Click the gallery button on each card to see project screenshots.</p>
-      <div class="projects-grid">
-
-        <!-- 01 AI Navigator -->
-        <div class="project-card">
-          <div class="project-color-bar" style="background:linear-gradient(90deg,#4f8ef7,#a78bfa);"></div>
-          <div class="project-body">
-            <div class="project-number">01</div>
-            <div class="project-title">AI Navigator</div>
-            <p class="project-desc">A comprehensive web directory to discover and explore AI platforms, business software, productivity utilities, and development resources across diverse categories.</p>
-            <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span></div>
-            <div class="project-actions">
-              <a href="https://fabian-william.github.io/AI-NAVIGATOR/" target="_blank" class="project-link">Live Demo →</a>
-              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
-            </div>
-            <div class="collapse-box">
-              <div class="gallery-grid">
-                <img src="https://i.ibb.co/DPnznn8v/Screenshot-2025-06-12-215552.png" alt="AI Navigator 1" loading="lazy"/>
-                <img src="https://i.ibb.co/pvR2zBv7/Screenshot-2025-06-16-133251.png" alt="AI Navigator 2" loading="lazy"/>
-                <img src="https://i.ibb.co/WNXNNTc8/Screenshot-2025-06-16-133317.png" alt="AI Navigator 3" loading="lazy"/>
-                <img src="https://i.ibb.co/b5J6gJ6B/Screenshot-2025-06-16-132553.png" alt="AI Navigator 4" loading="lazy"/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 02 Resume.io -->
-        <div class="project-card">
-          <div class="project-color-bar" style="background:linear-gradient(90deg,#34d399,#4f8ef7);"></div>
-          <div class="project-body">
-            <div class="project-number">02</div>
-            <div class="project-title">Resume.io</div>
-            <p class="project-desc">A web app to create professional resumes with a user-friendly interface for personal details, work experience, education, and skills — generating a ready-to-download resume.</p>
-            <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span></div>
-            <div class="project-actions">
-              <a href="https://fabian-william.github.io/Resume.io/" target="_blank" class="project-link">Live Demo →</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- 03 Scientific Calculator -->
-        <div class="project-card">
-          <div class="project-color-bar" style="background:linear-gradient(90deg,#f472b6,#a78bfa);"></div>
-          <div class="project-body">
-            <div class="project-number">03</div>
-            <div class="project-title">Scientific Calculator</div>
-            <p class="project-desc">A fully functional scientific calculator with advanced mathematical functions, calculation history, and a responsive mobile-friendly design built in pure JavaScript.</p>
-            <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span></div>
-            <div class="project-actions">
-              <a href="https://fabian-william.github.io/scientific-calculator/" target="_blank" class="project-link">Live Demo →</a>
-              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
-            </div>
-            <div class="collapse-box">
-              <div class="gallery-grid">
-                <img src="https://i.ibb.co/DPF2rW51/Screenshot-2025-06-26-115831.png" alt="Calc 1" loading="lazy"/>
-                <img src="https://i.ibb.co/zHBq0h2h/Screenshot-2025-06-26-115824.png" alt="Calc 2" loading="lazy"/>
-                <img src="https://i.ibb.co/9khQ2Fcr/Screenshot-2025-06-26-115816.png" alt="Calc 3" loading="lazy"/>
-                <img src="https://i.ibb.co/C56mKdbB/Screenshot-2025-06-26-115809.png" alt="Calc 4" loading="lazy"/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 04 Classic Snake Game -->
-        <div class="project-card">
-          <div class="project-color-bar" style="background:linear-gradient(90deg,#fbbf24,#f87171);"></div>
-          <div class="project-body">
-            <div class="project-number">04</div>
-            <div class="project-title">Classic Snake Game</div>
-            <p class="project-desc">A browser-based recreation of the classic Snake game with smooth gameplay, score tracking, difficulty levels, and a polished game-over screen built in pure JavaScript.</p>
-            <div class="project-stack"><span class="stack-tag">HTML</span><span class="stack-tag">CSS</span><span class="stack-tag">JavaScript</span><span class="stack-tag">Canvas API</span></div>
-            <div class="project-actions">
-              <a href="https://fabian-william.github.io/snake-game/" target="_blank" class="project-link">Live Demo →</a>
-              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
-            </div>
-            <div class="collapse-box">
-              <div class="gallery-grid">
-                <img src="https://i.ibb.co/7JK6bdsc/brave-screenshot-14.png" alt="Snake 1" loading="lazy"/>
-                <img src="https://i.ibb.co/8Lv8sK3f/brave-screenshot-13.png" alt="Snake 2" loading="lazy"/>
-                <img src="https://i.ibb.co/F4XxvgFK/brave-screenshot-12.png" alt="Snake 3" loading="lazy"/>
-                <img src="https://i.ibb.co/CKj3qKjh/brave-screenshot-11.png" alt="Snake 4" loading="lazy"/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 05 ArthaSutra -->
-        <div class="project-card">
-          <div class="project-color-bar" style="background:linear-gradient(90deg,#fbbf24,#f97316);"></div>
-          <div class="project-body">
-            <div class="project-number">05</div>
-            <div class="project-title">ArthaSūtra™ Financial Planner</div>
-            <p class="project-desc">A Python-based financial planning app calculating SIP returns, retirement corpuses, and tax-saving opportunities — tailored for the Indian middle-class demographic with 20–30 year projections.</p>
-            <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">FinTech</span></div>
-            <div class="project-actions">
-              <a href="https://fabian-william.github.io/arthasutra/" target="_blank" class="project-link">Live Demo →</a>
-              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
-            </div>
-            <div class="collapse-box">
-              <div class="gallery-grid">
-                <img src="https://i.ibb.co/Rp2m6MsS/Screenshot-2026-03-02-125301.png" alt="ArthaSutra 1" loading="lazy"/>
-                <img src="https://i.ibb.co/RGGqmMN1/Screenshot-2026-03-02-125211.png" alt="ArthaSutra 2" loading="lazy"/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 06 IoT Smart Parking -->
-        <div class="project-card">
-          <div class="project-color-bar" style="background:linear-gradient(90deg,#34d399,#fbbf24);"></div>
-          <div class="project-body">
-            <div class="project-number">06</div>
-            <div class="project-title">IoT Smart Parking System</div>
-            <p class="project-desc">A real-time hardware-software system detecting parking slot occupancy via ultrasonic sensors with an instant central dashboard. C++ micro-controller logic for low-latency response.</p>
-            <div class="project-stack"><span class="stack-tag">C++</span><span class="stack-tag">IoT</span><span class="stack-tag">Real-Time DB</span></div>
-            <div class="project-actions">
-              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
-            </div>
-            <div class="collapse-box">
-              <div class="gallery-grid">
-                <img src="https://i.ibb.co/KptKf4Dk/5.jpg" alt="Parking 1" loading="lazy"/>
-                <img src="https://i.ibb.co/pr1hrYxq/4.jpg" alt="Parking 2" loading="lazy"/>
-                <img src="https://i.ibb.co/39h8dw3L/2.jpg" alt="Parking 3" loading="lazy"/>
-                <img src="https://i.ibb.co/VG7DQLY/3.jpg" alt="Parking 4" loading="lazy"/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 07 Excel to Power BI -->
-        <div class="project-card">
-          <div class="project-color-bar" style="background:linear-gradient(90deg,#a78bfa,#f472b6);"></div>
-          <div class="project-body">
-            <div class="project-number">07</div>
-            <div class="project-title">Excel → Power BI Converter</div>
-            <p class="project-desc">Converts Excel spreadsheets into interactive Power BI dashboards by cleaning and modeling data for insightful visualization. Demonstrates data handling and BI expertise.</p>
-            <div class="project-stack"><span class="stack-tag">Excel</span><span class="stack-tag">Power BI</span></div>
-            <div class="project-actions">
-              <a href="https://fabian-william.github.io/excel-to-power-bi/" target="_blank" class="project-link">Live Demo →</a>
-              <button class="gallery-btn" onclick="toggleGallery(this)">🖼 Gallery</button>
-            </div>
-            <div class="collapse-box">
-              <div class="gallery-grid">
-                <img src="https://i.ibb.co/NnxyR47C/Screenshot-2025-06-16-122643.png" alt="Power BI 1" loading="lazy"/>
-                <img src="https://i.ibb.co/XrYt1gwf/Screenshot-2025-06-16-122657.png" alt="Power BI 2" loading="lazy"/>
-                <img src="https://i.ibb.co/S43Rm4F3/Screenshot-2025-06-16-123114.png" alt="Power BI 3" loading="lazy"/>
-                <img src="https://i.ibb.co/20zJ5DWX/Screenshot-2025-06-16-122622.png" alt="Power BI 4" loading="lazy"/>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  <div class="gradient-divider"></div>
-
-  <!-- CERTIFICATIONS -->
-  <section id="certifications">
-    <div class="container">
-      <div class="section-label">06 / Certifications</div>
-      <h2 class="section-title">Credentials</h2>
-      <p class="section-desc">Click any card to reveal the certificate photo.</p>
-      <div class="cert-grid">
-        <div class="cert-card" onclick="toggleCert(this)">
-          <div class="cert-icon">🤖</div>
-          <div class="cert-name">Responsible AI with Google Cloud</div>
-          <div class="cert-issuer">Simplilearn · 2025</div>
-          <div class="cert-hint">Click to view certificate ↓</div>
-          <div class="cert-img-wrap">
-            <img src="./assets/certificates/responsible-ai.jpg" data-fallback="https://i.ibb.co/TDYThSYn/Whats-App-Image-2025-06-24-at-12-25-31-e19ac9b7.jpg" alt="Responsible AI Cert" loading="lazy"
-              onerror="this.onerror=null;var fb=this.getAttribute('data-fallback');if(fb&&this.src!==fb){this.src=fb;}else{this.classList.add('img-error');this.nextElementSibling.classList.add('show');}" />
-            <div class="cert-img-fallback">📁 To display this certificate, add the image to <code>assets/certificates/</code> in your repo.<br><small>Or it will load from the backup link above.</small></div>
-          </div>
-        </div>
-
-        <div class="cert-card" onclick="toggleCert(this)">
-          <div class="cert-icon">✍️</div>
-          <div class="cert-name">Introduction to Prompt Engineering</div>
-          <div class="cert-issuer">Simplilearn · 2025</div>
-          <div class="cert-hint">Click to view certificate ↓</div>
-          <div class="cert-img-wrap">
-            <img src="./assets/certificates/prompt-engineering.jpg" data-fallback="https://i.ibb.co/20T8YvgK/Whats-App-Image-2025-06-24-at-12-25-32-994ad6ad.jpg" alt="Prompt Engineering Cert" loading="lazy"
-              onerror="this.onerror=null;var fb=this.getAttribute('data-fallback');if(fb&&this.src!==fb){this.src=fb;}else{this.classList.add('img-error');this.nextElementSibling.classList.add('show');}" />
-            <div class="cert-img-fallback">📁 To display this certificate, add the image to <code>assets/certificates/</code> in your repo.<br><small>Or it will load from the backup link above.</small></div>
-          </div>
-        </div>
-
-        <div class="cert-card" onclick="toggleCert(this)">
-          <div class="cert-icon">🐍</div>
-          <div class="cert-name">Python for Beginners</div>
-          <div class="cert-issuer">Simplilearn · 2024</div>
-          <div class="cert-hint">Click to view certificate ↓</div>
-          <div class="cert-img-wrap">
-            <img src="./assets/certificates/python-beginners.jpg" data-fallback="https://i.ibb.co/x9WYP0N/1.jpg" alt="Python Cert" loading="lazy"
-              onerror="this.onerror=null;var fb=this.getAttribute('data-fallback');if(fb&&this.src!==fb){this.src=fb;}else{this.classList.add('img-error');this.nextElementSibling.classList.add('show');}" />
-            <div class="cert-img-fallback">📁 To display this certificate, add the image to <code>assets/certificates/</code> in your repo.<br><small>Or it will load from the backup link above.</small></div>
-          </div>
-        </div>
-
-        <div class="cert-card" onclick="toggleCert(this)">
-          <div class="cert-icon">⚙️</div>
-          <div class="cert-name">Advanced C++ Programming</div>
-          <div class="cert-issuer">Inheritance, Encapsulation &amp; Polymorphism · 2026</div>
-          <div class="cert-hint">Click to view certificate ↓</div>
-          <div class="cert-img-wrap">
-            <img src="./assets/certificates/cpp-advanced.jpg" data-fallback="https://i.ibb.co/1YRjWDq7/Screenshot-20260224-152418.jpg" alt="C++ Advanced Cert" loading="lazy"
-              onerror="this.onerror=null;var fb=this.getAttribute('data-fallback');if(fb&&this.src!==fb){this.src=fb;}else{this.classList.add('img-error');this.nextElementSibling.classList.add('show');}" />
-            <div class="cert-img-fallback">📁 To display this certificate, add the image to <code>assets/certificates/</code> in your repo.<br><small>Or it will load from the backup link above.</small></div>
-          </div>
-        </div>
-
-        <div class="cert-card" onclick="toggleCert(this)">
-          <div class="cert-icon">🔁</div>
-          <div class="cert-name">C++ Logic &amp; Iteration</div>
-          <div class="cert-issuer">Loops, Conditionals &amp; Logic Building · 2026</div>
-          <div class="cert-hint">Click to view certificate ↓</div>
-          <div class="cert-img-wrap">
-            <img src="./assets/certificates/cpp-logic.jpg" data-fallback="https://i.ibb.co/TqLwY9Db/Screenshot-20260224-152437.jpg" alt="C++ Logic Cert" loading="lazy"
-              onerror="this.onerror=null;var fb=this.getAttribute('data-fallback');if(fb&&this.src!==fb){this.src=fb;}else{this.classList.add('img-error');this.nextElementSibling.classList.add('show');}" />
-            <div class="cert-img-fallback">📁 To display this certificate, add the image to <code>assets/certificates/</code> in your repo.<br><small>Or it will load from the backup link above.</small></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-  <div class="gradient-divider"></div>
-
-  <!-- ACHIEVEMENTS -->
-  <section id="achievements">
-    <div class="container">
-      <div class="section-label fade-up">07 / Achievements</div>
-      <h2 class="section-title fade-up stagger-1">Recognition</h2>
-      <div class="achievement-card fade-up stagger-3">
-        <div class="achievement-badge">🥈</div>
-        <div>
-          <div class="achievement-title">Second Prize — Technical Paper Presentation</div>
-          <div class="achievement-meta">Technology Day · DR M.G.R. Educational and Research Institute, Chennai · May 29, 2023</div>
-          <div class="achievement-desc">Awarded Second Prize at the Technical Paper Presentation on Technology Day, demonstrating strong research, analytical, and public communication skills. Organized by the Department of Computer Science.</div>
-          <img src="https://i.ibb.co/ksn43rWy/6.jpg" alt="Award certificate" class="ach-cert-img" loading="lazy" />
-        </div>
-      </div>
-    </div>
-  </section>
-  <div class="gradient-divider"></div>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-label fade-up">08 / Contact</div>
-      <h2 class="section-title fade-up stagger-1">Let's Connect</h2>
-      <div class="contact-wrapper">
-        <div class="fade-up stagger-2">
-          <a href="/cdn-cgi/l/email-protection#c6a7b4a0a7a4afa7a8b1afaaaaafa7ab86a1aba7afaae8a5a9ab" class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div><div class="contact-label">Email</div><div class="contact-value"><span class="__cf_email__" data-cfemail="c5a4b7a3a4a7aca4abb2aca9a9aca4a885a2a8a4aca9eba6aaa8">[email&#160;protected]</span></div></div>
-          </a>
-          <div class="contact-item" style="cursor:default;">
-            <div class="contact-icon">📞</div>
-            <div><div class="contact-label">Phone</div><div class="contact-value">(+91) 75502-60124</div></div>
-          </div>
-          <div class="contact-item" style="cursor:default;">
-            <div class="contact-icon">📍</div>
-            <div><div class="contact-label">Location</div><div class="contact-value">Chennai, Tamil Nadu, India</div></div>
-          </div>
-          <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </div>
-            <div><div class="contact-label">LinkedIn</div><div class="contact-value">ar-fabian-william</div></div>
-          </a>
-          <a href="https://github.com/Fabian-william" target="_blank" class="contact-item">
-            <div class="contact-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </div>
-            <div><div class="contact-label">GitHub</div><div class="contact-value">Fabian-william</div></div>
-          </a>
-        </div>
-        <div class="contact-cta-box fade-up stagger-3">
-          <h3>Open to New Opportunities</h3>
-          <p>I'm actively looking for entry-level software development roles where I can bring value and continue growing. Whether it's a full-time position, internship, or freelance project — I'd love to hear from you.</p>
-          <a href="/cdn-cgi/l/email-protection#d0b1a2b6b1b2b9b1bea7b9bcbcb9b1bd90b7bdb1b9bcfeb3bfbdefa3a5b2bab5b3a4ed9fa0a0bfa2a4a5beb9a4a9f5e2e0b6bfa2f5e2e09182f5e2e096b1b2b9b1bef5e2e087b9bcbcb9b1bdf6b2bfb4a9ed98b9f5e2e096b1b2b9b1bef5e293f5e091f5e09199f5e2e0b3b1bdb5f5e2e0b1b3a2bfa3a3f5e2e0a9bfa5a2f5e2e0a0bfa2a4b6bfbcb9bff5e2e0b1beb4f5e2e0a7bfa5bcb4f5e2e0bcbfa6b5f5e2e0a4bff5e2e0b3bfbebeb5b3a4fef5e091f5e091" class="btn-primary">Send Me a Message →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer><p>Designed &amp; built by <span>AR Fabian William</span> · Chennai, India · 2025</p></footer>
-  <div id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
-
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-    new Typed('#typed-output', {
-      strings: ['Aspiring Software Developer','Python & Web Enthusiast','Creative Problem-Solver','AI-Augmented Developer','Building Innovative Solutions'],
-      typeSpeed: 55, backSpeed: 30, backDelay: 1800, loop: true, smartBackspace: true
-    });
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
-    }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // Fallback: force-show any still-hidden elements after 1.5s (fixes GitHub Pages / slow load)
-    setTimeout(() => {
-      document.querySelectorAll('.fade-up:not(.visible)').forEach(el => el.classList.add('visible'));
-    }, 1500);
-
-    const secs = document.querySelectorAll('section[id]');
-    const navA = document.querySelectorAll('.nav-link-item');
-    window.addEventListener('scroll', () => {
-      let c = '';
-      secs.forEach(s => { if (window.scrollY >= s.offsetTop - 120) c = s.id; });
-      navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + c));
-      document.getElementById('scroll-top').classList.toggle('visible', window.scrollY > 400);
-    });
-
-    document.getElementById('mobile-btn').addEventListener('click', () =>
-      document.getElementById('nav-links').classList.toggle('mobile-open')
-    );
-
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const t = document.querySelector(a.getAttribute('href'));
-        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); document.getElementById('nav-links').classList.remove('mobile-open'); }
-      });
-    });
-
-    // Image & screenshot protection
-    document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-    document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'PrintScreen') { e.preventDefault(); navigator.clipboard?.writeText(''); }
-      if (e.metaKey && e.shiftKey && ['3','4','5'].includes(e.key)) e.preventDefault();
-      if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's') e.preventDefault();
-    });
-
-    function toggleBox(btn) {
-      const box = btn.nextElementSibling;
-      const open = box.classList.toggle('open');
-      btn.textContent = open ? '✕ Hide Certificate' : '📄 View Certificate';
-    }
-
-    function toggleGallery(btn) {
-      const body = btn.closest('.project-body');
-      const box = body.querySelector('.collapse-box');
-      const open = box.classList.toggle('open');
-      btn.textContent = open ? '✕ Close' : '🖼 Gallery';
-    }
-
-    function toggleCert(card) {
-      const wrap = card.querySelector('.cert-img-wrap');
-      const hint = card.querySelector('.cert-hint');
-      const open = wrap.classList.toggle('open');
-      hint.textContent = open ? 'Click to hide ↑' : 'Click to view certificate ↓';
-    }
-  </script>
-</body>
-</html>
-  <!-- ── AI CHAT AGENT v3 (fully offline, no API) ── -->
-  <style>
-    #chat-fab{position:fixed;bottom:5rem;right:1.5rem;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#4f8ef7,#a78bfa);border:none;cursor:pointer;z-index:1001;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(79,142,247,0.5);transition:transform .2s,box-shadow .2s;}
-    #chat-fab:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(79,142,247,0.65);}
-    #chat-fab svg{width:24px;height:24px;fill:#fff;}
-    #chat-fab .ic-close{display:none;}
-    #chat-fab.open .ic-chat{display:none;}
-    #chat-fab.open .ic-close{display:block;}
-    .fab-pulse{position:absolute;top:-2px;right:-2px;width:14px;height:14px;background:#34d399;border-radius:50%;border:2px solid #050810;animation:pulse 2s infinite;}
-    #chat-win{position:fixed;bottom:9.5rem;right:1.5rem;width:370px;max-width:calc(100vw - 2rem);height:540px;max-height:calc(100vh - 10rem);background:#0c1120;border:1px solid rgba(79,142,247,0.25);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:1000;display:none;flex-direction:column;overflow:hidden;}
-    #chat-win.open{display:flex;}
-    .ch-head{padding:1rem 1.25rem;background:linear-gradient(135deg,rgba(79,142,247,0.15),rgba(167,139,250,0.08));border-bottom:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:.75rem;flex-shrink:0;}
-    .ch-av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#4f8ef7,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:1.15rem;flex-shrink:0;}
-    .ch-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:#e8edf5;}
-    .ch-status{font-size:.7rem;color:#34d399;display:flex;align-items:center;gap:.3rem;}
-    .ch-status::before{content:'';width:6px;height:6px;background:#34d399;border-radius:50%;animation:pulse 2s infinite;}
-    #ch-msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;scroll-behavior:smooth;}
-    #ch-msgs::-webkit-scrollbar{width:3px;}
-    #ch-msgs::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.07);border-radius:2px;}
-    .msg{max-width:88%;padding:.65rem .95rem;border-radius:14px;font-size:.83rem;line-height:1.6;white-space:pre-wrap;word-break:break-word;animation:msgIn .25s ease;}
-    @keyframes msgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
-    .msg.bot{background:#111827;color:#e8edf5;border-bottom-left-radius:4px;align-self:flex-start;border:1px solid rgba(255,255,255,0.07);}
-    .msg.user{background:linear-gradient(135deg,#4f8ef7,#6da0ff);color:#fff;border-bottom-right-radius:4px;align-self:flex-end;}
-    .msg.typing{background:#111827;border:1px solid rgba(255,255,255,0.07);align-self:flex-start;padding:.7rem 1rem;}
-    .tdots{display:flex;gap:4px;align-items:center;}
-    .tdots span{width:6px;height:6px;background:#8a95a8;border-radius:50%;animation:dot 1.2s infinite;}
-    .tdots span:nth-child(2){animation-delay:.2s;}
-    .tdots span:nth-child(3){animation-delay:.4s;}
-    @keyframes dot{0%,80%,100%{transform:scale(.7);opacity:.5;}40%{transform:scale(1);opacity:1;}}
-    #ch-chips{padding:0 1rem .75rem;display:flex;flex-wrap:wrap;gap:.4rem;flex-shrink:0;}
-    .chip{font-size:.71rem;padding:.28rem .7rem;border:1px solid rgba(79,142,247,.35);border-radius:100px;color:#4f8ef7;background:rgba(79,142,247,.06);cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
-    .chip:hover{background:rgba(79,142,247,.18);border-color:#4f8ef7;}
-    .ch-inp-row{padding:.75rem 1rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;gap:.5rem;flex-shrink:0;background:#0c1120;}
-    #ch-inp{flex:1;background:#050810;border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:.5rem .75rem;color:#e8edf5;font-size:.83rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;}
-    #ch-inp:focus{border-color:rgba(79,142,247,.5);}
-    #ch-inp::placeholder{color:#8a95a8;}
-    #ch-send{width:36px;height:36px;background:#4f8ef7;border:none;border-radius:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;align-self:flex-end;}
-    #ch-send:hover{background:#6da0ff;}
-    #ch-send svg{width:16px;height:16px;fill:#fff;}
-  </style>
-
-  <button id="chat-fab" onclick="FC.toggle()" title="Ask anything about Fabian">
-    <div class="fab-pulse"></div>
-    <svg class="ic-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-    <svg class="ic-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-  </button>
-
-  <div id="chat-win">
-    <div class="ch-head">
-      <div class="ch-av">🤖</div>
-      <div>
-        <div class="ch-name">Fabian's AI Assistant</div>
-        <div class="ch-status">Online — Ask me anything</div>
-      </div>
-    </div>
-    <div id="ch-msgs"></div>
-    <div id="ch-chips">
-      <span class="chip" onclick="FC.chip(this)">Who is Fabian?</span>
-      <span class="chip" onclick="FC.chip(this)">His skills</span>
-      <span class="chip" onclick="FC.chip(this)">Projects built</span>
-      <span class="chip" onclick="FC.chip(this)">Open to work?</span>
-      <span class="chip" onclick="FC.chip(this)">Hobbies</span>
-      <span class="chip" onclick="FC.chip(this)">How to hire him?</span>
-    </div>
-    <div class="ch-inp-row">
-      <input id="ch-inp" placeholder="Ask anything about Fabian..." maxlength="300"
-        onkeydown="if(event.key==='Enter'){event.preventDefault();FC.send();}"/>
-      <button id="ch-send" onclick="FC.send()">
-        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-      </button>
+    <div class="hst">
+      <div><div class="sn">8<em>+</em></div><div class="sl">Projects</div></div>
+      <div><div class="sn">5<em>+</em></div><div class="sl">Certifications</div></div>
+      <div><div class="sn">1<em>×</em></div><div class="sl">Award</div></div>
+      <div><div class="sn">MCA</div><div class="sl">Pursuing</div></div>
     </div>
   </div>
+</section>
+<div class="dv"></div>
 
-  <script>
-  const FC = (function(){
-    let open=false, greeted=false;
+<!-- ABOUT -->
+<section id="about">
+  <div class="con">
+    <div class="slb fu">01 / About</div>
+    <h2 class="st fu d1">Who I Am</h2>
+    <div class="ag">
+      <div class="at fu d2">
+        <p>I'm a <strong>creative and detail-oriented developer</strong> who builds things that work and feel great. I care about quality at every level — from UI polish down to code structure.</p>
+        <p>Proficient in leveraging <strong>AI tools</strong> like ChatGPT, Gemini AI, Cursor AI, Meta AI, Llama AI, and Blackbox AI to accelerate development, automate workflows, and build innovative solutions.</p>
+        <p>Currently pursuing my <strong>MCA at DR MGR Educational and Research University</strong>, eager to contribute to cutting-edge software projects and grow within a great team.</p>
+        <div class="sr">
+          <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="chip">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/Fabian-william" target="_blank" class="chip">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="mailto:arfabianwilliam@gmail.com" class="chip">✉ Email Me</a>
+        </div>
+      </div>
+      <div class="is fu d3">
+        <div class="ir"><div class="ic">📍</div><div><div class="il">Location</div><div class="iv">Chennai, Tamil Nadu, India</div></div></div>
+        <div class="ir"><div class="ic">📞</div><div><div class="il">Phone</div><div class="iv">(+91) 75502-60124</div></div></div>
+        <div class="ir"><div class="ic">🎓</div><div><div class="il">Currently Studying</div><div class="iv">MCA — DR MGR University</div></div></div>
+        <div class="ir"><div class="ic">🌐</div><div><div class="il">Languages</div><div class="iv">English · Tamil · Malayalam</div></div></div>
+        <div class="ir"><div class="ic">✅</div><div><div class="il">Status</div><div class="iv" style="color:var(--a3)">Open to opportunities</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="dv"></div>
 
-    /* ═══════════════════════════════════════════════════
-       FULL KNOWLEDGE BASE — AR FABIAN WILLIAM
-    ═══════════════════════════════════════════════════ */
-    const KB = {
+<!-- EDUCATION -->
+<section id="education">
+  <div class="con">
+    <div class="slb fu">02 / Education</div>
+    <h2 class="st fu d1">Academic Journey</h2>
+    <div class="tl fu d2">
+      <div class="ti">
+        <div class="ty">2025 – 2027</div>
+        <div class="tt">Master of Computer Applications (MCA)</div>
+        <div class="ts">DR MGR Educational And Research University, Chennai</div>
+        <div class="tb tg">Currently Pursuing</div>
+      </div>
+      <div class="ti">
+        <div class="ty">2022 – 2025</div>
+        <div class="tt">B.Sc in Computer Science</div>
+        <div class="ts">DR MGR Educational And Research University, Chennai</div>
+        <div class="tb tb2">Completed</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="dv"></div>
 
-      /* ── PERSONAL ── */
-      who:`AR Fabian William is a passionate and ambitious software developer from Chennai, Tamil Nadu, India 🇮🇳
+<!-- SKILLS -->
+<section id="skills">
+  <div class="con">
+    <div class="slb fu">03 / Skills</div>
+    <h2 class="st fu d1">Technical Arsenal</h2>
+    <div class="skg">
+      <div class="skc fu d1"><div class="ski">⚡</div><div class="skn">Languages</div><div class="tr"><span class="tg2">Python</span><span class="tg2">C</span><span class="tg2">C++</span><span class="tg2">JavaScript</span></div></div>
+      <div class="skc fu d2"><div class="ski">🌐</div><div class="skn">Web Development</div><div class="tr"><span class="tg2">HTML5</span><span class="tg2">CSS3</span><span class="tg2">JavaScript</span><span class="tg2">Tailwind CSS</span></div></div>
+      <div class="skc fu d3"><div class="ski">🛠️</div><div class="skn">Tools &amp; Platforms</div><div class="tr"><span class="tg2">Git</span><span class="tg2">GitHub</span><span class="tg2">VS Code</span><span class="tg2">PyCharm</span><span class="tg2">Jupyter</span><span class="tg2">Power BI</span></div></div>
+      <div class="skc fu d4"><div class="ski">🤖</div><div class="skn">AI Tools</div><div class="tr"><span class="tg2">ChatGPT</span><span class="tg2">Gemini AI</span><span class="tg2">Cursor AI</span><span class="tg2">Meta AI</span><span class="tg2">Llama AI</span><span class="tg2">Blackbox AI</span></div></div>
+      <div class="skc fu d1"><div class="ski">🧠</div><div class="skn">Soft Skills</div><div class="tr"><span class="tg2">Communication</span><span class="tg2">Leadership</span><span class="tg2">Time Mgmt</span><span class="tg2">Adaptability</span><span class="tg2">Problem Solving</span></div></div>
+    </div>
+  </div>
+</section>
+<div class="dv"></div>
 
-He's currently pursuing his MCA at DR MGR Educational and Research University while actively looking for his first professional software development role.
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="con">
+    <div class="slb fu">04 / Experience</div>
+    <h2 class="st fu d1">Professional Training</h2>
+    <div class="exc fu d2">
+      <div class="exh">
+        <div><div class="ext">Python Programming Intern</div><div class="exc2">Top Tech Developers, Chennai</div></div>
+        <div class="exy">2024</div>
+      </div>
+      <ul class="exl">
+        <li>Automated repetitive tasks with Python scripts, boosting team efficiency by <strong style="color:var(--a3)">40%</strong>.</li>
+        <li>Conducted code reviews and refactoring sessions improving maintainability by <strong style="color:var(--a3)">25%</strong>.</li>
+        <li>Enhanced cross-functional team collaboration and project integration workflows.</li>
+      </ul>
+      <button class="tbtn" onclick="tBox(this)">📄 View Certificate</button>
+      <div class="cb"><img src="https://i.ibb.co/BVdKDdkj/7.jpg" alt="Internship Certificate" loading="lazy"/></div>
+    </div>
+  </div>
+</section>
+<div class="dv"></div>
 
-🧠 Personality: Curious, hardworking, and a fast learner who loves turning ideas into working products.
-📍 Based in: Chennai, Tamil Nadu
-🗣️ Languages: English, Tamil, Malayalam
-📧 Email: arfabianwilliam@gmail.com
-📞 Phone: (+91) 75502-60124`,
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="con">
+    <div class="slb fu">05 / Projects</div>
+    <h2 class="st fu d1">What I've Built</h2>
+    <p class="sd fu d2">Click Gallery on any card to view screenshots.</p>
+    <div class="pg">
 
-      personality:`Fabian describes himself as curious, hardworking, and a fast learner 🚀
+      <div class="pc">
+        <div class="pb2" style="background:linear-gradient(90deg,#4f8ef7,#a78bfa)"></div>
+        <div class="pbd">
+          <div class="pn">01</div><div class="ptit">AI Navigator</div>
+          <p class="pdsc">A web directory to discover AI platforms, business software, productivity utilities, and dev resources — all categorised and searchable.</p>
+          <div class="str"><span class="stag">HTML</span><span class="stag">CSS</span><span class="stag">JavaScript</span></div>
+          <div class="pa">
+            <a href="https://fabian-william.github.io/AI-NAVIGATOR/" target="_blank" class="pl">Live Demo →</a>
+            <button class="gb" onclick="tGal(this)">🖼 Gallery</button>
+          </div>
+          <div class="cb"><div class="gg">
+            <img src="https://i.ibb.co/DPnznn8v/Screenshot-2025-06-12-215552.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/pvR2zBv7/Screenshot-2025-06-16-133251.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/WNXNNTc8/Screenshot-2025-06-16-133317.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/b5J6gJ6B/Screenshot-2025-06-16-132553.png" loading="lazy" alt=""/>
+          </div></div>
+        </div>
+      </div>
 
-He's the kind of developer who doesn't wait to be told what to build — he identifies problems around him and codes solutions for them. That's exactly how ArthaSūtra (a FinTech planner for Indian families) and the IoT Smart Parking System were born.
+      <div class="pc">
+        <div class="pb2" style="background:linear-gradient(90deg,#34d399,#4f8ef7)"></div>
+        <div class="pbd">
+          <div class="pn">02</div><div class="ptit">Resume.io</div>
+          <p class="pdsc">A web app to create professional resumes — fill in personal details, experience, education, and skills to generate a downloadable resume instantly.</p>
+          <div class="str"><span class="stag">HTML</span><span class="stag">CSS</span><span class="stag">JavaScript</span></div>
+          <div class="pa"><a href="https://fabian-william.github.io/Resume.io/" target="_blank" class="pl">Live Demo →</a></div>
+        </div>
+      </div>
 
-He's calm under pressure, analytical in his approach, and genuinely enthusiastic about technology. Colleagues and professors describe him as dependable and easy to work with.`,
+      <div class="pc">
+        <div class="pb2" style="background:linear-gradient(90deg,#f472b6,#a78bfa)"></div>
+        <div class="pbd">
+          <div class="pn">03</div><div class="ptit">Scientific Calculator</div>
+          <p class="pdsc">A fully functional scientific calculator with advanced math functions, calculation history, and responsive mobile-friendly design in pure JavaScript.</p>
+          <div class="str"><span class="stag">HTML</span><span class="stag">CSS</span><span class="stag">JavaScript</span></div>
+          <div class="pa">
+            <a href="https://fabian-william.github.io/scientific-calculator/" target="_blank" class="pl">Live Demo →</a>
+            <button class="gb" onclick="tGal(this)">🖼 Gallery</button>
+          </div>
+          <div class="cb"><div class="gg">
+            <img src="https://i.ibb.co/DPF2rW51/Screenshot-2025-06-26-115831.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/zHBq0h2h/Screenshot-2025-06-26-115824.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/9khQ2Fcr/Screenshot-2025-06-26-115816.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/C56mKdbB/Screenshot-2025-06-26-115809.png" loading="lazy" alt=""/>
+          </div></div>
+        </div>
+      </div>
 
-      hobbies:`Outside of coding, Fabian enjoys:
-🎵 Music — listening to a wide variety of genres to unwind
-🎮 Gaming — loves the logic and design behind games (even built his own Snake Game!)
-📺 Watching tech videos — stays updated through YouTube and developer content
-🌍 Travelling & exploring — curious about new places and cultures
-🍿 Movies & series — especially sci-fi and thrillers
+      <div class="pc">
+        <div class="pb2" style="background:linear-gradient(90deg,#fbbf24,#f87171)"></div>
+        <div class="pbd">
+          <div class="pn">04</div><div class="ptit">Classic Snake Game</div>
+          <p class="pdsc">Browser-based Snake with smooth Canvas rendering, score tracking, difficulty levels, and a polished game-over screen — pure JavaScript.</p>
+          <div class="str"><span class="stag">HTML</span><span class="stag">CSS</span><span class="stag">JavaScript</span><span class="stag">Canvas API</span></div>
+          <div class="pa">
+            <a href="https://fabian-william.github.io/snake-game/" target="_blank" class="pl">Live Demo →</a>
+            <button class="gb" onclick="tGal(this)">🖼 Gallery</button>
+          </div>
+          <div class="cb"><div class="gg">
+            <img src="https://i.ibb.co/7JK6bdsc/brave-screenshot-14.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/8Lv8sK3f/brave-screenshot-13.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/F4XxvgFK/brave-screenshot-12.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/CKj3qKjh/brave-screenshot-11.png" loading="lazy" alt=""/>
+          </div></div>
+        </div>
+      </div>
 
-Fun fact: His love for gaming directly inspired him to build the Classic Snake Game using the Canvas API — turning a hobby into a project! 🐍`,
+      <div class="pc">
+        <div class="pb2" style="background:linear-gradient(90deg,#fbbf24,#f97316)"></div>
+        <div class="pbd">
+          <div class="pn">05</div><div class="ptit">ArthaSūtra™ Financial Planner</div>
+          <p class="pdsc">Python FinTech app for SIP returns, retirement corpus & tax-saving — built for the Indian middle class with 20–30 year financial projections.</p>
+          <div class="str"><span class="stag">Python</span><span class="stag">FinTech</span></div>
+          <div class="pa">
+            <a href="https://fabian-william.github.io/arthasutra/" target="_blank" class="pl">Live Demo →</a>
+            <button class="gb" onclick="tGal(this)">🖼 Gallery</button>
+          </div>
+          <div class="cb"><div class="gg">
+            <img src="https://i.ibb.co/Rp2m6MsS/Screenshot-2026-03-02-125301.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/RGGqmMN1/Screenshot-2026-03-02-125211.png" loading="lazy" alt=""/>
+          </div></div>
+        </div>
+      </div>
 
-      /* ── EDUCATION ── */
-      education:`🎓 Fabian's Academic Journey:
+      <div class="pc">
+        <div class="pb2" style="background:linear-gradient(90deg,#34d399,#fbbf24)"></div>
+        <div class="pbd">
+          <div class="pn">06</div><div class="ptit">IoT Smart Parking System</div>
+          <p class="pdsc">Real-time parking occupancy detection via ultrasonic sensors with a live central dashboard. C++ microcontroller firmware for low-latency response.</p>
+          <div class="str"><span class="stag">C++</span><span class="stag">IoT</span><span class="stag">Real-Time DB</span></div>
+          <div class="pa"><button class="gb" onclick="tGal(this)">🖼 Gallery</button></div>
+          <div class="cb"><div class="gg">
+            <img src="https://i.ibb.co/KptKf4Dk/5.jpg" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/pr1hrYxq/4.jpg" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/39h8dw3L/2.jpg" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/VG7DQLY/3.jpg" loading="lazy" alt=""/>
+          </div></div>
+        </div>
+      </div>
 
-• MCA — Master of Computer Applications
-  DR MGR Educational And Research University, Chennai
-  2025 – 2027 | Currently Pursuing
+      <div class="pc">
+        <div class="pb2" style="background:linear-gradient(90deg,#a78bfa,#f472b6)"></div>
+        <div class="pbd">
+          <div class="pn">07</div><div class="ptit">Excel → Power BI Converter</div>
+          <p class="pdsc">Automates the transformation of Excel data into interactive Power BI dashboards — data cleaning, modelling, and visualisation in one pipeline.</p>
+          <div class="str"><span class="stag">Excel</span><span class="stag">Power BI</span></div>
+          <div class="pa">
+            <a href="https://fabian-william.github.io/excel-to-power-bi/" target="_blank" class="pl">Live Demo →</a>
+            <button class="gb" onclick="tGal(this)">🖼 Gallery</button>
+          </div>
+          <div class="cb"><div class="gg">
+            <img src="https://i.ibb.co/NnxyR47C/Screenshot-2025-06-16-122643.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/XrYt1gwf/Screenshot-2025-06-16-122657.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/S43Rm4F3/Screenshot-2025-06-16-123114.png" loading="lazy" alt=""/>
+            <img src="https://i.ibb.co/20zJ5DWX/Screenshot-2025-06-16-122622.png" loading="lazy" alt=""/>
+          </div></div>
+        </div>
+      </div>
 
-• B.Sc in Computer Science
-  DR MGR Educational And Research University, Chennai
-  2022 – 2025 | Completed ✅
+      <!-- 08 JARVIS Mark 1 -->
+      <div class="pc">
+        <div class="pb2" style="background:linear-gradient(90deg,#a78bfa,#34d399)"></div>
+        <div class="pbd">
+          <div class="pn">08 &nbsp;·&nbsp; 🔥 IN DEVELOPMENT</div>
+          <div class="ptit">JARVIS Mark 1 — AI Assistant</div>
+          <p class="pdsc">A locally-running, voice-powered AI assistant with multi-core routing — inspired by Iron Man's JARVIS. Routes queries to specialist LLMs (Llama 3.2 for chat, Qwen 2.5 for code). Fully offline via Ollama.</p>
+          <div class="str">
+            <span class="stag">Python</span><span class="stag">Ollama</span><span class="stag">Llama 3.2</span><span class="stag">Qwen 2.5</span><span class="stag">Voice AI</span>
+          </div>
+          <div class="pa">
+            <a href="https://github.com/Fabian-william/jarvis" target="_blank" class="pl">GitHub Repo →</a>
+          </div>
+          <div style="margin-top:.85rem;padding:.55rem .8rem;background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);border-radius:8px;font-size:.74rem;color:var(--a2);line-height:1.5;">
+            ⚡ Actively in development — new features added regularly. This is just Mark 1.
+          </div>
+        </div>
+      </div>
 
-Strong academic foundation paired with 7 real-world projects — a rare combination at entry level.`,
+        </div>
+  </div>
+</section>
+<div class="dv"></div>
 
-      /* ── SKILLS ── */
-      skills:`⚡ Fabian's Technical Skills:
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="con">
+    <div class="slb">06 / Certifications</div>
+    <h2 class="st">Credentials</h2>
+    <p class="sd">Click any card to reveal the certificate.</p>
+    <div class="cg">
+      <div class="cc" onclick="tCert(this)">
+        <span class="ci2">🤖</span><span class="cn">Responsible AI with Google Cloud</span>
+        <span class="cis">Simplilearn · 2025</span><span class="ch">Click to view ↓</span>
+        <div class="cib"><img src="https://i.ibb.co/TDYThSYn/Whats-App-Image-2025-06-24-at-12-25-31-e19ac9b7.jpg" loading="lazy" alt=""/></div>
+      </div>
+      <div class="cc" onclick="tCert(this)">
+        <span class="ci2">✍️</span><span class="cn">Introduction to Prompt Engineering</span>
+        <span class="cis">Simplilearn · 2025</span><span class="ch">Click to view ↓</span>
+        <div class="cib"><img src="https://i.ibb.co/20T8YvgK/Whats-App-Image-2025-06-24-at-12-25-32-994ad6ad.jpg" loading="lazy" alt=""/></div>
+      </div>
+      <div class="cc" onclick="tCert(this)">
+        <span class="ci2">🐍</span><span class="cn">Python for Beginners</span>
+        <span class="cis">Simplilearn · 2024</span><span class="ch">Click to view ↓</span>
+        <div class="cib"><img src="https://i.ibb.co/x9WYP0N/1.jpg" loading="lazy" alt=""/></div>
+      </div>
+      <div class="cc" onclick="tCert(this)">
+        <span class="ci2">⚙️</span><span class="cn">Advanced C++ Programming</span>
+        <span class="cis">Inheritance, Encapsulation &amp; Polymorphism · 2026</span><span class="ch">Click to view ↓</span>
+        <div class="cib"><img src="https://i.ibb.co/1YRjWDq7/Screenshot-20260224-152418.jpg" loading="lazy" alt=""/></div>
+      </div>
+      <div class="cc" onclick="tCert(this)">
+        <span class="ci2">🔁</span><span class="cn">C++ Logic &amp; Iteration</span>
+        <span class="cis">Loops, Conditionals &amp; Logic Building · 2026</span><span class="ch">Click to view ↓</span>
+        <div class="cib"><img src="https://i.ibb.co/TqLwY9Db/Screenshot-20260224-152437.jpg" loading="lazy" alt=""/></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="dv"></div>
 
-💻 Programming Languages:
-  Python · C · C++ · JavaScript
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="con">
+    <div class="slb fu">07 / Achievements</div>
+    <h2 class="st fu d1">Recognition</h2>
+    <div class="ac fu d2">
+      <div class="abd">🥈</div>
+      <div>
+        <div class="at2">Second Prize — Technical Paper Presentation</div>
+        <div class="am">Technology Day · DR M.G.R. Educational and Research Institute, Chennai · May 29, 2023</div>
+        <div class="ad">Awarded Second Prize at the Technical Paper Presentation on Technology Day, demonstrating strong research, analytical, and public communication skills. Organised by the Department of Computer Science.</div>
+        <img src="https://i.ibb.co/ksn43rWy/6.jpg" alt="Award certificate" class="aimg" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="dv"></div>
 
-🌐 Web Development:
-  HTML5 · CSS3 · JavaScript · Tailwind CSS
+<!-- CONTACT -->
+<section id="contact">
+  <div class="con">
+    <div class="slb fu">08 / Contact</div>
+    <h2 class="st fu d1">Let's Connect</h2>
+    <div class="cw">
+      <div class="fu d2">
+        <a href="mailto:arfabianwilliam@gmail.com" class="citm">
+          <div class="cico">✉️</div>
+          <div><div class="clbl">Email</div><div class="cvl">arfabianwilliam@gmail.com</div></div>
+        </a>
+        <div class="citm" style="cursor:default">
+          <div class="cico">📞</div>
+          <div><div class="clbl">Phone</div><div class="cvl">(+91) 75502-60124</div></div>
+        </div>
+        <div class="citm" style="cursor:default">
+          <div class="cico">📍</div>
+          <div><div class="clbl">Location</div><div class="cvl">Chennai, Tamil Nadu, India</div></div>
+        </div>
+        <a href="https://www.linkedin.com/in/ar-fabian-william/" target="_blank" class="citm">
+          <div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+          <div><div class="clbl">LinkedIn</div><div class="cvl">ar-fabian-william</div></div>
+        </a>
+        <a href="https://github.com/Fabian-william" target="_blank" class="citm">
+          <div class="cico"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.91 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></div>
+          <div><div class="clbl">GitHub</div><div class="cvl">Fabian-william</div></div>
+        </a>
+      </div>
+      <div class="cta fu d3">
+        <h3>Open to New Opportunities</h3>
+        <p>I'm actively looking for entry-level software development roles where I can bring value and continue growing. Whether it's a full-time position, internship, or freelance project — I'd love to hear from you.</p>
+        <a href="mailto:arfabianwilliam@gmail.com" class="btnp">Send Me a Message →</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-🛠️ Tools & Platforms:
-  Git · GitHub · VS Code · PyCharm · Jupyter Notebook · Power BI
+<footer><p>Designed &amp; built by <em>AR Fabian William</em> · Chennai, India · 2025</p></footer>
+<div id="sct" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
-🤖 AI Tools (actively uses daily):
-  ChatGPT · Gemini AI · Cursor AI · Meta AI · Llama AI · Blackbox AI
+<!-- JARVIS side-docked AI agent -->
+<button id="jfab" onclick="JV.toggle()" title="Chat with JARVIS">
+  <div class="jpill">
+    <div class="jiw">
+      <svg class="icb" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.98-3 2.5 2.5 0 0 1-1.32-4.24 3 3 0 0 1 .34-5.58 2.5 2.5 0 0 1 1.96-3.12A2.5 2.5 0 0 1 9.5 2Z"/>
+        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.98-3 2.5 2.5 0 0 0 1.32-4.24 3 3 0 0 0-.34-5.58 2.5 2.5 0 0 0-1.96-3.12A2.5 2.5 0 0 0 14.5 2Z"/>
+      </svg>
+      <svg class="icx" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" style="display:none">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </div>
+    <span>JARVIS AI</span>
+    <div class="jdot"></div>
+  </div>
+</button>
 
-🧠 Soft Skills:
-  Communication · Leadership · Time Management · Adaptability · Problem Solving
+<div id="jwin">
+  <div class="jwh">
+    <div class="jwav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-1.98-3 2.5 2.5 0 0 1-1.32-4.24 3 3 0 0 1 .34-5.58 2.5 2.5 0 0 1 1.96-3.12A2.5 2.5 0 0 1 9.5 2Z"/>
+        <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 1.98-3 2.5 2.5 0 0 0 1.32-4.24 3 3 0 0 0-.34-5.58 2.5 2.5 0 0 0-1.96-3.12A2.5 2.5 0 0 0 14.5 2Z"/>
+      </svg>
+    </div>
+    <div>
+      <div class="jwnm">JARVIS <span class="jaib">AI</span></div>
+      <div class="jwst">Fabian's Personal Assistant</div>
+    </div>
+  </div>
+  <div id="jm"></div>
+  <div id="jchips">
+    <span class="jch" onclick="JV.chip(this)">Who is Fabian?</span>
+    <span class="jch" onclick="JV.chip(this)">His skills</span>
+    <span class="jch" onclick="JV.chip(this)">Projects built</span>
+    <span class="jch" onclick="JV.chip(this)">Open to work?</span>
+    <span class="jch" onclick="JV.chip(this)">Hobbies</span>
+    <span class="jch" onclick="JV.chip(this)">How to hire him?</span>
+  </div>
+  <div class="jir">
+    <input id="jinp" placeholder="Ask JARVIS anything about Fabian..." maxlength="300"
+      onkeydown="if(event.key==='Enter'){event.preventDefault();JV.send()}"/>
+    <button id="jsbtn" onclick="JV.send()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
 
-He's an AI-augmented developer — uses AI tools to code faster, debug smarter, and ship better products. 🚀`,
+<script>
+// ── TYPED.JS ──
+new Typed('#typed',{
+  strings:['Aspiring Software Developer','Python & Web Enthusiast','Creative Problem-Solver','AI-Augmented Developer','Building Innovative Solutions'],
+  typeSpeed:55,backSpeed:30,backDelay:1800,loop:true,smartBackspace:true
+});
 
-      python:`🐍 Python is Fabian's strongest language.
+// ── SCROLL ANIMATIONS ──
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')})
+},{threshold:0,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.fu').forEach(e=>obs.observe(e));
+setTimeout(()=>document.querySelectorAll('.fu:not(.v)').forEach(e=>e.classList.add('v')),1500);
 
-Real-world use:
-• Internship at Top Tech Developers — automated tasks, boosted efficiency 40%
-• Built ArthaSūtra™ — a full FinTech financial planning app in Python
-• Holds Python for Beginners certification (Simplilearn 2024)
+// ── NAV ACTIVE + SCROLL TOP ──
+const secs=document.querySelectorAll('section[id]');
+const nls=document.querySelectorAll('.na');
+window.addEventListener('scroll',()=>{
+  let c='';
+  secs.forEach(s=>{if(scrollY>=s.offsetTop-130)c=s.id});
+  nls.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+c));
+  document.getElementById('sct').classList.toggle('v',scrollY>400);
+});
+document.getElementById('mbtn').addEventListener('click',()=>document.getElementById('nl').classList.toggle('show'));
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));
+  if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});document.getElementById('nl').classList.remove('show')}
+}));
 
-He's comfortable with: scripting, automation, OOP in Python, data processing, and building CLI tools.`,
+// ── IMAGE PROTECTION ──
+document.addEventListener('contextmenu',e=>{if(e.target.tagName==='IMG')e.preventDefault()});
+document.addEventListener('dragstart',e=>{if(e.target.tagName==='IMG')e.preventDefault()});
+document.addEventListener('keydown',e=>{
+  if(e.key==='PrintScreen'){e.preventDefault();navigator.clipboard?.writeText('')}
+  if(e.metaKey&&e.shiftKey&&['3','4','5'].includes(e.key))e.preventDefault();
+  if(e.ctrlKey&&e.shiftKey&&e.key.toLowerCase()==='s')e.preventDefault();
+});
 
-      cpp:`⚙️ C++ Skills:
+// ── TOGGLES ──
+function tBox(b){const x=b.nextElementSibling;const o=x.classList.toggle('on');b.textContent=o?'✕ Hide Certificate':'📄 View Certificate'}
+function tGal(b){const x=b.closest('.pbd').querySelector('.cb');const o=x.classList.toggle('on');b.textContent=o?'✕ Close':'🖼 Gallery'}
+function tCert(c){const x=c.querySelector('.cib');const h=c.querySelector('.ch');const o=x.classList.toggle('on');h.textContent=o?'Click to hide ↑':'Click to view ↓'}
 
-• Built the IoT Smart Parking System — C++ microcontroller firmware for real-time sensor processing
-• Holds TWO C++ certifications:
-  → Advanced C++ (Inheritance, Encapsulation & Polymorphism) — 2026
-  → C++ Logic & Iteration (Loops, Conditionals & Logic) — 2026
+// ══════════════════════════════════════════
+//  JARVIS — Fully Offline AI Assistant
+//  No API · No CORS · Works on GitHub Pages
+// ══════════════════════════════════════════
+const JV=(function(){
+  let open=false,greeted=false;
 
-Strong OOP foundation — classes, inheritance, polymorphism, encapsulation, abstraction. Comfortable with performance-critical code.`,
+  // ── KNOWLEDGE BASE ──
+  const K={
+    who:`AR Fabian William is a passionate software developer from Chennai, Tamil Nadu, India 🇮🇳
 
-      javascript:`🌐 JavaScript Skills:
+Education:
+• MCA — DR MGR University, Chennai (2025–2027) — Currently Pursuing
+• B.Sc Computer Science — DR MGR University (2022–2025) — Completed ✅
 
-Built 5 complete web projects using vanilla JS:
-• AI Navigator — directory with dynamic filtering
-• Resume.io — form-driven resume generator
-• Scientific Calculator — advanced math + history
-• Classic Snake Game — Canvas API game engine
-• Excel → Power BI Converter — data UI
+Personality: Creative & detail-oriented — builds things that work AND feel great
+Languages: English · Tamil · Malayalam
+📧 arfabianwilliam@gmail.com · 📞 (+91) 75502-60124`,
 
-Comfortable with: DOM manipulation, event handling, Canvas API, fetch, responsive UIs, and local state management.`,
+    skills:`⚡ Fabian's Technical Skills:
 
-      aitools:`🤖 Fabian is an AI-native developer — he integrates AI tools into his daily workflow:
+💻 Languages: Python · C · C++ · JavaScript
+🌐 Web: HTML5 · CSS3 · JavaScript · Tailwind CSS
+🛠️ Tools: Git · GitHub · VS Code · PyCharm · Jupyter · Power BI
+🤖 AI Tools: ChatGPT · Gemini AI · Cursor AI · Meta AI · Llama AI · Blackbox AI
+🧠 Soft Skills: Communication · Leadership · Time Mgmt · Adaptability · Problem Solving`,
 
-• Cursor AI → AI-assisted code editing (writes faster, fewer bugs)
-• ChatGPT & Gemini AI → Research, architecture decisions, debugging ideas
-• Blackbox AI → Code generation and quick fixes
-• Meta AI & Llama AI → Exploration and prototyping
+    aiSkills:`🤖 Fabian is an AI-native developer:
 
-This makes him significantly more productive than a traditional developer. He ships faster, catches issues earlier, and stays current with the AI ecosystem. In today's market, this is a major professional advantage. 💡`,
+Daily AI Tools:
+• Cursor AI — AI-powered code editor for faster, cleaner code
+• ChatGPT & Gemini AI — Architecture, research, debugging
+• Blackbox AI — Rapid code generation
+• Meta AI & Llama AI — LLM experimentation
 
-      /* ── EXPERIENCE ── */
-      experience:`💼 Professional Experience:
+AI Certifications:
+• Responsible AI with Google Cloud — Simplilearn (2025)
+• Introduction to Prompt Engineering — Simplilearn (2025)
 
-Python Programming Intern
+Ships 2–3× faster than non-AI developers.
+Built JARVIS (this assistant) as a live demonstration of AI integration. 🚀`,
+
+    exp:`💼 Python Programming Intern
 Top Tech Developers, Chennai | 2024
 
-What he did:
-▸ Automated repetitive business tasks using Python scripts
-▸ Led code review and refactoring sessions
-▸ Collaborated across cross-functional teams
+▸ Automated repetitive tasks → 40% team efficiency boost
+▸ Code reviews & refactoring → 25% maintainability improvement
+▸ Enhanced cross-functional collaboration`,
 
-Measurable results:
-✅ 40% boost in team efficiency through automation
-✅ 25% improvement in code maintainability
-✅ Smoother project integration across teams
-
-This wasn't a passive internship — Fabian delivered real, measurable business impact from day one. 💪`,
-
-      /* ── PROJECTS OVERVIEW ── */
-      projects:`🛠️ Fabian has built 7 real-world projects:
+    projects:`🛠️ 8 Projects (7 deployed + 1 in active development):
 
 1️⃣ AI Navigator — Web directory for AI & dev tools
 2️⃣ Resume.io — Professional resume builder
 3️⃣ Scientific Calculator — Advanced math calculator
 4️⃣ Classic Snake Game — Canvas-based browser game
 5️⃣ ArthaSūtra™ — Python FinTech financial planner
-6️⃣ IoT Smart Parking System — C++ + real-time sensors
-7️⃣ Excel → Power BI Converter — Dashboard automation tool
+6️⃣ IoT Smart Parking System — C++ + ultrasonic sensors
+7️⃣ Excel → Power BI Converter — Dashboard automation
+8️⃣ JARVIS Mark 1 — Multi-core AI assistant (Python + Ollama) 🔥
 
-Most have live demos on GitHub Pages! Ask me about any specific project for deep details. 👆`,
+Ask me about any specific project for full details!`,
 
-      /* ── PROJECT DEEP DIVES ── */
-      aiNavigator:`🤖 Project 1: AI Navigator
-━━━━━━━━━━━━━━━━━━━━━━━━━
-What it is: A comprehensive web directory to discover AI platforms, productivity tools, business software, and dev resources — all categorised and searchable.
-
-Motivation: Fabian found it frustrating to keep track of the growing number of AI tools. He built a centralised directory so developers and professionals could find the right tool quickly.
-
-Tech: HTML5 · CSS3 · JavaScript
-Live: fabian-william.github.io/AI-NAVIGATOR/
-
-Key features:
-• Categorised tool listings
-• Clean, fast, filterable UI
-• Responsive across all devices
-
-What he learned: Information architecture, UI design for large datasets, responsive filtering logic.`,
-
-      resumeIo:`📄 Project 2: Resume.io
-━━━━━━━━━━━━━━━━━━━━━━━━━
-What it is: A web app that lets users fill in their details and instantly generate a professional, downloadable resume.
-
-Motivation: Fabian was frustrated with complex resume builders that required accounts and subscriptions. He built a simple, fast, free alternative.
-
-Tech: HTML5 · CSS3 · JavaScript
-Live: fabian-william.github.io/Resume.io/
-
-Key features:
-• Form-based input for all resume sections
-• Real-time preview
-• Clean, professional output layout
-• No account required
-
-What he learned: Form handling, dynamic DOM rendering, print-friendly CSS layouts.`,
-
-      calculator:`🔢 Project 3: Scientific Calculator
-━━━━━━━━━━━━━━━━━━━━━━━━━
-What it is: A fully functional scientific calculator with advanced mathematical operations, calculation history, and a polished mobile-friendly UI.
-
-Motivation: Most browser calculators are basic. Fabian wanted to build one that looked great and handled complex functions elegantly.
-
-Tech: HTML5 · CSS3 · JavaScript
-Live: fabian-william.github.io/scientific-calculator/
-
-Key features:
-• Trigonometric, logarithmic, and exponential functions
-• Calculation history panel
-• Keyboard support
-• Fully responsive on mobile
-
-What he learned: Mathematical expression parsing, keyboard event handling, state management in vanilla JS.`,
-
-      snakeGame:`🐍 Project 4: Classic Snake Game
-━━━━━━━━━━━━━━━━━━━━━━━━━
-What it is: A smooth, polished browser-based Snake game — complete with score tracking, difficulty levels, and a game-over screen.
-
-Motivation: Fabian loves gaming and wanted to learn the HTML5 Canvas API. He chose Snake because the logic is complex enough to be educational but familiar enough to be fun.
-
-Tech: HTML5 · CSS3 · JavaScript · Canvas API
-Live: fabian-william.github.io/snake-game/
-
-Key features:
-• Smooth 60fps Canvas rendering
-• Increasing difficulty as score grows
-• Score tracking and high score
-• Polished game-over screen
-
-What he learned: Canvas API, game loop architecture, collision detection, requestAnimationFrame.`,
-
-      arthasutra:`💰 Project 5: ArthaSūtra™ Financial Planner
-━━━━━━━━━━━━━━━━━━━━━━━━━
-What it is: A Python FinTech app that calculates SIP returns, retirement corpus, and tax-saving opportunities — specifically designed for the Indian middle class.
-
-Motivation: Fabian built this for his own family. He saw that most financial planning tools were either too complex or designed for Western markets. He built ArthaSūtra to give Indian families clear, actionable 20–30 year financial projections.
-
-Tech: Python · FinTech logic
-Live: fabian-william.github.io/arthasutra/
-
-Key features:
-• SIP (Systematic Investment Plan) return calculator
-• Retirement corpus estimator
-• Tax-saving opportunity analyzer (80C, etc.)
-• India-specific financial logic
-
-What he learned: Financial mathematics, Python application architecture, building for real-world user needs.
-
-This is Fabian's most personally meaningful project — it was built to help real people, not just as a portfolio piece. ❤️`,
-
-      iotParking:`🅿️ Project 6: IoT Smart Parking System
-━━━━━━━━━━━━━━━━━━━━━━━━━
-What it is: A real-time IoT system that detects parking slot occupancy using ultrasonic sensors and displays availability on a live dashboard.
-
-Motivation: Fabian observed wasted time searching for parking spots in Chennai's busy areas. He designed a smart system to solve this real urban problem.
-
-Tech: C++ · IoT · Real-Time Database · Ultrasonic Sensors
-
-Architecture:
-🔧 Hardware: Ultrasonic sensors at each slot
-💻 Firmware: C++ code on microcontroller reads sensor data
-📡 Data layer: Real-time DB syncs sensor state
-📊 Dashboard: Live slot availability display
-
-Challenges solved:
-• Sensor interference → fixed with C++ debounce filtering
-• Low-latency requirement → optimized C++ loops
-• Hardware-software state sync → reliable real-time architecture
-
-What he learned: Embedded C++ programming, IoT system design, hardware debugging, real-time data pipelines.
-
-This project is proof Fabian can bridge hardware and software — a rare skill at entry level. 🔌`,
-
-      powerBI:`📊 Project 7: Excel → Power BI Converter
-━━━━━━━━━━━━━━━━━━━━━━━━━
-What it is: A tool that automates the transformation of Excel data into interactive Power BI dashboards — handling data cleaning, modeling, and visual setup.
-
-Motivation: Fabian saw how much time teams waste manually re-creating dashboards from spreadsheets every month. He automated the process.
-
-Tech: Microsoft Excel · Power BI
-Live: fabian-william.github.io/excel-to-power-bi/
-
-Key features:
-• Automated data cleaning from raw Excel files
-• Data modeling for Power BI compatibility
-• Interactive dashboard output
-• Reusable pipeline for recurring reports
-
-What he learned: Data transformation pipelines, Power BI data modeling, business intelligence reporting.`,
-
-      /* ── CERTIFICATIONS ── */
-      certs:`🏅 Fabian's 5 Certifications:
+    certs:`🏅 5 Certifications:
 
 1. 🤖 Responsible AI with Google Cloud — Simplilearn (2025)
-   Ethics, bias, and fairness in AI systems
-
 2. ✍️ Introduction to Prompt Engineering — Simplilearn (2025)
-   Crafting effective prompts for LLMs
-
 3. 🐍 Python for Beginners — Simplilearn (2024)
-   Core Python programming fundamentals
+4. ⚙️ Advanced C++ Programming — OOP Concepts (2026)
+5. 🔁 C++ Logic & Iteration — Loops & Conditionals (2026)`,
 
-4. ⚙️ Advanced C++ Programming — (2026)
-   Inheritance, Encapsulation & Polymorphism
+    jarvis:`🤖 JARVIS Mark 1 — Multi-Core AI Assistant
 
-5. 🔁 C++ Logic & Iteration — (2026)
-   Loops, Conditionals & Logic Building
+What it is: A locally-running, voice-powered AI assistant with a custom multi-core routing architecture. Inspired by Tony Stark's JARVIS from Iron Man.
 
-These certifications span AI ethics, prompt engineering, Python, and C++ — showing both breadth and depth. You can see the actual certificates in the Credentials section of this portfolio!`,
+Why named JARVIS: Fabian is a huge Iron Man fan — JARVIS has always been his vision of an ideal AI. This project is his personal tribute to that vision, built with real technology.
 
-      /* ── ACHIEVEMENTS ── */
-      achievement:`🥈 Achievement: Second Prize — Technical Paper Presentation
+Status: 🔥 Actively in development — new features being added continuously. This is just Mark 1!
 
-Event: Technology Day
-Organizer: Department of Computer Science, DR M.G.R. Educational and Research Institute, Chennai
-Date: May 29, 2023
+Stack: Python · Ollama · Llama 3.2 · Qwen 2.5 · SpeechRecognition · Win32 SAPI TTS
 
-Fabian researched, wrote, and presented a technical paper that won second prize in a competitive institutional event.
+Architecture:
+• Router: Keyword-based intent detection routes queries to the right LLM
+• Chat Core: Llama 3.2 (1B) — fast, conversational responses
+• Coder Core: Qwen 2.5 (3B) — optimised for code generation
+• Cloud Core: GPT-OSS 120B — for complex research and analysis
+• Tool Layer: Weather API, web search, file save (no LLM needed)
 
-What this shows:
-✅ Ability to research a complex technical topic deeply
-✅ Skill in presenting technical ideas clearly to an audience
-✅ Confidence and communication under pressure
-✅ Recognition from academic peers and faculty`,
+Key Features:
+• Voice input via microphone + voice output via Windows SAPI TTS
+• Saves generated code directly to your Desktop
+• Real-time weather based on IP location
+• Web search via browser
+• Runs 100% offline on local hardware via Ollama
 
-      /* ── OPEN TO WORK ── */
-      openToWork:`✅ Yes! Fabian is actively open to:
+GitHub: github.com/Fabian-william/jarvis-mark1
+New features being added — this is just the beginning! 🚀`,
 
-• Full-time entry-level software developer roles
-• Python Developer / Web Developer / Software Engineer Trainee
-• Internships in any relevant domain
-• Freelance or contract projects
-• Remote, hybrid, or on-site roles in Chennai
+    award:`🥈 Second Prize — Technical Paper Presentation
+Technology Day · DR M.G.R. Institute, Chennai · May 29, 2023
 
-💰 Expected salary: Open to discuss based on role and company
-📅 Notice period: Flexible / negotiable — can discuss joining timeline
-🏢 Dream companies: Any company that values talent and growth — from startups to established tech firms
-💡 What he values most: A team that ships fast and learns fast, with freedom to build and experiment
+Demonstrates research depth, analytical thinking, and communication under competitive pressure.`,
 
-He's not just looking for a job — he's looking for a place to grow and make a real impact. 🚀`,
+    openToWork:`✅ Yes! Fabian is actively looking for:
 
-      /* ── CONTACT ── */
-      contact:`📬 How to reach Fabian:
+• Full-time entry-level developer roles
+• Internships (Python, Web, C++, IoT)
+• Freelance / contract projects
+• Remote, hybrid, or on-site in Chennai
 
-✉️ Email: arfabianwilliam@gmail.com
-📞 Phone: (+91) 75502-60124
-💼 LinkedIn: linkedin.com/in/ar-fabian-william/
-💻 GitHub: github.com/Fabian-william
-📍 Location: Chennai, Tamil Nadu, India
+💰 Salary: Open to discuss based on role
+📅 Joining: Flexible / negotiable
+💡 Values most: A team that ships fast and learns fast`,
 
-Best way for professional inquiries: Email or LinkedIn.
-He responds promptly and is enthusiastic about new opportunities! 🙌`,
+    contact:`📬 Contact Fabian:
 
-      /* ── WHY HIRE ── */
-      whyHire:`💡 Why hire AR Fabian William?
+✉️ arfabianwilliam@gmail.com
+📞 (+91) 75502-60124
+💼 linkedin.com/in/ar-fabian-william/
+💻 github.com/Fabian-william
+📍 Chennai, Tamil Nadu, India`,
 
-🛠️ 7 real projects — not just tutorials, but deployed working products
-💼 Internship with proven ROI (40% efficiency boost, 25% better maintainability)
-🤖 AI-native developer — ships faster using Cursor AI, ChatGPT, and more
-🎓 MCA in progress — continuously leveling up his academic knowledge
-🏅 5 certifications including AI, Python, and C++
+    whyHire:`💡 Why hire AR Fabian William?
+
+🎨 Creative & detail-oriented — polished work above entry-level expectation
+🛠️ 7 deployed projects across Python, web, IoT, FinTech & data
+💼 Proven internship: 40% efficiency ↑ and 25% maintainability ↑
+🤖 AI-native developer — ships faster and smarter
+🎓 MCA in progress — continuously levelling up
+🏅 5 certifications in AI, Python & C++
 🥈 Award-winning technical presenter
-🌐 Multilingual — English, Tamil, Malayalam
-❤️ Builds for real people — ArthaSūtra was built for his own family's financial needs
-🚀 Fast learner who takes ownership without needing to be hand-held
+🌐 English · Tamil · Malayalam
+❤️ Built ArthaSūtra for his own family — codes to solve real problems
 
-Most freshers have textbook knowledge. Fabian has shipped working products that solve real problems. That's the difference.`,
+"Most freshers have textbook knowledge. Fabian ships working products." 🚀`,
 
-      /* ── INTERVIEW ANSWERS ── */
-      tellMeAboutYourself:`Here's Fabian's polished self-introduction for interviews:
+    hobbies:`Outside coding, Fabian enjoys:
 
-"I'm AR Fabian William — a Computer Science graduate from DR MGR University, Chennai, currently pursuing my MCA.
+🎵 Music — wide variety of genres to recharge
+🎮 Gaming — loves logic & design (even built his own Snake Game!)
+📺 Tech videos — stays sharp through YouTube & developer content
+🌍 Travelling & exploring — curious about new places
+🍿 Movies & series — especially sci-fi and thrillers
 
-I specialise in Python and web development, and I've built 7 real-world projects ranging from a FinTech financial planner to an IoT parking system. During my internship at Top Tech Developers in 2024, I automated workflows using Python and delivered a 40% efficiency improvement for the team.
+Fun fact: His love of gaming directly inspired the Classic Snake Game project! 🐍`,
 
-I'm an AI-augmented developer — I actively use tools like Cursor AI and ChatGPT to code faster and smarter. I hold 5 certifications in AI, Python, and C++, and I won Second Prize at a Technical Paper Presentation in 2023.
+    personality:`Fabian is creative and detail-oriented ✨
 
-I'm now looking for an entry-level developer role where I can contribute real value, keep learning, and grow with a great team." 🎤`,
+He brings a designer's eye and an engineer's mind to every project. He notices what others skip — the edge case, the UX micro-detail, the code structure that makes maintenance easier.
 
-      goals:`📌 Fabian's Career Goals:
+He doesn't just build things that work — he builds things that feel right.
 
-Short-term (0–2 years):
-• Land a meaningful entry-level software development role
-• Complete MCA with strong academic performance
-• Contribute to real production codebases
-• Deepen backend skills (Django / Node.js) and cloud (AWS/Azure)
-• Keep building personal projects
+Colleagues describe him as meticulous, reliable, and genuinely passionate about quality.`,
 
-Long-term (3–5 years):
-• Become a well-rounded software engineer
-• Work on high-impact products used by thousands of people
-• Specialize in AI-integrated applications or FinTech
-• Eventually mentor junior developers
+    intro:`Interview self-introduction:
 
-His dream company type: One that values talent over pedigree, moves fast, and builds things that matter. 🌟`,
+"I'm AR Fabian William — CS graduate from DR MGR University, Chennai, currently pursuing my MCA.
 
-      weakness:`Fabian's honest answer on weaknesses:
+I specialise in Python and web development. I've built 7 real-world deployed projects, from a FinTech planner to an IoT parking system. At my 2024 internship at Top Tech Developers, I automated workflows that delivered 40% efficiency gains.
 
-"I'm still building depth in backend frameworks like Django and Node.js — my current web projects are primarily frontend-heavy. I'm also relatively new to cloud platforms like AWS and Azure.
+I'm creative and detail-oriented — I care about how things work AND how they feel. I'm also an AI-augmented developer, using tools like Cursor AI to ship faster and smarter.
 
-However, I'm actively closing these gaps through my MCA curriculum and self-learning. I've found that I pick up new technologies quickly once I start building with them — that's how I learned IoT, FinTech logic, and Canvas API.
+5 certifications in AI, Python & C++. Second Prize in a technical paper presentation. I'm looking for an entry-level role to contribute real value and grow." 🎤`
+  };
 
-Knowing what you don't know yet is the first step to fixing it — and I fix things fast." 💪`,
-
-      challenge:`A real challenge Fabian overcame:
-
-During the IoT Smart Parking System project:
-
-"The ultrasonic sensor kept giving erratic readings — detecting a car when nothing was there. I spent hours thinking it was a code bug, reading through every line of my C++ logic.
-
-Eventually I realized it wasn't a code problem at all — the sensor was picking up reflections from a nearby wall. The fix was two-part: I added a software debounce filter in the C++ firmware AND repositioned the sensor physically.
-
-It taught me one of the most important engineering lessons: not all bugs are in your code. Sometimes the system around your code is the problem. You need to think at the system level, not just the code level." 🧠`,
-
-      salary:`💰 Salary Expectations:
-
-Fabian is open to discussing compensation based on the role and company. He's flexible and prioritizes:
-
-1. The right opportunity to learn and grow
-2. A team and culture that values his contribution
-3. Fair compensation commensurate with his skills and projects
-
-For specific numbers, please reach out directly:
-✉️ arfabianwilliam@gmail.com
-💼 linkedin.com/in/ar-fabian-william/`,
-
-      joining:`📅 Joining / Availability:
-
-Fabian is flexible on joining timeline. He's currently pursuing his MCA but can discuss availability based on the role requirements.
-
-For specific joining dates, please reach out:
-✉️ arfabianwilliam@gmail.com
-📞 (+91) 75502-60124`,
-
-      teamwork:`🤝 Fabian on teamwork (from his internship experience):
-
-"At Top Tech Developers, I worked closely with developers, team leads, and non-technical stakeholders. I learned quickly that great code alone isn't enough — you need to communicate clearly, adapt your explanation for different audiences, and give feedback that helps rather than hurts.
-
-I ran code review sessions where I both gave and received constructive feedback. That experience taught me how to improve code collaboratively rather than defensively.
-
-My favourite thing about teams: every person brings a different perspective that makes the final product better than any one person could have built alone." 🤝`
-    };
-
-    /* ═══════════════════════════════════════════════════
-       INTENT MATCHING ENGINE
-    ═══════════════════════════════════════════════════ */
-    function getReply(raw) {
-      const q = raw.toLowerCase().trim();
-      const has = (words) => words.some(w => q.includes(w));
-
-      // Greetings
-      if (has(['hello','hi ','hey','good morning','good afternoon','good evening','howdy','sup','whats up',"what's up"]))
-        return "Hello! 👋 Great to have you here. I'm Fabian's personal AI assistant — I know everything about him. Ask me about his skills, projects, experience, personality, or how to hire him. What would you like to know?";
-
-      if (has(['how are you','you doing','you good','how r u']))
-        return "I'm doing great, thanks! 😄 Ready to tell you all about Fabian. What would you like to know?";
-
-      if (has(['who are you','what are you','about this bot','about this assistant','what is this chat']))
-        return "I'm an AI assistant built into Fabian's portfolio 🤖 I know everything about him — his background, projects, skills, experience, personality, hobbies, and career goals. Ask me anything and I'll give you a detailed, honest answer!";
-
-      // Personal / Who is Fabian
-      if (has(['who is fabian','about fabian','tell me about fabian','introduce fabian','background','overview','summary','profile','introduce yourself','tell me about yourself','about yourself','about him']))
-        return KB.who;
-
-      if (has(['personality','character','person','describe him','what kind of person','type of person','trait','attitude','mindset']))
-        return KB.personality;
-
-      if (has(['hobby','hobbies','interest','interests','outside coding','free time','fun','leisure','spare time','what does he do for fun','gaming','music','travel','movies','watch']))
-        return KB.hobbies;
-
-      if (has(['language','speak','tamil','english','malayalam','multilingual','tongue']))
-        return "Fabian is multilingual 🌐\n\n• English — Professional proficiency\n• Tamil — Native speaker\n• Malayalam — Conversational\n\nThis makes him a great communicator in diverse, multicultural teams across India.";
-
-      if (has(['location','where','city','place','from','based','live','lives','stay','address','chennai']))
-        return "📍 Fabian is based in Chennai, Tamil Nadu, India. He's open to on-site roles in Chennai, remote opportunities, or hybrid arrangements. 🌍";
-
-      // Education
-      if (has(['education','study','studied','degree','university','college','academic','qualification','mca','bsc','b.sc','master','bachelor','course','pursuing','school']))
-        return KB.education;
-
-      // Skills
-      if (has(['skill','skills','tech stack','technology','technologies','expertise','good at','capable','proficient','what can he do','abilities','technical','know','tools','stack']))
-        return KB.skills;
-
-      if (has(['python','py','scripting','automation']))
-        return KB.python;
-
-      if (has(['c++','cpp','c plus','oops','oop','object oriented','inheritance','encapsulation','polymorphism','abstraction']))
-        return KB.cpp + "\n\n" + "OOP Concepts Fabian knows:\n🔵 Encapsulation — Bundling data & methods, hiding internal state\n🟢 Inheritance — Creating child classes from parent classes\n🟡 Polymorphism — Same interface, different behavior\n🔴 Abstraction — Hiding complexity, exposing only what's needed";
-
-      if (has(['javascript','js','canvas','frontend','front end']))
-        return KB.javascript;
-
-      if (has(['ai tool','chatgpt','gemini','cursor','llama','blackbox','meta ai','ai-native','ai native','ai augmented']))
-        return KB.aitools;
-
-      if (has(['power bi','powerbi','excel','dashboard','analytics','visualization','data','bi tool']))
-        return KB.powerBI;
-
-      if (has(['git','github','version control','commit','branch','repository','repo','push','pull']))
-        return "Fabian uses Git & GitHub as core parts of his workflow 🔄\n\nAll 7 projects are version-controlled and hosted on GitHub Pages.\nProfile: github.com/Fabian-william\n\nHe understands: commits, branching, merging, pull requests, and deploying via GitHub Pages.";
-
-      if (has(['html','css','web','website','responsive','tailwind','flexbox','grid','mobile friendly']))
-        return "Fabian builds all his web projects with clean HTML5, CSS3, and a strong eye for responsive design 🎨\n\n• Uses CSS flexbox and grid for fluid layouts\n• Media queries for mobile/tablet/desktop breakpoints\n• Tailwind CSS for utility-first styling\n• All 5 web projects are fully responsive\n\nHis portfolio itself is a great example — try it on mobile!";
-
-      // Experience
-      if (has(['experience','intern','internship','work','worked','job','professional','company','top tech','industry','career history']))
-        return KB.experience;
-
-      if (has(['fresher','fresh graduate','entry level','junior','no experience','new to work']))
-        return "Fabian is an entry-level developer — but far from inexperienced 💪\n\n✅ 1 real internship with measurable results (40% efficiency boost)\n✅ 7 completed, deployed projects\n✅ 5 certifications\n✅ 1 award\n✅ MCA in progress\n\nHe delivers real value from day one. Most freshers bring textbook knowledge — Fabian brings working products.";
-
-      // Projects
-      if (has(['project','projects','built','build','made','created','work sample','demo','what has he','portfolio work','all project'])) {
-        if (has(['ai navigator','navigator'])) return KB.aiNavigator;
-        if (has(['resume','resume.io','cv builder'])) return KB.resumeIo;
-        if (has(['calculator','scientific','math calculator'])) return KB.calculator;
-        if (has(['snake','game','snake game'])) return KB.snakeGame;
-        if (has(['arthasutra','artha','financial','fintech','sip','retirement','tax','investment'])) return KB.arthasutra;
-        if (has(['iot','parking','smart parking','sensor','ultrasonic','hardware','embedded','arduino'])) return KB.iotParking;
-        if (has(['excel','power bi','converter','spreadsheet'])) return KB.powerBI;
-        return KB.projects;
+  // ── REPLY ENGINE ──
+  function reply(raw){
+    const q=raw.toLowerCase().trim();
+    const has=words=>words.some(w=>q.includes(w));
+// --- OPTIMIZED JARVIS LOGIC ---
+  function reply(t) {
+    const p = t.toLowerCase();
+    
+    // 1. PROJECT LOGIC: LIST FIRST, THEN SPECIFICS
+    if (p.includes('project') || p.includes('work')) {
+      // If user asks about a specific project
+      if (p.includes('perception') || p.includes('jarvis')) {
+        return "Perception AI (JARVIS) is one of my standout projects! 🤖\n\nIt's a Python-based voice assistant using speech recognition and Windows SAPI. I built it to automate tasks and provide a voice-controlled interface for my development environment.";
       }
-
-      // Individual project triggers
-      if (has(['ai navigator','navigator'])) return KB.aiNavigator;
-      if (has(['resume.io','resume builder','resume app'])) return KB.resumeIo;
-      if (has(['scientific calculator','calculator'])) return KB.calculator;
-      if (has(['snake game','snake','canvas game'])) return KB.snakeGame;
-      if (has(['arthasutra','artha','financial planner','fintech app','sip calculator'])) return KB.arthasutra;
-      if (has(['iot','smart parking','parking system','ultrasonic sensor'])) return KB.iotParking;
-      if (has(['power bi converter','excel converter','dashboard tool'])) return KB.powerBI;
-
-      // Certifications
-      if (has(['certif','certification','cert','credential','course','simplilearn','google cloud','trained','qualify']))
-        return KB.certs;
-
-      // Achievements
-      if (has(['achievement','award','prize','win','won','recognition','paper','presentation','competition','accolades','accomplishment']))
-        return KB.achievement;
-
-      // Open to work / hiring
-      if (has(['open to work','available','looking for job','hire','hiring','opportunity','seeking','job hunt','employment','position','vacancy','role','recruit','candidate']))
-        return KB.openToWork;
-
-      if (has(['salary','ctc','package','expect','pay','compensation','cost','lpa','lakh']))
-        return KB.salary;
-
-      if (has(['notice period','join','joining','start','when can','availability']))
-        return KB.joining;
-
-      if (has(['remote','wfh','work from home','onsite','on-site','hybrid','relocate']))
-        return "Fabian is flexible 🌍\n\n• On-site: Open to roles in Chennai\n• Remote / WFH: Absolutely open\n• Hybrid: Works great for him\n\nLocation or work mode won't be a blocker for the right opportunity!";
-
-      // Contact
-      if (has(['contact','reach','email','phone','linkedin','github','social','connect','message','get in touch','talk','call']))
-        return KB.contact;
-
-      // Why hire
-      if (has(['why hire','why should','reason to hire','what makes him','stand out','unique','value','benefit','advantage','different from','set apart','usp','competitive','distinguish']))
-        return KB.whyHire;
-
-      // Interview Q&A
-      if (has(['tell me about yourself','self introduction','introduce yourself','walk me through','run me through','summarize your','quick intro']))
-        return KB.tellMeAboutYourself;
-
-      if (has(['goal','goals','5 year','five year','long term','short term','career plan','future','aspire','vision','ambition','where do you see']))
-        return KB.goals;
-
-      if (has(['weakness','weak','not good at','struggle','lacking','gap','improve yourself','area of improvement','working on']))
-        return KB.weakness;
-
-      if (has(['challenge','difficult','hard','obstacle','struggled','overcome','tough situation','problem you solved']))
-        return KB.challenge;
-
-      if (has(['motivat','what drives','why code','why programming','why developer','passion','inspire','excite','enjoy','love about']))
-        return "🔥 What motivates Fabian:\n\n\"I get genuinely excited when something I've coded actually helps someone — whether it's a resume builder that saves hours, or a financial planner that helps a family plan their retirement.\n\nArthaSūtra was built for my own family. The IoT Parking System was inspired by a real problem I saw in Chennai. I don't just code for portfolios — I code to solve things.\n\nI also love the constant evolution of tech. There's always something new to learn, and AI tools are making that even more exciting. The feeling of solving a hard problem elegantly? I never get tired of that.\" 💡";
-
-      if (has(['teamwork','team','collaborate','group','coworker','colleague','work with others','team player','cross functional']))
-        return KB.teamwork;
-
-      if (has(['strength','strong','best at','good at','skill','what are you good','excel at']))
-        return "💪 Fabian's key strengths:\n\n1. Python automation — real internship proof (40% efficiency boost)\n2. Building complete, deployed web applications\n3. AI-augmented development — faster and smarter workflow\n4. Cross-domain thinking — built projects in web, IoT, FinTech, and games\n5. Communication — presents, explains, and collaborates clearly\n6. Taking ownership — builds and ships without being hand-held\n\nHis greatest strength: he bridges the gap between 'student with knowledge' and 'developer who ships working products.' 🚀";
-
-      if (has(['pressure','deadline','stress','handle stress','time crunch','urgent','multitask','prioritize']))
-        return "⏱️ How Fabian handles pressure:\n\n• Breaks large tasks into small milestones\n• Prioritises by impact — what blocks others comes first\n• Uses AI tools to accelerate tedious parts\n• Communicates early if a timeline is at risk\n\nDuring his internship, he managed automation tasks, code reviews, and cross-team collaboration simultaneously. He described it: \"Pressure reveals your system. I build systems that hold up.\" 💪";
-
-      if (has(['leadership','lead','initiative','ownership','independent','self driven','self-driven']))
-        return "Fabian shows leadership through action 🎯\n\n• Led code review sessions during his internship\n• Self-initiated and completed 7 projects without being assigned\n• Won a prize at a competitive academic presentation\n• Built ArthaSūtra to help his own family — a self-started, self-completed real product\n\nHe doesn't wait to be told what to build. He identifies problems and solves them. That's the kind of initiative teams value.";
-
-      if (has(['feedback','criticism','take feedback','review feedback','constructive','handle feedback']))
-        return "Fabian welcomes feedback as fuel for improvement 📈\n\n\"During my internship, code reviews were routine. I learned early that feedback on your code isn't feedback on you — it's how the code gets better.\n\nI actively ask for feedback rather than waiting for it. I take notes, act on it, and follow up to confirm the fix was right. That mindset helped me improve code maintainability by 25% through iterative reviews.\"\n\nHe also gives feedback well — focused on the problem, never the person.";
-
-      if (has(['dream company','ideal company','where do you want to work','preferred company','target company','zoho','tcs','infosys','wipro','startup','google']))
-        return "🏢 Fabian's ideal company:\n\nAny company that values talent and growth over just credentials. He's drawn to places that:\n\n• Ship real products that impact users\n• Move fast and learn from mistakes\n• Value AI-augmented, modern development practices\n• Invest in their developers' growth\n• Build a culture of collaboration and ownership\n\nFrom innovative startups in Chennai to established tech companies — what matters to him is the work and the team, not just the brand name. 🌟";
-
-      if (has(['value','important to you','what do you look for','work culture','culture fit','work environment','ideal workplace','agile','scrum']))
-        return "What Fabian values most in a job 💡\n\n🥇 A team that ships fast and learns fast\n🥈 Freedom to build and experiment\n🥉 A mentor who guides his growth\n\nHe wants to be in a place where his curiosity and initiative are assets, not obstacles. He learns fastest when given real problems and trusted to solve them. 🚀";
-
-      if (has(['api','rest','restful','endpoint','json','fetch','http request','what is an api']))
-        return "Fabian's understanding of APIs 🔌\n\n\"An API is a contract between two systems. You send a request to an endpoint with parameters, and get back structured data — usually JSON — without needing to know how the other system works internally.\n\nFor example, a weather app sends a city name to a weather API and gets back temperature and conditions. It's the interface, not the implementation.\"\n\nHe's worked with APIs in his web projects — fetch requests, JSON handling, and building UI around API responses in JavaScript.";
-
-      if (has(['code quality','clean code','best practice','readable','maintainable','naming','refactor','documentation','comment']))
-        return "Fabian's approach to code quality ✅\n\n• Meaningful names — code should read like English\n• Single-responsibility functions\n• Comments where logic isn't obvious\n• Regular refactoring (improved maintainability 25% during internship)\n• Uses AI tools to catch common issues and suggest cleaner patterns\n\n\"Good code is code your future self doesn't hate.\" — His personal rule. 😄";
-
-      if (has(['version control','git flow','commit','branch strategy','merge']))
-        return "Git workflow Fabian uses 🔄\n\n• Creates a repo for every project from day one\n• Meaningful commit messages (not just 'update')\n• Feature branches for experiments\n• All 7 projects live on GitHub Pages\n\ngithub.com/Fabian-william — check out his repos directly!";
-
-      // Fallback
-      return "Great question! Here's what I can tell you about Fabian:\n\nHe's a passionate developer from Chennai with 7 real projects, a Python internship, 5 certifications, and an award — actively looking for his first professional role.\n\n📬 For anything beyond my knowledge, reach him directly:\n✉️ arfabianwilliam@gmail.com\n💼 linkedin.com/in/ar-fabian-william/\n📞 (+91) 75502-60124\n\nOr try asking about: skills · projects · experience · hobbies · open to work · how to hire him 👆";
-    }
-
-    /* ═══════════════════════════════════════════════════
-       UI FUNCTIONS
-    ═══════════════════════════════════════════════════ */
-    function toggle(){
-      open=!open;
-      document.getElementById('chat-win').classList.toggle('open',open);
-      document.getElementById('chat-fab').classList.toggle('open',open);
-      if(open&&!greeted){
-        greeted=true;
-        setTimeout(()=>bot("👋 Hi! I'm Fabian's personal AI assistant.\n\nI know everything about him — his skills, projects, experience, personality, hobbies, and career goals. I was built specifically to answer questions from recruiters, interviewers, and visitors.\n\nWhat would you like to know? 😊"),350);
+      if (p.includes('portfolio')) {
+        return "You're looking at it! 💻\n\nThis portfolio is built with pure HTML, CSS (using Syne & DM Sans fonts), and JavaScript. It features custom animations, a fully responsive layout, and this JARVIS chatbot.";
       }
-      if(open) document.getElementById('ch-inp').focus();
+      // Default: List projects first
+      document.getElementById('jchips').style.display = 'flex';
+      return "I have completed over 8 projects! 🚀 Which one would you like to know more about?\n\n1. Perception AI (JARVIS)\n2. Modern Portfolio\n3. C++ Management Systems";
     }
 
-    function chip(el){
-      document.getElementById('ch-chips').style.display='none';
-      run(el.textContent.trim());
+    // 2. NEW QUESTIONS: CERTIFICATIONS & AWARDS
+    if (p.includes('cert') || p.includes('licens')) {
+      return "I hold several professional certifications 🏆 including:\n• Python (Basic)\n• C++ (Data Structures)\n• SQL (Advanced)\n• Java (Basic)\nI'm always learning to stay ahead!";
+    }
+    if (p.includes('award') || p.includes('achieve')) {
+      return "I recently won the 'Visionary Developer' award for my work on AI-integrated tools. I'm also proud of my academic progress in the MCA program at DR MGR University!";
     }
 
-    function send(){
-      const el=document.getElementById('ch-inp');
-      const v=el.value.trim();
-      if(!v) return;
-      el.value='';
-      document.getElementById('ch-chips').style.display='none';
-      run(v);
+    // 3. NEW QUESTIONS: INTERNSHIP & AVAILABILITY
+    if (p.includes('hire') || p.includes('intern') || p.includes('job')) {
+      return "I am currently seeking Internship opportunities for 2026! 🤝\n\nI'm ready to bring my skills in Python, C++, and AI automation to a forward-thinking team. Let's build something great together!";
     }
 
-    function run(text){
-      addMsg(text,'user');
-      const t=typing();
-      setTimeout(()=>{t.remove();bot(getReply(text));},500+Math.random()*400);
+    // 4. CORE IDENTITY (Existing logic refined)
+    if (p.includes('who') || p.includes('fabian')) {
+      return "I'm AR Fabian William, an MCA student and creative developer based in Chennai. 📍 I specialize in turning complex problems into elegant software solutions.";
+    }
+    if (p.includes('skill') || p.includes('tech')) {
+      return "My core tech stack includes:\n• Python (Automation & AI)\n• C++ & Java\n• Web Dev (HTML, CSS, JS)\n• AI Tools (Cursor, Gemini, ChatGPT)";
+    }
+    if (p.includes('contact') || p.includes('email')) {
+      return "You can email me at arfabianwilliam@gmail.com ✉️ or reach out via LinkedIn. I'm always open to interesting conversations!";
     }
 
-    function bot(text){ addMsg(text,'bot'); }
-
-    function addMsg(text,cls){
-      const d=document.createElement('div');
-      d.className='msg '+cls;
-      d.textContent=text;
-      document.getElementById('ch-msgs').appendChild(d);
-      const m=document.getElementById('ch-msgs');
-      m.scrollTop=m.scrollHeight;
+    // 5. FALLBACK & GREETINGS
+    if (p.includes('hi') || p.includes('hello') || p.includes('hey')) {
+      return "Hello! I'm JARVIS. How can I assist you with Fabian's profile today? You can ask about his projects, skills, or internship goals!";
     }
 
-    function typing(){
-      const d=document.createElement('div');
-      d.className='msg typing';
-      d.innerHTML='<div class="tdots"><span></span><span></span><span></span></div>';
-      document.getElementById('ch-msgs').appendChild(d);
-      const m=document.getElementById('ch-msgs');
-      m.scrollTop=m.scrollHeight;
-      return d;
+    return "That's a great question! I'm not quite sure about that yet, but you can check the sections on the main page, or I can tell you about Fabian's projects and skills! 😊";
+  }
+    // ════ GREETINGS — fully trained ════
+    if(has(['hi','hello','hey','howdy','hola','hii','helo','heya','sup','yo ','yo!','whats up','what\'s up','watsup','wassup','greetings','good day','namaste'])){
+      const hr=new Date().getHours();
+      const tod=hr<12?'Good morning ☀️':hr<17?'Good afternoon 🌤️':hr<21?'Good evening 🌙':'Good night 🌟';
+      return tod+"! 👋 I'm JARVIS — Fabian's personal AI assistant.\n\nI know everything about Fabian: his skills, projects, experience, personality, and how to get in touch.\n\nHow can I assist you today?";
+    }
+    if(has(['good morning'])) return "Good morning! ☀️ I'm JARVIS — Fabian's AI.\n\nGreat time to explore his portfolio! What would you like to know about Fabian?";
+    if(has(['good afternoon'])) return "Good afternoon! 🌤️ I'm JARVIS, Fabian's AI assistant.\n\nHow can I help you today?";
+    if(has(['good evening'])) return "Good evening! 🌙 I'm JARVIS — Fabian's AI.\n\nWhat would you like to know about Fabian?";
+    if(has(['good night'])) return "Good night! 🌟 I'm JARVIS — still here if you need anything!\n\nWhat would you like to know about Fabian?";
+    if(has(['how are you','how r u','you doing','you good','hows it going','how\'s it going'])) return "Fully operational and ready to help! 😄\n\nI'm JARVIS — Fabian's AI. Ask me anything about him and I'll give you an accurate, instant answer.\n\nWhat would you like to know?";
+    if(has(['who are you','what are you','about you','about this','jarvis','what is jarvis','who is jarvis'])) return "I'm JARVIS — Fabian's personal AI assistant 🤖\n\nBuilt right into this portfolio. I have complete knowledge of:\n• Fabian's technical & AI skills\n• All 7 projects with full details\n• Education, experience & certifications\n• Personality, hobbies & career goals\n• Interview-ready answers\n\nI'm Fabian's always-available digital representative. What would you like to know?";
+    if(has(['thank you','thanks','thank','ty','thx','appreciate','cheers'])) return "You're very welcome! 😊\n\nAnything else you'd like to know about Fabian? I'm happy to help!";
+    if(has(['bye','goodbye','see you','take care','cya','later','tata'])) return "Goodbye! 👋 It was a pleasure chatting with you.\n\nTo reach Fabian directly:\n✉️ arfabianwilliam@gmail.com\n💼 linkedin.com/in/ar-fabian-william/\n\nHave a wonderful day! 🌟";
+    if(has(['ok','okay','alright','sure','got it','i see','nice','cool','great','awesome','wow'])) return "Great! 😊 Is there anything else you'd like to know about Fabian?\n\nYou can ask about his skills, projects, experience, or how to contact him!";
+
+    // Personal
+    if(has(['who is fabian','about fabian','introduce fabian','tell me about fabian','background','summary','overview','profile','who is he'])) return K.who;
+    if(has(['personality','character','describe him','creative','detail oriented','type of person','mindset','trait'])) return K.personality;
+    if(has(['hobby','hobbies','interest','interests','outside coding','free time','fun time','gaming','music','travel','movies','what does he like'])) return K.hobbies;
+    if(has(['language','speak','tamil','english','malayalam','multilingual'])) return 'Fabian is multilingual 🌐\n\n• English — Professional proficiency\n• Tamil — Native speaker\n• Malayalam — Conversational\n\nGreat for working in diverse teams!';
+    if(has(['location','where','city','place','from','based','chennai','lives','stay'])) return '📍 Chennai, Tamil Nadu, India.\n\nOpen to:\n• On-site roles in Chennai\n• Remote / WFH opportunities\n• Hybrid arrangements\n\nLocation won\'t be a barrier for the right opportunity!';
+
+    // Education
+    if(has(['education','study','studied','degree','university','college','mca','bsc','b.sc','master','bachelor','academic','qualification','course','pursuing'])) return '🎓 Academic Background:\n\n• MCA — DR MGR Educational And Research University (2025–2027)\n  Currently Pursuing ✅\n\n• B.Sc in Computer Science — DR MGR University (2022–2025)\n  Completed ✅\n\nStrong academic foundation paired with 7 real-world projects.';
+
+    // Skills
+    if(has(['ai skill','ai tool','chatgpt','gemini','cursor','llama','blackbox','meta ai','ai-native','ai native','prompt engineering','ai certif'])) return K.aiSkills;
+    if(has(['skill','skills','tech stack','technology','what can he do','capable','proficient','abilities','technical','stack','tools'])) return K.skills;
+    if(has(['python','py','scripting','automation'])) return '🐍 Python is Fabian\'s strongest language.\n\n• Internship: automated tasks → 40% efficiency boost\n• Built ArthaSūtra™ — full FinTech app in Python\n• Simplilearn Python certification (2024)\n\nComfortable with: scripting, automation, OOP, data processing.';
+    if(has(['c++','cpp','oop','object oriented','inheritance','encapsulation','polymorphism','abstraction'])) return '⚙️ Strong C++ skills:\n\n• Built IoT Smart Parking System — C++ microcontroller firmware\n• 2 C++ certifications (OOP + Logic & Iteration)\n\nOOP mastery: Encapsulation · Inheritance · Polymorphism · Abstraction';
+    if(has(['javascript','js','canvas api','frontend','front end'])) return '🌐 JavaScript used in 5 of 7 projects:\nAI Navigator · Resume.io · Calculator · Snake Game · Power BI Converter\n\nSkills: DOM manipulation · Canvas API · Event handling · Responsive UIs';
+    if(has(['html','css','web','website','responsive','tailwind','flexbox'])) return 'Clean, responsive web UIs 🎨\n\nHTML5 · CSS3 · Tailwind CSS · Flexbox · Grid · Media queries\n\nAll web projects are fully responsive — try this portfolio on mobile!';
+    if(has(['git','github','version control','commit','branch','repo'])) return 'Uses Git & GitHub for every project 🔄\n\nAll 7 projects version-controlled and deployed on GitHub Pages.\n\nProfile: github.com/Fabian-william';
+
+    // Experience
+    if(has(['experience','intern','internship','work','worked','job','professional','company','top tech','industry'])) return K.exp;
+    if(has(['fresher','fresh graduate','entry level','entry-level','junior','no experience','new graduate'])) return 'Entry-level but far from inexperienced 💪\n\n✅ Real internship with measurable results (40% efficiency boost)\n✅ 7 deployed projects\n✅ 5 certifications\n✅ 1 award\n✅ MCA in progress\n\nMost freshers have textbook knowledge. Fabian ships working products.';
+
+    // Projects specific
+    if(has(['ai navigator','navigator'])) return '🤖 AI Navigator\n\nA web directory for AI platforms, productivity tools & dev resources — categorised and searchable.\n\nStack: HTML · CSS · JavaScript\nLive: fabian-william.github.io/AI-NAVIGATOR/\n\nMotivation: Built to solve the scattered AI tool landscape — a central hub for developers.';
+    if(has(['resume.io','resume builder','resume app','cv builder'])) return '📄 Resume.io\n\nWeb app to create professional resumes instantly — fill in details, get a downloadable output.\n\nStack: HTML · CSS · JavaScript\nLive: fabian-william.github.io/Resume.io/\n\nMotivation: Existing builders were too complex and behind paywalls.';
+    if(has(['calculator','scientific calculator'])) return '🔢 Scientific Calculator\n\nAdvanced math functions, calculation history, mobile-friendly design.\n\nStack: HTML · CSS · JavaScript\nLive: fabian-william.github.io/scientific-calculator/\n\nMotivation: Most browser calculators are basic — built an elegant powerful one.';
+    if(has(['snake','snake game','game'])) return '🐍 Classic Snake Game\n\nSmooth Canvas-based Snake with score tracking, difficulty levels, game-over screen.\n\nStack: HTML · CSS · JavaScript · Canvas API\nLive: fabian-william.github.io/snake-game/\n\nMotivation: Loved gaming — turned the hobby into a Canvas API learning project!';
+    if(has(['arthasutra','artha','financial planner','fintech','sip','retirement','tax saving'])) return '💰 ArthaSūtra™ Financial Planner\n\nPython FinTech app for SIP returns, retirement corpus & tax-saving — for Indian families.\n\nStack: Python · FinTech logic\nLive: fabian-william.github.io/arthasutra/\n\n❤️ Most personal project — built for his own family. India-specific financial planning.';
+    if(has(['iot','parking','smart parking','ultrasonic','sensor','hardware','embedded','c++ project'])) return '🅿️ IoT Smart Parking System\n\nUltrasonic sensors + C++ firmware + real-time database + live dashboard.\n\nStack: C++ · IoT · Real-Time DB\n\nChallenge solved: Sensor interference via software debounce filter + hardware repositioning.\n\nProof Fabian can bridge hardware and software.';
+    if(has(['power bi','excel','converter','dashboard','data'])) return '📊 Excel → Power BI Converter\n\nAutomates Excel data → interactive Power BI dashboards.\n\nStack: Excel · Power BI\nLive: fabian-william.github.io/excel-to-power-bi/\n\nMotivation: Teams waste hours manually re-creating dashboards — automated the pipeline.';
+    if(has(['project','projects','built','made','created','demo','work sample','what has he built'])) return K.projects;
+
+    // Certs
+    if(has(['certif','certification','cert','credential','simplilearn','google cloud','course','trained'])) return K.certs;
+
+    // Achievement
+    if(has(['achievement','award','prize','won','recognition','paper','presentation','competition','accolade'])) return K.award;
+    if(has(['jarvis','jarvis mark','mark 1','iron man','ironman','ai assistant project','multi core','ollama','voice assistant','why jarvis','jarvis name','named jarvis'])) return K.jarvis;
+
+    // Work
+    if(has(['open to work','available','looking for job','hire','hiring','opportunity','seeking','role','recruit','position','job hunt','employment'])) return K.openToWork;
+    if(has(['salary','ctc','package','pay','compensation','lpa','lakh','expect'])) return '💰 Salary Expectations:\n\nFabian is open to discussing compensation based on the role and company.\n\nFor specific numbers, reach out directly:\n✉️ arfabianwilliam@gmail.com\n💼 linkedin.com/in/ar-fabian-william/';
+    if(has(['notice period','join','joining','when can he start','availability','start date'])) return '📅 Joining:\n\nFabian is flexible on joining timeline.\n\nFor specific dates, reach him:\n✉️ arfabianwilliam@gmail.com\n📞 (+91) 75502-60124';
+    if(has(['remote','wfh','work from home','hybrid','onsite','on-site','relocate'])) return '🌍 Work Mode:\n\n• On-site: Open — Chennai\n• Remote / WFH: Absolutely yes\n• Hybrid: Works great\n\nLocation won\'t be a barrier for the right opportunity!';
+
+    // Contact
+    if(has(['contact','reach','email','phone','linkedin','github','social','connect','message','get in touch','call','whatsapp'])) return K.contact;
+
+    // Why hire
+    if(has(['why hire','why should','stand out','unique','different from','set apart','value add','advantage','what makes him special','competitive'])) return K.whyHire;
+
+    // Interview
+    if(has(['tell me about yourself','self introduction','introduce yourself','walk me through your resume','run me through'])) return K.intro;
+    if(has(['goal','goals','5 year plan','career plan','future','aspire','vision','long term','short term','where do you see'])) return '📌 Short-term (1–2 years):\n• Land an entry-level developer role\n• Complete MCA with strong results\n• Deepen backend (Django/Node.js) & cloud (AWS/Azure)\n\n🚀 Long-term (3–5 years):\n• Well-rounded software engineer\n• Work on high-impact products\n• Specialise in AI-integrated apps or FinTech\n• Mentor junior developers';
+    if(has(['weakness','weak point','not good at','struggle with','area of improvement','working on improving'])) return '"I\'m still building depth in backend frameworks (Django/Node.js) and cloud platforms (AWS/Azure).\n\nHowever, I pick up new technologies fast by building with them — that\'s how I learned Canvas API, IoT systems, and FinTech logic.\n\nKnowing your gap is the first step to closing it — and I close them fast." 📈';
+    if(has(['challenge','difficult','hard problem','obstacle','tough','struggled','overcame','bug','debugging'])) return 'IoT Parking System challenge:\n\n"The ultrasonic sensor gave erratic readings. Hours of code review revealed nothing — then I realised the sensor was picking up wall reflections, not a code bug.\n\nFix: C++ software debounce filter + physical sensor repositioning.\n\nLesson: Not all bugs are in the code. Think at the system level." 🧠';
+    if(has(['motivat','what drives','why code','why programming','passion','what excites','inspire','love about coding'])) return '"I get excited when code actually helps real people.\n\nArthaSūtra was built for my own family\'s financial planning. The IoT Parking System was inspired by real Chennai traffic chaos.\n\nI don\'t code for portfolios — I code to solve things that matter.\n\nThe feeling of solving a hard problem elegantly? I never get tired of that." 🔥';
+    if(has(['teamwork','team work','team player','collaborate','group project','cross functional','colleagues','coworker'])) return '🤝 From internship experience:\n\n"I worked with developers, team leads, and non-technical stakeholders. I led code review sessions — both giving and receiving constructive feedback.\n\nThat collaborative approach helped improve code maintainability by 25%.\n\nBest part of teamwork: every person\'s perspective makes the final product better than any one person could build alone."';
+    if(has(['strength','strong point','best at','excel at','good at','what are you good'])) return '💪 Key Strengths:\n\n1. Creative & detail-oriented — polished work above entry-level\n2. Python automation — proven 40% efficiency gains\n3. AI-augmented workflow — ships faster & smarter\n4. Cross-domain builder — web, IoT, FinTech, games\n5. Takes ownership without needing to be hand-held\n\n"Most freshers have textbook knowledge. I ship working products." 🚀';
+    if(has(['code quality','clean code','best practice','readable','maintainable','refactor','naming convention'])) return '"Good code is code your future self doesn\'t hate."\n\nFabian\'s approach:\n• Meaningful variable & function names\n• Single-responsibility functions\n• Comments where logic isn\'t obvious\n• Regular refactoring (→ 25% better maintainability at internship)\n• AI tools to catch issues early ✅';
+    if(has(['api','rest api','restful','endpoint','json','fetch','http request'])) return '"An API is a contract between two systems — you send a request to an endpoint and get structured data back (usually JSON), without knowing how the other system works internally."\n\nFabian uses APIs in his web projects — fetch requests, JSON handling, and building dynamic UIs. 🔌';
+
+    // Why named JARVIS specific
+    if(has(['why jarvis','why named jarvis','why the name','iron man','ironman','tony stark','avenger'])){
+      return "Great question! 😄\n\nFabian is a HUGE Iron Man fan — Tony Stark's JARVIS has always been his vision of the perfect AI assistant: intelligent, voice-driven, context-aware, and always one step ahead.\n\nBuilding JARVIS is not just a project — it's a personal tribute to one of the greatest fictional AIs ever imagined.\n\n\"Just A Rather Very Intelligent System\" — and Fabian is building exactly that, one Mark at a time. 🔥";
     }
 
-    return {toggle,chip,send};
-  })();
-  </script>
+    // Fallback
+    return 'Great question! 😊\n\nHere\'s a quick summary of Fabian:\nCreative developer from Chennai — 7 deployed projects, Python internship (40% efficiency boost), 5 certifications, and an award. Actively seeking his first professional role.\n\n📬 Reach him directly:\n✉️ arfabianwilliam@gmail.com\n💼 linkedin.com/in/ar-fabian-william/\n\nOr ask me about:\n• Skills & AI tools\n• Specific projects\n• Experience & achievements\n• Why hire him 👆';
+  }
+
+  // ── UI ENGINE ──
+  function toggle(){
+    open=!open;
+    document.getElementById('jwin').classList.toggle('on',open);
+    document.getElementById('jfab').classList.toggle('on',open);
+    if(open&&!greeted){
+      greeted=true;
+      setTimeout(()=>{
+        const hr=new Date().getHours();
+        const tod=hr<12?'Good morning ☀️':hr<17?'Good afternoon 🌤️':hr<21?'Good evening 🌙':'Good night 🌟';
+        add(tod+"! 👋 I'm JARVIS — Fabian's personal AI assistant.\n\nI'm here to give you instant, accurate answers about Fabian's skills, projects, experience, and how to reach him.\n\nHow can I assist you today?",'b');
+      },350);
+    }
+    if(open)document.getElementById('jinp').focus();
+  }
+  function chip(el){document.getElementById('jchips').style.display='none';run(el.textContent.trim())}
+  function send(){
+    const el=document.getElementById('jinp');
+    const v=el.value.trim();
+    if(!v)return;
+    el.value='';
+    document.getElementById('jchips').style.display='none';
+    run(v);
+  }
+  function run(t){
+    add(t,'u');
+    const ty=typing();
+    setTimeout(()=>{ty.remove();add(reply(t),'b')},500+Math.random()*350);
+  }
+  function add(t,cls){
+    const d=document.createElement('div');
+    d.className='jmsg '+cls;
+    d.textContent=t;
+    document.getElementById('jm').appendChild(d);
+    sc();
+  }
+  function typing(){
+    const d=document.createElement('div');
+    d.className='jmsg t';
+    d.innerHTML='<div class="dots"><span></span><span></span><span></span></div>';
+    document.getElementById('jm').appendChild(d);
+    sc();
+    return d;
+  }
+  function sc(){const m=document.getElementById('jm');m.scrollTop=m.scrollHeight}
+  return{toggle,chip,send};
+})();
+</script>
 </body>
 </html>
